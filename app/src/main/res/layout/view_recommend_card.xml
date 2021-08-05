@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="133dp"
+    android:layout_height="176dp">
+    
+    <com.bngel.bcy.widget.others.AvtView
+        android:id="@+id/avt_view_recommend_card"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:src="@drawable/rem"/>
+
+    <TextView
+        android:id="@+id/username_view_recommend_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="测试字段"
+        android:gravity="center"
+        android:layout_below="@id/avt_view_recommend_card"
+        android:layout_marginTop="13dp"
+        android:textColor="#101010"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/follow_btn_view_recommend_card"
+        android:layout_width="85dp"
+        android:layout_height="30dp"
+        android:background="@drawable/bk_follow_btn_view_recommend_card"
+        android:text="关注"
+        android:layout_below="@id/username_view_recommend_card"
+        android:gravity="center"
+        android:layout_marginTop="22dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="14dp"
+        android:textColor="#FFFFFF"/>
+    
+    <ImageView
+        android:id="@+id/close_btn_view_recommend_card"
+        android:layout_width="17dp"
+        android:layout_height="17dp"
+        android:src="@drawable/close_view_recommend_card_cecece"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="9dp"/>
+
+</RelativeLayout>

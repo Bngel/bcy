@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="跳过"
+                android:textSize="14sp"
+                android:textColor="#101010"
+                android:layout_gravity="center_vertical"
+                android:gravity="right"
+                android:layout_margin="15dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="填写基本信息"
+            android:gravity="center"
+            android:textSize="26sp"
+            android:textColor="#101010"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:textSize="14sp"
+            android:text="向大家介绍一下自己吧"
+            android:gravity="center"/>
+
+        <com.bngel.bcy.widget.others.AvtView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/rem"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="12dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="上传头像"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:textColor="#CECECE"
+            android:textSize="14sp"/>
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="女生"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="55dp"
+                android:text="男生"/>
+
+        </RadioGroup>
+
+        <ImageView
+            android:layout_width="319dp"
+            android:layout_height="1dp"
+            android:background="#EAEAEA"
+            android:layout_marginTop="28dp"
+            android:layout_marginBottom="12dp"
+            android:layout_gravity="center"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="29dp"
+            android:paddingRight="27dp"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="#101010"
+                android:text="昵称"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textSize="16sp"
+                android:hint="请填写昵称"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="42dp"
+            android:text="下一步"
+            android:textSize="16sp"
+            android:textColor="#CECECE"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="320dp"
+            android:layout_marginBottom="34dp"
+            android:background="@drawable/bk_next_btn_create_user_info_activity"/>
+
+    </LinearLayout>
+
+</ScrollView>

@@ -9,6 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".activity.CreateUserInfoActivity"></activity>
+        <activity android:name=".activity.RecommendFollowActivity" />
+        <activity android:name=".activity.ForgetPasswordActivity" />
+        <activity android:name=".activity.SendCodeActivity" />
+        <activity android:name=".activity.SetPasswordActivity" />
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
