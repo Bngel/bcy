@@ -1,36 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:orientation="vertical">
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/exit_set_password_activity_101010"
+        android:layout_margin="20dp"
+        android:layout_gravity="center_vertical"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="跳过"
+        android:textSize="14sp"
+        android:textColor="#101010"
+        android:layout_gravity="center_vertical"
+        android:gravity="right"
+        android:layout_marginRight="15dp"/>
+</LinearLayout>
+
+    <ScrollView android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/exit_set_password_activity_101010"
-                android:layout_margin="20dp"
-                android:layout_gravity="center_vertical"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="跳过"
-                android:textSize="14sp"
-                android:textColor="#101010"
-                android:layout_gravity="center_vertical"
-                android:gravity="right"
-                android:layout_marginRight="15dp"/>
-        </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
@@ -114,4 +121,4 @@
 
     </LinearLayout>
 
-</ScrollView>
+</ScrollView></LinearLayout>

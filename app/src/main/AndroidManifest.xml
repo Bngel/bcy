@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".activity.CreateUserInfoActivity"></activity>
+        <activity android:name=".activity.CommentActivity"></activity>
+        <activity android:name=".activity.DiscussActivity" />
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.CreateUserInfoActivity" />
         <activity android:name=".activity.RecommendFollowActivity" />
         <activity android:name=".activity.ForgetPasswordActivity" />
         <activity android:name=".activity.SendCodeActivity" />
