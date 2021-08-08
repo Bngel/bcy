@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/exit_set_password_activity_101010"
+            android:layout_margin="17dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="#101010"
+            android:text="编辑标签"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:orientation="vertical">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="请选择或输入标签"
+                    android:background="@null"
+                    android:textSize="18sp"/>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginBottom="11dp"
+                    android:background="#BBBBBB"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="标签测试"
+                        android:textSize="12sp"
+                        android:layout_margin="10dp"
+                        android:textColor="#101010"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:background="@drawable/bk_tag_discuss_activity"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="标签测试"
+                        android:gravity="center"
+                        android:textSize="12sp"
+                        android:layout_margin="10dp"
+                        android:textColor="#101010"
+                        android:padding="5dp"
+                        android:background="@drawable/bk_tag_discuss_activity"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="标签测试"
+                        android:textSize="12sp"
+                        android:layout_margin="10dp"
+                        android:gravity="center"
+                        android:textColor="#101010"
+                        android:padding="5dp"
+                        android:background="@drawable/bk_tag_discuss_activity"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="标签测试"
+                        android:textSize="12sp"
+                        android:gravity="center"
+                        android:layout_margin="10dp"
+                        android:textColor="#101010"
+                        android:padding="5dp"
+                        android:background="@drawable/bk_tag_discuss_activity"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="300dp"
+                android:layout_height="42dp"
+                android:text="确定"
+                android:gravity="center"
+                android:background="@drawable/bk_ok_btn_edit_tags_activity"
+                android:layout_marginTop="400dp"
+                android:textSize="16sp"
+                android:textColor="#FFFFFF"
+                android:layout_gravity="center_horizontal"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -4,11 +4,28 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewpager_MainActivity"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewpager_MainActivity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:src="@drawable/edit_float_btn_main_activity_ffffff"
+            android:background="@drawable/bk_float_edit_btn_main_activity"
+            android:padding="19dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="48dp"
+            android:layout_marginRight="7dp"/>
+
+    </RelativeLayout>
 
     <com.bngel.bcy.widget.MainActivity.BottomTabMainActivity
         android:id="@+id/bottom_tab_MainActivity"

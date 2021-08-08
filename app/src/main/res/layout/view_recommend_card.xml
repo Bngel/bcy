@@ -26,7 +26,7 @@
         android:id="@+id/follow_btn_view_recommend_card"
         android:layout_width="85dp"
         android:layout_height="30dp"
-        android:background="@drawable/bk_follow_btn_view_recommend_card"
+        android:background="@drawable/bk_follow_btn_recommend_card_view"
         android:text="关注"
         android:layout_below="@id/username_view_recommend_card"
         android:gravity="center"

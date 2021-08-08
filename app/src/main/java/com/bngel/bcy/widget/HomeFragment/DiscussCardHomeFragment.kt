@@ -12,6 +12,6 @@ class DiscussCardHomeFragment : LinearLayout {
     constructor(context: Context, attrs: AttributeSet):super(context)
 
     init {
-        LayoutInflater.from(context).inflate(R.layout.discuss_card_home_fragment, this)
+        LayoutInflater.from(context).inflate(R.layout.view_discuss_card, this)
     }
 }

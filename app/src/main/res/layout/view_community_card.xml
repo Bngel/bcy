@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    
+    <ImageView
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:src="@drawable/rem"
+        android:layout_margin="15dp"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#101010"
+            android:text="圈子名"
+            android:gravity="left"
+            android:layout_marginTop="7dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:layout_marginTop="8dp"
+            android:textSize="14sp"
+            android:textColor="#101010"
+            android:text="欢迎分享xxxxxxxxxxxxxx"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:layout_marginTop="7dp"
+            android:textSize="12sp"
+            android:textColor="#A69E9E"
+            android:text="345.9w个成员"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="76dp"
+        android:layout_height="34dp"
+        android:text="+ 关注"
+        android:gravity="center"
+        android:background="@drawable/bk_follow_btn_community_card_view"
+        android:textColor="#F06A0F"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="17dp"/>
+
+</LinearLayout>

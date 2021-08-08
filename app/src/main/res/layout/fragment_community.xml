@@ -1,6 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="15dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="20dp"
+        android:layout_marginBottom="5dp"
+        android:hint="搜索你感兴趣的问题吧 ~"
+        android:background="@drawable/search_edit_qanda_fragment"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="#101010"
+            android:text="热门圈子"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="21dp"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#7B7878"
+            android:text="创建圈子 +"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="29dp"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.bngel.bcy.widget.others.CommunityCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <com.bngel.bcy.widget.others.CommunityCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <com.bngel.bcy.widget.others.CommunityCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <com.bngel.bcy.widget.others.CommunityCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <com.bngel.bcy.widget.others.CommunityCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <com.bngel.bcy.widget.others.CommunityCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <com.bngel.bcy.widget.others.CommunityCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <com.bngel.bcy.widget.others.CommunityCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
