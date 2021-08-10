@@ -41,6 +41,7 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.github.bumptech.glide:glide:4.12.0' // Glide 网络图片加载
     implementation 'com.github.liuguangli:VerificationCodeInput:1.6' // 自定义 验证码输入框
+    compile 'com.github.zcweng:switch-button:0.0.3@aar'
 
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

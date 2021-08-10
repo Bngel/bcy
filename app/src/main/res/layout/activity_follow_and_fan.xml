@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/exit_set_password_activity_101010"
+            android:layout_margin="17dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="#101010"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="我的"/>
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/search_follow_and_fan_activity_101010"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="9dp"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:tag="sticky"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:paddingLeft="23dp"
+        android:paddingRight="23dp"
+        android:paddingTop="11dp"
+        android:paddingBottom="13dp">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="关注"
+                android:textSize="18sp"
+                android:textColor="#7B7878"
+                android:gravity="center"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="粉丝"
+                android:textSize="18sp"
+                android:textColor="#7B7878"
+                android:gravity="center"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.bngel.bcy.widget.others.FollowAndFanCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <com.bngel.bcy.widget.others.FollowAndFanCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <com.bngel.bcy.widget.others.FollowAndFanCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <com.bngel.bcy.widget.others.FollowAndFanCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <com.bngel.bcy.widget.others.FollowAndFanCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <com.bngel.bcy.widget.others.FollowAndFanCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <com.bngel.bcy.widget.others.FollowAndFanCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <com.bngel.bcy.widget.others.FollowAndFanCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <com.bngel.bcy.widget.others.FollowAndFanCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <com.bngel.bcy.widget.others.FollowAndFanCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

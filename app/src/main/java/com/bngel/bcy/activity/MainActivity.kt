@@ -123,7 +123,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun test() {
-        val intent = Intent(this, UserDetailActivity::class.java)
+        val intent = Intent(this, MsgAndRemindActivity::class.java)
         startActivity(intent)
     }
 }

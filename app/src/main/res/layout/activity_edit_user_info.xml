@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/exit_set_password_activity_101010"
+            android:layout_margin="17dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="#101010"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="编辑资料"/>
+
+    </RelativeLayout>
+    
+    <com.bngel.bcy.widget.others.AvtView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/rem"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="21dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="17dp"
+                android:layout_marginRight="40dp"
+                android:textSize="16sp"
+                android:textColor="#101010"
+                android:text="昵称"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="用户测试ID字段"
+                android:gravity="center_vertical"
+                android:layout_gravity="center_vertical"
+                android:textColor="#101010"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="17dp"
+                android:layout_marginRight="40dp"
+                android:textSize="16sp"
+                android:textColor="#101010"
+                android:text="性别"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"/>
+
+            <RadioGroup
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="女生"
+                    android:textSize="14sp"
+                    android:textColor="#979797"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:text="男生"
+                    android:textSize="14sp"
+                    android:textColor="#979797"/>
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="17dp"
+                android:layout_marginRight="40dp"
+                android:textSize="16sp"
+                android:textColor="#101010"
+                android:text="生日"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="添加我的生日"
+                android:gravity="center_vertical"
+                android:layout_gravity="center_vertical"
+                android:textColor="#CECECE"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="17dp"
+                android:layout_marginRight="40dp"
+                android:textSize="16sp"
+                android:textColor="#101010"
+                android:text="地区"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="添加我的地区"
+                android:gravity="center_vertical"
+                android:layout_gravity="center_vertical"
+                android:textColor="#CECECE"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="17dp"
+                android:layout_marginRight="40dp"
+                android:textSize="16sp"
+                android:textColor="#101010"
+                android:text="简介"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="添加简介更容易受到关注(100字以内)"
+                android:gravity="center_vertical"
+                android:layout_gravity="center_vertical"
+                android:textColor="#CECECE"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+    
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="42dp"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF"
+        android:text="保存"
+        android:layout_marginTop="150dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:background="@drawable/bk_save_btn_edit_user_info_activity"/>
+</LinearLayout>

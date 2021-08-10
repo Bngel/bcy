@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bk_question_box_card_view">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="7-25 14:45"
+            android:textSize="13sp"
+            android:textColor="#CEC4C4"
+            android:gravity="left"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="8dp"/>
+        
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/close_view_recommend_card_cecece"
+            android:layout_margin="7dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="14dp"
+        android:paddingTop="22dp"
+        android:paddingRight="14dp"
+        android:paddingBottom="48dp">
+
+        <com.bngel.bcy.widget.others.AvtView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/rem"
+            android:layout_gravity="top"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#101010"
+            android:layout_marginLeft="10dp"
+            android:textSize="13sp"
+            android:padding="10dp"
+            android:text="xxxxxxxxxxxxxxxxxx"
+            android:background="@drawable/bk_question_box_card_question_box_card_view"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="41dp">
+
+        <ImageView
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:background="@drawable/bk_circle_question_box_card_view"
+            android:layout_gravity="top"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="回答xxxxxxxxx"
+            android:textSize="14dp"
+            android:textColor="#101010"/>
+
+    </LinearLayout>
+
+</LinearLayout>
