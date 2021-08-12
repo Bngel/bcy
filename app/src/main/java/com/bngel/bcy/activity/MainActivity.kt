@@ -68,8 +68,6 @@ class MainActivity : BaseActivity() {
                         home_bottom_tab_main_activity.setImageResource(R.drawable.home_bottom_tab_main_activity_979797)
                         qanda_bottom_tab_main_activity.setImageResource(R.drawable.qanda_bottom_tab_main_activity_979797)
                         viewpager_MainActivity.currentItem = PAGE_ME
-                        // 测试代码
-                        test()
                     }
                 }
             }
@@ -120,10 +118,5 @@ class MainActivity : BaseActivity() {
         // 默认启动选择首页
         home_bottom_tab_main_activity.setImageResource(R.drawable.home_bottom_tab_main_activity_ccbe97)
         ConstantRepository.homeTabStatus = PAGE_HOME
-    }
-
-    private fun test() {
-        val intent = Intent(this, MsgAndRemindActivity::class.java)
-        startActivity(intent)
     }
 }
