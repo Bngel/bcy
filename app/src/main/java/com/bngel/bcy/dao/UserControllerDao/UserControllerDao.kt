@@ -3,13 +3,16 @@ package com.bngel.bcy.dao.UserControllerDao
 import com.bngel.bcy.bean.postChangePassword.PostChangePassword
 import com.bngel.bcy.bean.postOauthLoginBySms.PostOauthLoginBySms
 import com.bngel.bcy.bean.postOauthLogout.PostOauthLogout
+import com.bngel.bcy.bean.postOauthToken.PostOauthToken
 import com.bngel.bcy.web.SSLSocketClient
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
 import java.util.concurrent.TimeUnit
@@ -44,6 +47,18 @@ interface UserControllerDao {
         @Query("id") id: String,
         @Query("type") type: Int
     ): Call<PostOauthLogout>
+
+    /**
+     * 用户账号密码登录
+     */
+    @POST("/oauth/token")
+    fun postOauthToken(
+        @Query("grant_type") grant_type: String,
+        @Query("username") username: String,
+        @Query("password") password: String,
+        @Query("client_id") client_id: String,
+        @Query("client_secret") client_secret: String
+    ): Call<PostOauthToken>
 
 
     companion object {

@@ -2,13 +2,15 @@ package com.bngel.bcy.service
 
 import android.widget.Toast
 import com.bngel.bcy.bean.postChangePassword.PostChangePassword
+import com.bngel.bcy.bean.postOauthToken.PostOauthToken
 import com.bngel.bcy.bean.postOauthLoginBySms.PostOauthLoginBySms
 import com.bngel.bcy.bean.postOauthLogout.PostOauthLogout
 import com.bngel.bcy.dao.UserControllerDao.UserControllerDao
 import com.bngel.bcy.utils.ActivityCollector
 import com.bngel.bcy.web.WebRepository
-import java.lang.Exception
+import com.google.gson.GsonBuilder
 import kotlin.concurrent.thread
+
 
 class UserControllerService {
 
@@ -26,7 +28,7 @@ class UserControllerService {
         phone: String
     ): PostChangePassword? {
         if (!WebRepository.isNetworkConnected()) {
-            Toast.makeText(ActivityCollector.curActivity!!,"网络错误",Toast.LENGTH_SHORT)
+            Toast.makeText(ActivityCollector.curActivity!!, "网络错误", Toast.LENGTH_SHORT).show()
             return null
         }
         val data = userService.postChangePassword(code, newPassword, phone)
@@ -55,7 +57,7 @@ class UserControllerService {
         type: Int = 2
     ): PostOauthLoginBySms? {
         if (!WebRepository.isNetworkConnected()) {
-            Toast.makeText(ActivityCollector.curActivity!!,"网络错误",Toast.LENGTH_SHORT)
+            Toast.makeText(ActivityCollector.curActivity!!, "网络错误", Toast.LENGTH_SHORT).show()
             return null
         }
         val data = userService.postOauthLoginBySms(code, phone, type)
@@ -79,7 +81,7 @@ class UserControllerService {
      */
     fun postOauthLogout(id: String, type: Int = 2): PostOauthLogout? {
         if (!WebRepository.isNetworkConnected()) {
-            Toast.makeText(ActivityCollector.curActivity!!,"网络错误",Toast.LENGTH_SHORT)
+            Toast.makeText(ActivityCollector.curActivity!!, "网络错误", Toast.LENGTH_SHORT).show()
             return null
         }
         val data = userService.postOauthLogout(id, type)
@@ -91,6 +93,39 @@ class UserControllerService {
                 msg = body.msg
                 if (msg == "success") {
                     res = body
+                }
+            }.join(4000)
+        } catch (e: Exception) {}
+        return res
+    }
+
+    /***
+     * msg:
+     * 错误返回: error
+     * 正常返回: access_token
+     */
+    fun postOauthToken(
+        username: String, password: String,
+        grant_type: String = "password",
+        client_id: String = "bcy-cloud-gateway",
+        client_secret: String = "123456"
+    ): PostOauthToken? {
+        val gson = GsonBuilder()
+            .registerTypeAdapter(PostOauthToken::class.java, PostOauthToken.DataStateDeserializer())
+            .create()
+        val oauthService = UserControllerDao.create(gson)
+        if (!WebRepository.isNetworkConnected()) {
+            Toast.makeText(ActivityCollector.curActivity!!, "网络错误", Toast.LENGTH_SHORT).show()
+            return null
+        }
+        val data = oauthService.postOauthToken(grant_type, username, password, client_id, client_secret)
+        var res: PostOauthToken? = null
+        try {
+            thread {
+                val exec = data.execute()
+                if (exec.code() == 200) {
+                    res = exec.body()
+                    print(res.toString() + "\n" + exec.code())
                 }
             }.join(4000)
         } catch (e: Exception) {}
