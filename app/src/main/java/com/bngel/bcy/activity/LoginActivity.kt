@@ -29,6 +29,10 @@ class LoginActivity : BaseActivity() {
         codeLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val data = result.data
+                if (data?.getBooleanExtra("loginStatus", false) == true){
+                    intent.putExtra("loginStatus", true)
+                    finish()
+                }
             }
         }
     }
@@ -123,10 +127,11 @@ class LoginActivity : BaseActivity() {
             val postOauthToken = userService.postOauthToken(tel, password)
             if (postOauthToken != null) {
                 intent.putExtra("loginStatus", true)
+                Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show()
                 finish()
             }
             else {
-                Toast.makeText(this, "发生未知错误", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "登录失败", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -149,6 +154,7 @@ class LoginActivity : BaseActivity() {
                     },
                     Toast.LENGTH_SHORT).show()
                 if (postOauthCode.msg == "success") {
+                    intent.putExtra("phone", tel)
                     codeLauncher?.launch(intent)
                     finish()
                 }

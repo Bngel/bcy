@@ -56,11 +56,15 @@ class UserControllerService {
         phone: String,
         type: Int = 2
     ): PostOauthLoginBySms? {
+        val gson = GsonBuilder()
+            .registerTypeAdapter(PostOauthLoginBySms::class.java, PostOauthLoginBySms.DataStateDeserializer())
+            .create()
+        val loginUser = UserControllerDao.create(gson)
         if (!WebRepository.isNetworkConnected()) {
             Toast.makeText(ActivityCollector.curActivity!!, "网络错误", Toast.LENGTH_SHORT).show()
             return null
         }
-        val data = userService.postOauthLoginBySms(code, phone, type)
+        val data = loginUser.postOauthLoginBySms(code, phone, type)
         var msg = ""
         var res: PostOauthLoginBySms? = null
         try {
@@ -125,7 +129,6 @@ class UserControllerService {
                 val exec = data.execute()
                 if (exec.code() == 200) {
                     res = exec.body()
-                    print(res.toString() + "\n" + exec.code())
                 }
             }.join(4000)
         } catch (e: Exception) {}

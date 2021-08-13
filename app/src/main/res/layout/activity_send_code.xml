@@ -11,6 +11,7 @@
         android:orientation="vertical">
 
         <ImageView
+            android:id="@+id/close_btn_SendCodeActivity"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/exit_set_password_activity_101010"
@@ -44,7 +45,7 @@
 
 
     <com.dalimao.corelibrary.VerificationCodeInput
-        android:id="@+id/code_inputCode"
+        android:id="@+id/code_inputCode_SendCodeActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
