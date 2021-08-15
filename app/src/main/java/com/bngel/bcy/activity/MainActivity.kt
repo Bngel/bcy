@@ -25,6 +25,8 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        ConstantRepository.DOWNLOAD_PATH = applicationContext.filesDir.absolutePath + "/bcy_Download"
+        ConstantRepository.PORTRAIT_PATH = applicationContext.filesDir.absolutePath + "/bcy_Avt"
         vpEvent()
         tabEvent()
     }

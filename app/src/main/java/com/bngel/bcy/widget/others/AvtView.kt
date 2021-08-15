@@ -25,6 +25,8 @@ class AvtView(context: Context, attrs: AttributeSet): RelativeLayout(context, at
     fun setAvt(url: String) {
         Glide.with(context)
             .load(url)
+            .placeholder(R.drawable.rem)
+            .error(R.drawable.rem)
             .into(avt_img)
     }
 

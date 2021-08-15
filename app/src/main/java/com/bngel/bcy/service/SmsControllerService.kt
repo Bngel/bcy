@@ -1,9 +1,7 @@
 package com.bngel.bcy.service
 
 import android.widget.Toast
-import com.bngel.bcy.bean.postChangePassword.PostChangePassword
-import com.bngel.bcy.bean.postOauthCode.PostOauthCode
-import com.bngel.bcy.bean.postOauthLogout.PostOauthLogout
+import com.bngel.bcy.bean.SmsController.postOauthCode.PostOauthCode
 import com.bngel.bcy.dao.SmsControllerDao.SmsControllerDao
 import com.bngel.bcy.utils.ActivityCollector
 import com.bngel.bcy.web.WebRepository

@@ -6,6 +6,7 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
@@ -14,6 +15,7 @@ import androidx.core.widget.addTextChangedListener
 import com.bngel.bcy.R
 import com.bngel.bcy.service.SmsControllerService
 import com.bngel.bcy.service.UserControllerService
+import com.bngel.bcy.utils.InfoRepository
 import kotlinx.android.synthetic.main.activity_login.*
 import androidx.core.widget.doOnTextChanged as doOnTextChanged
 
@@ -25,23 +27,27 @@ class LoginActivity : BaseActivity() {
     private var loginType = 0
     private var passwordType = 0
 
-    init {
-        codeLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                val data = result.data
-                if (data?.getBooleanExtra("loginStatus", false) == true){
-                    intent.putExtra("loginStatus", true)
-                    finish()
-                }
-            }
-        }
-    }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        registerLaunch()
         initWidget()
+    }
+
+    private fun registerLaunch() {
+        codeLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val data = result.data
+                if (data?.getBooleanExtra("loginStatus", false) == true){
+                    val intent = Intent(this, MainActivity::class.java)
+                    intent.putExtra("loginStatus", true)
+                    intent.putExtra("phone", data.getStringExtra("phone")?:"")
+                    setResult(RESULT_OK, intent)
+                    finish()
+                }
+            }
+        }
     }
 
     private fun initWidget() {
@@ -126,7 +132,12 @@ class LoginActivity : BaseActivity() {
             val password = password_input_edit_LoginActivity.text.toString()
             val postOauthToken = userService.postOauthToken(tel, password)
             if (postOauthToken != null) {
+                InfoRepository.token = postOauthToken.access_token!!
+                Log.d("TestLog", postOauthToken.access_token!!)
+                val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("loginStatus", true)
+                intent.putExtra("phone", tel)
+                setResult(RESULT_OK, intent)
                 Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show()
                 finish()
             }
@@ -156,7 +167,6 @@ class LoginActivity : BaseActivity() {
                 if (postOauthCode.msg == "success") {
                     intent.putExtra("phone", tel)
                     codeLauncher?.launch(intent)
-                    finish()
                 }
             }
             else {

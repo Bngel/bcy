@@ -1,4 +1,4 @@
-package com.bngel.bcy.bean.postOauthLoginBySms
+package com.bngel.bcy.bean.UserController.postOauthLoginBySms
 
 
 import com.google.gson.Gson

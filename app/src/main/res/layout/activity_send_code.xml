@@ -34,12 +34,13 @@
             android:textColor="#101010"/>
 
         <TextView
+            android:id="@+id/send_status_text_SendCodeActivity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left"
             android:textSize="14sp"
             android:textColor="#CECECE"
-            android:text="已向您的手机 12345678910 发送验证码"/>
+            android:text="已向您的手机 发送验证码"/>
 
     </LinearLayout>
 
@@ -56,11 +57,12 @@
         android:layout_gravity="center_horizontal"/>
 
     <TextView
+        android:id="@+id/clock_resend_SendCodeActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:layout_gravity="center_horizontal"
-        android:text="重新发送 (60s)"
+        android:text="重新发送验证码"
         android:textSize="14sp" />
 
     <TextView

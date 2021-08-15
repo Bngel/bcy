@@ -1,4 +1,4 @@
-package com.bngel.bcy.bean.postOauthLogout
+package com.bngel.bcy.bean.UserController.postOauthLogout
 
 data class PostOauthLogout(
     val code: Int,

@@ -1,10 +1,10 @@
 package com.bngel.bcy.service
 
 import android.widget.Toast
-import com.bngel.bcy.bean.postChangePassword.PostChangePassword
-import com.bngel.bcy.bean.postOauthToken.PostOauthToken
-import com.bngel.bcy.bean.postOauthLoginBySms.PostOauthLoginBySms
-import com.bngel.bcy.bean.postOauthLogout.PostOauthLogout
+import com.bngel.bcy.bean.UserController.postOauthChangePassword.PostOauthChangePassword
+import com.bngel.bcy.bean.UserController.postOauthToken.PostOauthToken
+import com.bngel.bcy.bean.UserController.postOauthLoginBySms.PostOauthLoginBySms
+import com.bngel.bcy.bean.UserController.postOauthLogout.PostOauthLogout
 import com.bngel.bcy.dao.UserControllerDao.UserControllerDao
 import com.bngel.bcy.utils.ActivityCollector
 import com.bngel.bcy.web.WebRepository
@@ -22,18 +22,18 @@ class UserControllerService {
      * existWrong：账号不存在
      * success：成功
      */
-    fun postChangePassword(
+    fun postOauthChangePassword(
         code: String,
         newPassword: String,
         phone: String
-    ): PostChangePassword? {
+    ): PostOauthChangePassword? {
         if (!WebRepository.isNetworkConnected()) {
             Toast.makeText(ActivityCollector.curActivity!!, "网络错误", Toast.LENGTH_SHORT).show()
             return null
         }
         val data = userService.postChangePassword(code, newPassword, phone)
         var msg = ""
-        var res: PostChangePassword? = null
+        var res: PostOauthChangePassword? = null
         try {
             thread {
                 val body = data.execute().body()!!

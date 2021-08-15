@@ -1,4 +1,4 @@
-package com.bngel.bcy.bean.postOauthToken
+package com.bngel.bcy.bean.UserController.postOauthToken
 
 import com.google.gson.Gson
 import com.google.gson.JsonDeserializationContext

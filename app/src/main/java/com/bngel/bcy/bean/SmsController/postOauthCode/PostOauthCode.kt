@@ -1,4 +1,4 @@
-package com.bngel.bcy.bean.postOauthCode
+package com.bngel.bcy.bean.SmsController.postOauthCode
 
 data class PostOauthCode(
     val code: Int,

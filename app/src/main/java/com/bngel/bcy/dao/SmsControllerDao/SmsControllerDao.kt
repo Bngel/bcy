@@ -1,7 +1,6 @@
 package com.bngel.bcy.dao.SmsControllerDao
 
-import com.bngel.bcy.bean.postOauthCode.PostOauthCode
-import com.bngel.bcy.dao.SmsControllerDao.SmsControllerDao
+import com.bngel.bcy.bean.SmsController.postOauthCode.PostOauthCode
 import com.bngel.bcy.web.SSLSocketClient
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
