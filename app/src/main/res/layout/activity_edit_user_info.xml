@@ -9,6 +9,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            android:id="@+id/close_btn_EditUserInfoActivity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/exit_set_password_activity_101010"
@@ -26,6 +27,7 @@
     </RelativeLayout>
     
     <com.bngel.bcy.widget.others.AvtView
+        android:id="@+id/avt_EditUserInfoActivity"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_gravity="center_horizontal"
@@ -54,13 +56,16 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="12dp"/>
 
-            <TextView
+            <EditText
+                android:id="@+id/username_EditUserInfoActivity"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="用户测试ID字段"
+                android:hint="请输入昵称"
+                android:background="@null"
                 android:gravity="center_vertical"
                 android:layout_gravity="center_vertical"
+                android:textColorHint="#CECECE"
                 android:textColor="#101010"
                 android:textSize="16sp"/>
 
@@ -83,6 +88,7 @@
                 android:layout_marginBottom="12dp"/>
 
             <RadioGroup
+                android:id="@+id/sex_group_EditUserInfoActivity"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -90,17 +96,19 @@
                 android:layout_gravity="center_vertical">
 
                 <RadioButton
+                    android:id="@+id/sex_nv_EditUserInfoActivity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="女生"
+                    android:text="女"
                     android:textSize="14sp"
                     android:textColor="#979797"/>
 
                 <RadioButton
+                    android:id="@+id/sex_nan_EditUserInfoActivity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
-                    android:text="男生"
+                    android:text="男"
                     android:textSize="14sp"
                     android:textColor="#979797"/>
             </RadioGroup>
@@ -124,6 +132,7 @@
                 android:layout_marginBottom="12dp"/>
 
             <TextView
+                android:id="@+id/birthday_EditUserInfoActivity"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -152,6 +161,7 @@
                 android:layout_marginBottom="12dp"/>
 
             <TextView
+                android:id="@+id/address_EditUserInfoActivity"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -179,11 +189,15 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="12dp"/>
 
-            <TextView
+            <EditText
+                android:id="@+id/description_EditUserInfoActivity"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="添加简介更容易受到关注(100字以内)"
+                android:maxLength="100"
+                android:layout_marginRight="20dp"
+                android:background="@null"
+                android:hint="添加简介更容易受到关注(100字以内)"
                 android:gravity="center_vertical"
                 android:layout_gravity="center_vertical"
                 android:textColor="#CECECE"
@@ -193,6 +207,7 @@
     </LinearLayout>
     
     <TextView
+        android:id="@+id/save_btn_EditUserInfoActivity"
         android:layout_width="300dp"
         android:layout_height="42dp"
         android:textSize="16sp"

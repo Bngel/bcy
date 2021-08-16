@@ -9,6 +9,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            android:id="@+id/close_FollowAndFanActivity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/exit_set_password_activity_101010"
@@ -51,6 +52,7 @@
             android:layout_weight="1">
 
             <TextView
+                android:id="@+id/follow_switch_FollowAndFanActivity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -67,6 +69,7 @@
             android:layout_weight="1">
 
             <TextView
+                android:id="@+id/fans_switch_FollowAndFanActivity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -79,46 +82,10 @@
 
     </LinearLayout>
 
-    <ScrollView
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewpager_FollowAndFanActivity"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <com.bngel.bcy.widget.others.FollowAndFanCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <com.bngel.bcy.widget.others.FollowAndFanCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <com.bngel.bcy.widget.others.FollowAndFanCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <com.bngel.bcy.widget.others.FollowAndFanCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <com.bngel.bcy.widget.others.FollowAndFanCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <com.bngel.bcy.widget.others.FollowAndFanCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <com.bngel.bcy.widget.others.FollowAndFanCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <com.bngel.bcy.widget.others.FollowAndFanCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <com.bngel.bcy.widget.others.FollowAndFanCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <com.bngel.bcy.widget.others.FollowAndFanCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-    </ScrollView>
 </LinearLayout>

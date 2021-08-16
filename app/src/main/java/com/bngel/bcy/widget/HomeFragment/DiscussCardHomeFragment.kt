@@ -10,6 +10,9 @@ class DiscussCardHomeFragment : LinearLayout {
 
     constructor(context: Context):super(context)
     constructor(context: Context, attrs: AttributeSet):super(context)
+    constructor(context: Context, number: String):super(context) {
+        
+    }
 
     init {
         LayoutInflater.from(context).inflate(R.layout.view_discuss_card, this)

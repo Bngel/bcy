@@ -18,9 +18,6 @@ class HomeViewPagerFragmentStateAdapter(activity: AppCompatActivity, private val
     init {
         fragments.put(0, FollowFragment())
         fragments.put(1, FollowFragment())
-        fragments.put(2, FollowFragment())
-        fragments.put(3, FollowFragment())
-        fragments.put(4, FollowFragment())
     }
 
     override fun createFragment(position: Int): Fragment {

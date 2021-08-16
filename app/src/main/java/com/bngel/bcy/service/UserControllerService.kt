@@ -38,9 +38,7 @@ class UserControllerService {
             thread {
                 val body = data.execute().body()!!
                 msg = body.msg
-                if (msg == "success") {
-                    res = body
-                }
+                res = body
             }.join(4000)
         } catch (e: Exception) {}
         return res
@@ -56,24 +54,18 @@ class UserControllerService {
         phone: String,
         type: Int = 2
     ): PostOauthLoginBySms? {
-        val gson = GsonBuilder()
-            .registerTypeAdapter(PostOauthLoginBySms::class.java, PostOauthLoginBySms.DataStateDeserializer())
-            .create()
-        val loginUser = UserControllerDao.create(gson)
         if (!WebRepository.isNetworkConnected()) {
             Toast.makeText(ActivityCollector.curActivity!!, "网络错误", Toast.LENGTH_SHORT).show()
             return null
         }
-        val data = loginUser.postOauthLoginBySms(code, phone, type)
+        val data = userService.postOauthLoginBySms(code, phone, type)
         var msg = ""
         var res: PostOauthLoginBySms? = null
         try {
             thread {
                 val body = data.execute().body()!!
                 msg = body.msg
-                if (msg == "success") {
-                    res = body
-                }
+                res = body
             }.join(4000)
         } catch (e: Exception) {}
         return res
@@ -95,9 +87,7 @@ class UserControllerService {
             thread {
                 val body = data.execute().body()!!
                 msg = body.msg
-                if (msg == "success") {
-                    res = body
-                }
+                res = body
             }.join(4000)
         } catch (e: Exception) {}
         return res

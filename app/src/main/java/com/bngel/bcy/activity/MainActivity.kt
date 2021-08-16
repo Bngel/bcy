@@ -27,6 +27,10 @@ class MainActivity : BaseActivity() {
         setContentView(R.layout.activity_main)
         ConstantRepository.DOWNLOAD_PATH = applicationContext.filesDir.absolutePath + "/bcy_Download"
         ConstantRepository.PORTRAIT_PATH = applicationContext.filesDir.absolutePath + "/bcy_Avt"
+        initWidget()
+    }
+
+    private fun initWidget() {
         vpEvent()
         tabEvent()
     }

@@ -70,7 +70,6 @@ class SendCodeActivity : BaseActivity() {
                     }.start()
             }
         }
-
     }
 
     private fun closeEvent() {
@@ -94,7 +93,7 @@ class SendCodeActivity : BaseActivity() {
                 Toast.LENGTH_SHORT
             ).show()
             if (postOauthLoginBySms?.msg == "success") {
-                InfoRepository.token = (postOauthLoginBySms.data as Data).token
+                InfoRepository.token = postOauthLoginBySms.data.token?:""
                 val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("loginStatus", true)
                 setResult(RESULT_OK, intent)

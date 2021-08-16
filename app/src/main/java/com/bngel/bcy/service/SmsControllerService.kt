@@ -33,9 +33,7 @@ class SmsControllerService {
             thread {
                 val body = data.execute().body()!!
                 msg = body.msg
-                if (msg == "success") {
-                    res = body
-                }
+                res = body
             }.join(4000)
         } catch (e: Exception) {}
         return res

@@ -5,6 +5,7 @@ import com.bngel.bcy.bean.PersonalController.getUserPersonalInfo.getUserPersonal
 import com.bngel.bcy.bean.PersonalController.getUserPersonalInfo.getUserPersonalInfoById.GetUserPersonalInfoById
 import com.bngel.bcy.bean.PersonalController.getUserUserCounts.GetUserUserCounts
 import com.bngel.bcy.bean.PersonalController.postUserPhotoUpload.PostUserPhotoUpload
+import com.bngel.bcy.bean.PersonalController.putUserPersonalInfo.PutUserPersonalInfo
 import com.bngel.bcy.dao.PersonalControllerDao.PersonalControllerDao
 import com.bngel.bcy.utils.ActivityCollector
 import com.bngel.bcy.utils.InfoRepository
@@ -33,9 +34,7 @@ class PersonalControllerService {
             thread {
                 val body = data.execute().body()!!
                 msg = body.msg
-                if (msg == "success") {
-                    res = body
-                }
+                res = body
             }.join(4000)
         } catch (e: Exception) {}
         return res
@@ -58,9 +57,7 @@ class PersonalControllerService {
             thread {
                 val body = data.execute().body()!!
                 msg = body.msg
-                if (msg == "success") {
-                    res = body
-                }
+                res = body
             }.join(4000)
         } catch (e: Exception) {}
         return res
@@ -84,8 +81,7 @@ class PersonalControllerService {
             thread {
                 val body = data.execute().body()!!
                 msg = body.msg
-                if (msg == "suceess")
-                    res = body
+                res = body
             }.join(4000)
         } catch (e: Exception) {}
         return res
@@ -108,9 +104,30 @@ class PersonalControllerService {
             thread {
                 val body = data.execute().body()!!
                 msg = body.msg
-                if (msg == "success") {
-                    res = body
-                }
+                res = body
+            }.join(4000)
+        } catch (e: Exception) {}
+        return res
+    }
+
+    /**
+     * msg:
+     * existWrong：账号不存在或已被冻结
+     * success：成功
+     */
+    fun putUserPersonalInfo(id: String,  username: String?, sex: String?, province: String?, city: String?, birthday: String?, description: String?): PutUserPersonalInfo? {
+        if (!WebRepository.isNetworkConnected()) {
+            Toast.makeText(ActivityCollector.curActivity!!, "网络错误", Toast.LENGTH_SHORT).show()
+            return null
+        }
+        val data = personalService.putUserPersonalInfo(birthday, city, description, id, province, sex, username, InfoRepository.token)
+        var msg = ""
+        var res: PutUserPersonalInfo? = null
+        try {
+            thread {
+                val body = data.execute().body()!!
+                msg = body.msg
+                res = body
             }.join(4000)
         } catch (e: Exception) {}
         return res

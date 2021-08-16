@@ -55,6 +55,10 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.1.0' // retrofit gson组件
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0' // retrofit 添加了对RxJava2的支持
     implementation "org.java-websocket:Java-WebSocket:1.4.0" // WebSocket
+    implementation 'com.github.gzu-liyujiang.AndroidPicker:Common:3.1.0'
+    implementation 'com.github.gzu-liyujiang.AndroidPicker:WheelPicker:3.1.0'
+    implementation 'com.github.gzu-liyujiang.AndroidPicker:AddressPicker:3.1.0'
+
 
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

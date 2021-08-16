@@ -3,8 +3,8 @@ package com.bngel.bcy.dao.PersonalControllerDao
 import com.bngel.bcy.bean.PersonalController.getUserPersonalInfo.getUserPersonalInfoByPhone.GetUserPersonalInfoByPhone
 import com.bngel.bcy.bean.PersonalController.getUserPersonalSetting.GetUserPersonalSetting
 import com.bngel.bcy.bean.PersonalController.getUserUserCounts.GetUserUserCounts
-import com.bngel.bcy.bean.PersonalController.patchUserPersonalInfo.PatchUserPersonalInfo
-import com.bngel.bcy.bean.PersonalController.patchUserPersonalSetting.PatchUserPersonalSetting
+import com.bngel.bcy.bean.PersonalController.putUserPersonalInfo.PutUserPersonalInfo
+import com.bngel.bcy.bean.PersonalController.putUserPersonalSetting.PutUserPersonalSetting
 import com.bngel.bcy.bean.PersonalController.postUserJudgeNew.PostUserJudgeNew
 import com.bngel.bcy.bean.PersonalController.postUserPhotoUpload.PostUserPhotoUpload
 import com.bngel.bcy.bean.PersonalController.getUserPersonalInfo.getUserPersonalInfoById.GetUserPersonalInfoById
@@ -52,17 +52,17 @@ interface PersonalControllerDao {
     /**
      * 用户修改基本个人信息（修改头像在上传头像那个接口会自动修改）
      */
-    @PATCH("/user/personalInfo")
-    fun patchUserPersonalInfo(
-        @Query("id") id: String,
+    @PUT("/user/personalInfo")
+    fun putUserPersonalInfo(
         @Query("birthday") birthday: String?,
         @Query("city") city: String?,
         @Query("description") description: String?,
+        @Query("id") id: String,
         @Query("province") province: String?,
         @Query("sex") sex: String?,
         @Query("username") username: String?,
         @Query("token") token:String
-    ): Call<PatchUserPersonalInfo>
+    ): Call<PutUserPersonalInfo>
 
     /**
      * 获取用户个人设置
@@ -77,7 +77,7 @@ interface PersonalControllerDao {
      * 修改个人设置
      */
     @PATCH("/user/personalSetting")
-    fun patchUserPersonalSetting(
+    fun putUserPersonalSetting(
         @Query("id") id: String,
         @Query("pushComment") pushComment: Int?,
         @Query("pushFans") pushFans: Int?,
@@ -85,7 +85,7 @@ interface PersonalControllerDao {
         @Query("pushLike") pushLike: Int?,
         @Query("pushSystem") pushSystem: Int?,
         @Query("token") token:String
-    ): Call<PatchUserPersonalSetting>
+    ): Call<PutUserPersonalSetting>
 
     /**
      * 新用户设置密码

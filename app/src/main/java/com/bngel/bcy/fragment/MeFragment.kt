@@ -16,7 +16,9 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.bngel.bcy.R
+import com.bngel.bcy.activity.FollowAndFanActivity
 import com.bngel.bcy.activity.LoginActivity
+import com.bngel.bcy.activity.UserDetailActivity
 import com.bngel.bcy.service.PersonalControllerService
 import com.bngel.bcy.utils.ConstantRepository
 import com.bngel.bcy.utils.InfoRepository
@@ -29,9 +31,14 @@ import java.io.File
 class MeFragment: Fragment() {
 
     private var parentContext: Context? = null
+
     private var loginLauncher: ActivityResultLauncher<Intent>? = null
     private var cropPhotoLauncher: ActivityResultLauncher<Intent>? = null
     private var pickLauncher: ActivityResultLauncher<Intent>? = null
+    private var detailLauncher: ActivityResultLauncher<Intent>? = null
+    private var fansLauncher: ActivityResultLauncher<Intent>? = null
+    private var followLauncher: ActivityResultLauncher<Intent>? = null
+
     private val personalService = PersonalControllerService()
     private var imageFile: File? = null // 声明File对象
     private var imageUri: Uri? = null // 裁剪后的图片uri
@@ -122,11 +129,49 @@ class MeFragment: Fragment() {
                 e.printStackTrace()
             }
         }
+        detailLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            val data = result.data
+        }
+        fansLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            val data = result.data
+        }
+        followLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            val data = result.data
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (ConstantRepository.loginStatus) {
+            InfoRepository.user =
+                personalService.getUserPersonalInfoById(InfoRepository.user.id)?.data!!.personalInfo
+            InfoRepository.userCounts =
+                personalService.getUserUserCounts(InfoRepository.user.id)?.data!!.userCountsList[0]
+            initUser()
+        }
     }
 
     private fun initWidget() {
         headCardEvent()
         avtEvent()
+        fansEvent()
+        followEvent()
+    }
+
+    private fun followEvent() {
+        follow_count_text_MeFragment.setOnClickListener {
+            val intent = Intent(parentContext!!, FollowAndFanActivity::class.java)
+            intent.putExtra("type", "follow")
+            followLauncher?.launch(intent)
+        }
+    }
+
+    private fun fansEvent() {
+        fan_count_text_MeFragment.setOnClickListener {
+            val intent = Intent(parentContext!!, FollowAndFanActivity::class.java)
+            intent.putExtra("type", "fans")
+            fansLauncher?.launch(intent)
+        }
     }
 
     private fun avtEvent() {
@@ -145,11 +190,17 @@ class MeFragment: Fragment() {
                 val intent = Intent(parentContext!!, LoginActivity::class.java)
                 loginLauncher?.launch(intent)
             }
+            else {
+                val intent = Intent(parentContext!!, UserDetailActivity::class.java)
+                intent.putExtra("id", InfoRepository.user.id)
+                detailLauncher?.launch(intent)
+            }
         }
     }
 
     private fun initUser() {
         val user = InfoRepository.user
+        Log.d("TestLog", user.id)
         if (user.photo != null)
             avt_MeFragment.setAvt(user.photo)
         username_MeFragment.text = user.username?:"用户名获取失败"
@@ -190,9 +241,6 @@ class MeFragment: Fragment() {
         val part = MultipartBody.Part.createFormData("photo", file.name, requestFile)
         val result = personalService.postUserPhotoUpload(InfoRepository.user.id, part)
         if (result?.msg == "success") {
-            InfoRepository.user = personalService.getUserPersonalInfoById(InfoRepository.user.id)?.data!!.personalInfo
-            InfoRepository.userCounts = personalService.getUserUserCounts(InfoRepository.user.id)?.data!!.userCountsList[0]
-            initUser()
         }
     }
 }
