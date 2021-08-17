@@ -12,7 +12,7 @@
         android:orientation="vertical">
 
         <com.bngel.bcy.widget.others.AvtView
-            android:id="@+id/avt_discuss_card_home_fragment"
+            android:id="@+id/avt_discuss_card_HomeFragment"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_margin="5dp"
@@ -34,7 +34,7 @@
             android:padding="10dp">
 
             <TextView
-                android:id="@+id/username_discuss_card_home_fragment"
+                android:id="@+id/username_discuss_card_HomeFragment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
@@ -43,7 +43,7 @@
                 android:text="用户名测试字段"/>
 
             <TextView
-                android:id="@+id/date_discuss_card_home_fragment"
+                android:id="@+id/date_discuss_card_HomeFragment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
@@ -55,32 +55,20 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/content_discuss_card_home_fragment"
+            android:id="@+id/content_discuss_card_HomeFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textColor="@android:color/black"
             android:textSize="16sp"
-            android:text="xxxxxxxxxxxxxxxxxxx"/>
+            android:text=""/>
         
         <LinearLayout
+            android:id="@+id/images_discuss_card_HomeFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            
-            <ImageView
-                android:id="@+id/image1_discuss_card_home_fragment"
-                android:layout_width="84dp"
-                android:layout_height="84dp"
-                android:src="@drawable/rem"
-                android:layout_margin="10dp"/>
 
-            <ImageView
-                android:id="@+id/image2_discuss_card_home_fragment"
-                android:layout_width="84dp"
-                android:layout_height="84dp"
-                android:src="@drawable/rem"
-                android:layout_margin="10dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -96,12 +84,13 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/like_discuss_card_home_fragment"
+                    android:id="@+id/like_btn_discuss_card_HomeFragment"
                     android:layout_width="19dp"
                     android:layout_height="19dp"
                     android:src="@drawable/like_discuss_card_home_fragment_cecece"/>
 
                 <TextView
+                    android:id="@+id/like_text_discuss_card_HomeFragment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
@@ -117,12 +106,13 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/star_discuss_card_home_fragment"
+                    android:id="@+id/star_btn_discuss_card_HomeFragment"
                     android:layout_width="19dp"
                     android:layout_height="19dp"
                     android:src="@drawable/star_discuss_card_home_fragment_cecece"/>
 
                 <TextView
+                    android:id="@+id/star_text_discuss_card_HomeFragment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
@@ -138,12 +128,13 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/comment_discuss_card_home_fragment"
+                    android:id="@+id/comment_btn_discuss_card_HomeFragment"
                     android:layout_width="19dp"
                     android:layout_height="19dp"
                     android:src="@drawable/comment_discuss_card_home_fragment_cecece"/>
 
                 <TextView
+                    android:id="@+id/comment_text_discuss_card_HomeFragment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
@@ -159,12 +150,13 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/share_discuss_card_home_fragment"
+                    android:id="@+id/share_discuss_card_HomeFragment"
                     android:layout_width="19dp"
                     android:layout_height="19dp"
                     android:src="@drawable/share_discuss_card_home_fragment_cecece"/>
 
                 <TextView
+                    android:id="@+id/share_text_discuss_card_HomeFragment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="12sp"

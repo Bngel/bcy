@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.viewpager2.widget.ViewPager2
@@ -20,7 +21,7 @@ import java.util.ArrayList
 class HomeFragment: Fragment() {
     private val curPage = MutableLiveData<View>(null)
 
-    var parentContext: Context? = null
+    private var parentContext: Context? = null
     private val totalPages = ArrayList<String>()
 
     override fun onCreateView(

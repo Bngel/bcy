@@ -16,6 +16,7 @@ import com.bngel.bcy.R
 import com.bngel.bcy.service.PersonalControllerService
 import com.bngel.bcy.utils.ConstantRepository
 import com.bngel.bcy.utils.InfoRepository
+import com.bngel.bcy.utils.MyUtils
 import com.github.gzuliyujiang.wheelpicker.AddressPicker
 import com.github.gzuliyujiang.wheelpicker.BirthdayPicker
 import com.github.gzuliyujiang.wheelpicker.annotation.AddressMode
@@ -146,13 +147,7 @@ class EditUserInfoActivity : BaseActivity() {
 
     private fun birthdayEvent() {
         if (InfoRepository.user.birthday != null) {
-            val pattern = "yyyy-MM-dd'T'HH:mm:ss"
-            val dfParse = SimpleDateFormat(pattern, Locale.ENGLISH)
-            dfParse.timeZone = TimeZone.getTimeZone("UTC")
-            val df = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
-            df.timeZone = TimeZone.getTimeZone("Asia/Shanghai")
-            val dateTime = dfParse.parse(InfoRepository.user.birthday)
-            val birthday = df.format(dateTime)
+            val birthday = MyUtils.fromUtcToCst(InfoRepository.user.birthday!!)
             birthday_EditUserInfoActivity.text = birthday
             birthday_EditUserInfoActivity.setTextColor(Color.parseColor("#101010"))
         }

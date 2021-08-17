@@ -10,6 +10,7 @@ import com.bngel.bcy.R
 import com.bngel.bcy.service.FansControllerService
 import com.bngel.bcy.service.PersonalControllerService
 import com.bngel.bcy.utils.InfoRepository
+import com.bngel.bcy.utils.MyUtils
 import kotlinx.android.synthetic.main.activity_edit_user_info.*
 import kotlinx.android.synthetic.main.activity_user_detail.*
 import java.text.SimpleDateFormat
@@ -120,13 +121,7 @@ class UserDetailActivity : BaseActivity() {
             else
                 sex_UserDetailActivity.setImageResource(R.drawable.nv_user_detail_activity_e87b9c)
             if (user.birthday != null) {
-                val pattern = "yyyy-MM-dd'T'HH:mm:ss"
-                val dfParse = SimpleDateFormat(pattern, Locale.ENGLISH)
-                dfParse.timeZone = TimeZone.getTimeZone("UTC")
-                val df = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
-                df.timeZone = TimeZone.getTimeZone("Asia/Shanghai")
-                val dateTime = dfParse.parse(user.birthday)
-                val birthday = df.format(dateTime)
+                val birthday = MyUtils.fromUtcToCst(user.birthday)
                 birthday_UserDetailActivity.text = birthday
             }
             else {

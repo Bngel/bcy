@@ -9,6 +9,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            android:id="@+id/close_LikeActivity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/exit_set_password_activity_101010"
@@ -24,6 +25,7 @@
             android:text="我的喜欢"/>
 
         <ImageView
+            android:id="@+id/delete_LikeActivity"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/delete_star_activity_101010"
@@ -39,21 +41,11 @@
         android:layout_weight="1">
 
         <LinearLayout
+            android:id="@+id/like_card_LikeActivity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.bngel.bcy.widget.HomeFragment.DiscussCardHomeFragment
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <com.bngel.bcy.widget.HomeFragment.DiscussCardHomeFragment
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <com.bngel.bcy.widget.HomeFragment.DiscussCardHomeFragment
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

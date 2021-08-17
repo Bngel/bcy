@@ -1,12 +1,11 @@
-package com.bngel.bcy.bean.CosController.getAcgFollowCos
+package com.bngel.bcy.bean.LikeController.getAcgLikeList
 
-data class CosFollow(
+data class LikeCos(
     val cosPhoto: List<String>?,
     val createTime: String?,
     val description: String?,
     val id: String,
-    val label: List<String>?,
     val number: String,
     val photo: String?,
-    val username: String?
+    val username: String
 )

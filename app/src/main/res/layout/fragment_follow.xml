@@ -9,7 +9,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/discuss_cards_fragment_follow"
+            android:id="@+id/discuss_cards_FollowFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">

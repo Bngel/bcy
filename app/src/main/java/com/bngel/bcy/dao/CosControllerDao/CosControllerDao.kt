@@ -2,16 +2,27 @@ package com.bngel.bcy.dao.CosControllerDao
 
 import com.bngel.bcy.bean.CosController.deleteAcgCos.DeleteAcgCos
 import com.bngel.bcy.bean.CosController.deleteAcgLikeCosComment.DeleteAcgLikeCosComment
+import com.bngel.bcy.bean.CosController.getAcgCos.Cos
 import com.bngel.bcy.bean.CosController.getAcgCos.GetAcgCos
 import com.bngel.bcy.bean.CosController.getAcgCosComment.GetAcgCosComment
 import com.bngel.bcy.bean.CosController.getAcgCosCommentCountsList.GetAcgCosCommentCountsList
+import com.bngel.bcy.bean.CosController.getAcgCosCountsList.GetAcgCosCountsList
 import com.bngel.bcy.bean.CosController.getAcgFollowCos.GetAcgFollowCos
 import com.bngel.bcy.bean.CosController.getAcgFollowNoRead.GetAcgFollowNoRead
 import com.bngel.bcy.bean.CosController.postAcgCos.PostAcgCos
+import com.bngel.bcy.bean.CosController.postAcgCosComment.PostAcgCosComment
 import com.bngel.bcy.bean.CosController.postAcgLikeCosComment.PostAcgLikeCosComment
+import com.bngel.bcy.dao.CosControllerDao.CosControllerDao
+import com.bngel.bcy.web.SSLSocketClient
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import okhttp3.MultipartBody
+import okhttp3.OkHttpClient
 import retrofit2.Call
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
+import java.util.concurrent.TimeUnit
 
 interface CosControllerDao {
 
@@ -85,7 +96,7 @@ interface CosControllerDao {
         @Query("replyNumber") replyNumber: String?,
         @Query("toId") toId: String?,
         @Query("token") token: String
-    )//: Call<PostAcgCosComment>
+    ): Call<PostAcgCosComment>
 
     /**
      * 获取cos下面评论的评论列表（在cos页面也用这个接口获取下面的回复数据，cnt请填3 page请填1 type请填1）
@@ -118,7 +129,7 @@ interface CosControllerDao {
         @Query("id") id: String?,
         @Query("number") number: String,
         @Query("token") token: String?
-    )//: Call<GetAcgCosCountsList>
+    ): Call<GetAcgCosCountsList>
 
     /**
      * cos图片上传
@@ -193,4 +204,45 @@ interface CosControllerDao {
     fun getAcgRecommendList(
     )//: Call<GetAcgRecommendList>
 
+    companion object {
+        fun create(): CosControllerDao {
+            val baseUrl = "https://www.rat403.cn/"
+            val gson = GsonBuilder()
+                .setLenient()
+                .create()
+
+            val mHttpClient = OkHttpClient().newBuilder()
+                .connectTimeout(15, TimeUnit.SECONDS)
+                .readTimeout(15, TimeUnit.SECONDS)
+                .writeTimeout(15, TimeUnit.SECONDS)
+                .sslSocketFactory(SSLSocketClient.SSLSocketFactory)//配置
+                .hostnameVerifier(SSLSocketClient.hostnameVerifier)//配置
+                .build()
+
+            val retrofit: Retrofit = Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(mHttpClient)
+                .build()
+            return retrofit.create(CosControllerDao::class.java)
+        }
+
+        fun create(gson: Gson): CosControllerDao {
+            val baseUrl = "https://www.rat403.cn/"
+            val mHttpClient = OkHttpClient().newBuilder()
+                .connectTimeout(15, TimeUnit.SECONDS)
+                .readTimeout(15, TimeUnit.SECONDS)
+                .writeTimeout(15, TimeUnit.SECONDS)
+                .sslSocketFactory(SSLSocketClient.SSLSocketFactory)//配置
+                .hostnameVerifier(SSLSocketClient.hostnameVerifier)//配置
+                .build();
+
+            val retrofit: Retrofit = Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(mHttpClient)
+                .build()
+            return retrofit.create(CosControllerDao::class.java)
+        }
+    }
 }

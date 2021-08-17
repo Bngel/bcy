@@ -17,6 +17,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.bngel.bcy.R
 import com.bngel.bcy.activity.FollowAndFanActivity
+import com.bngel.bcy.activity.LikeActivity
 import com.bngel.bcy.activity.LoginActivity
 import com.bngel.bcy.activity.UserDetailActivity
 import com.bngel.bcy.service.PersonalControllerService
@@ -38,6 +39,7 @@ class MeFragment: Fragment() {
     private var detailLauncher: ActivityResultLauncher<Intent>? = null
     private var fansLauncher: ActivityResultLauncher<Intent>? = null
     private var followLauncher: ActivityResultLauncher<Intent>? = null
+    private var likeLauncher: ActivityResultLauncher<Intent>? = null
 
     private val personalService = PersonalControllerService()
     private var imageFile: File? = null // 声明File对象
@@ -138,16 +140,22 @@ class MeFragment: Fragment() {
         followLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             val data = result.data
         }
+        likeLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            val data = result.data
+        }
     }
 
     override fun onResume() {
         super.onResume()
         if (ConstantRepository.loginStatus) {
-            InfoRepository.user =
-                personalService.getUserPersonalInfoById(InfoRepository.user.id)?.data!!.personalInfo
-            InfoRepository.userCounts =
-                personalService.getUserUserCounts(InfoRepository.user.id)?.data!!.userCountsList[0]
-            initUser()
+            if (!ConstantRepository.meFragmentUpdate) {
+                InfoRepository.user =
+                    personalService.getUserPersonalInfoById(InfoRepository.user.id)?.data!!.personalInfo
+                InfoRepository.userCounts =
+                    personalService.getUserUserCounts(InfoRepository.user.id)?.data!!.userCountsList[0]
+                initUser()
+                ConstantRepository.meFragmentUpdate = true
+            }
         }
     }
 
@@ -156,6 +164,16 @@ class MeFragment: Fragment() {
         avtEvent()
         fansEvent()
         followEvent()
+        likeEvent()
+    }
+
+    private fun likeEvent() {
+        like_image_MeFragment.setOnClickListener {
+            if (ConstantRepository.loginStatus) {
+                val intent = Intent(parentContext!!, LikeActivity::class.java)
+                likeLauncher?.launch(intent)
+            }
+        }
     }
 
     private fun followEvent() {
@@ -200,7 +218,6 @@ class MeFragment: Fragment() {
 
     private fun initUser() {
         val user = InfoRepository.user
-        Log.d("TestLog", user.id)
         if (user.photo != null)
             avt_MeFragment.setAvt(user.photo)
         username_MeFragment.text = user.username?:"用户名获取失败"

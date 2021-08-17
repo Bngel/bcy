@@ -16,4 +16,7 @@ object ConstantRepository {
 
     var PORTRAIT_PATH :String? = null
     var DOWNLOAD_PATH :String? = null
+
+    var followFragmentUpdate = false
+    var meFragmentUpdate = false
 }
