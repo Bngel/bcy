@@ -24,9 +24,11 @@ class LikeControllerService {
      * （number：编号 status 0：未点赞 1：已点赞）
      */
     fun getAcgJudgeLikes(id: String, numbers: List<String>): GetAcgJudgeLikes? {
-        if (!WebRepository.isNetworkConnected()) {
-            Toast.makeText(ActivityCollector.curActivity!!, "网络错误", Toast.LENGTH_SHORT).show()
-            return null
+        if (ActivityCollector.curActivity != null) {
+            if (!WebRepository.isNetworkConnected()) {
+                Toast.makeText(ActivityCollector.curActivity, "网络错误", Toast.LENGTH_SHORT).show()
+                return null
+            }
         }
         val data = likeService.getAcgJudgeLikes(id, numbers, InfoRepository.token)
         var msg = ""
@@ -47,9 +49,11 @@ class LikeControllerService {
      * success：成功
      */
     fun postAcgLikeCos(id: String, number: String): PostAcgLikeCos? {
-        if (!WebRepository.isNetworkConnected()) {
-            Toast.makeText(ActivityCollector.curActivity!!, "网络错误", Toast.LENGTH_SHORT).show()
-            return null
+        if (ActivityCollector.curActivity != null) {
+            if (!WebRepository.isNetworkConnected()) {
+                Toast.makeText(ActivityCollector.curActivity, "网络错误", Toast.LENGTH_SHORT).show()
+                return null
+            }
         }
         val data = likeService.postAcgLikeCos(id, number, InfoRepository.token)
         var msg = ""
@@ -70,9 +74,11 @@ class LikeControllerService {
      * success：成功
      */
     fun deleteAcgLikeCos(id: String, number: String): DeleteAcgLikeCos? {
-        if (!WebRepository.isNetworkConnected()) {
-            Toast.makeText(ActivityCollector.curActivity!!, "网络错误", Toast.LENGTH_SHORT).show()
-            return null
+        if (ActivityCollector.curActivity != null) {
+            if (!WebRepository.isNetworkConnected()) {
+                Toast.makeText(ActivityCollector.curActivity, "网络错误", Toast.LENGTH_SHORT).show()
+                return null
+            }
         }
         val data = likeService.deleteAcgLikeCos(id, number, InfoRepository.token)
         var msg = ""
@@ -96,9 +102,11 @@ class LikeControllerService {
      * cosPhoto：照片列表（list） createTime：发布时间）
      */
     fun getAcgLikeList(id: String, cnt: Int, page: Int): GetAcgLikeList? {
-        if (!WebRepository.isNetworkConnected()) {
-            Toast.makeText(ActivityCollector.curActivity!!, "网络错误", Toast.LENGTH_SHORT).show()
-            return null
+        if (ActivityCollector.curActivity != null) {
+            if (!WebRepository.isNetworkConnected()) {
+                Toast.makeText(ActivityCollector.curActivity, "网络错误", Toast.LENGTH_SHORT).show()
+                return null
+            }
         }
         val data = likeService.getAcgLikeList(id, cnt, page, InfoRepository.token)
         var msg = ""

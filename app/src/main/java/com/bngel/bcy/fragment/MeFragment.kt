@@ -76,9 +76,10 @@ class MeFragment: Fragment() {
                         val userPersonalInfoByPhone =
                             personalService.getUserPersonalInfoByPhone(phone)
                         if (userPersonalInfoByPhone != null) {
-                            if (userPersonalInfoByPhone.data != null) {
+                            if (userPersonalInfoByPhone.msg == "success" && userPersonalInfoByPhone.data != null) {
                                 InfoRepository.user = userPersonalInfoByPhone.data?.personalInfo!!
                                 InfoRepository.userCounts = personalService.getUserUserCounts(InfoRepository.user.id)?.data!!.userCountsList[0]
+                                InfoRepository.initLogin(parentContext!!, InfoRepository.user.id)
                                 initUser()
                             }
                             else {

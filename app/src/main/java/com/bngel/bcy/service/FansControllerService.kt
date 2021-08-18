@@ -24,9 +24,11 @@ class FansControllerService {
      * status：0未关注 1已关注 2已相互关注 3被关注（用来判断关注后是互粉还是单纯关注）
      */
     fun postUserJudgeFollow(fromId: String, toId: String): PostUserJudgeFollow? {
-        if (!WebRepository.isNetworkConnected()) {
-            Toast.makeText(ActivityCollector.curActivity!!, "网络错误", Toast.LENGTH_SHORT).show()
-            return null
+        if (ActivityCollector.curActivity != null) {
+            if (!WebRepository.isNetworkConnected()) {
+                Toast.makeText(ActivityCollector.curActivity, "网络错误", Toast.LENGTH_SHORT).show()
+                return null
+            }
         }
         val data = fansService.postUserJudgeFollow(fromId, toId, InfoRepository.token)
         var msg = ""
@@ -47,9 +49,11 @@ class FansControllerService {
      * success：成功
      */
     fun postUserFollow(fromId: String, toId: String): PostUserFollow? {
-        if (!WebRepository.isNetworkConnected()) {
-            Toast.makeText(ActivityCollector.curActivity!!, "网络错误", Toast.LENGTH_SHORT).show()
-            return null
+        if (ActivityCollector.curActivity != null) {
+            if (!WebRepository.isNetworkConnected()) {
+                Toast.makeText(ActivityCollector.curActivity, "网络错误", Toast.LENGTH_SHORT).show()
+                return null
+            }
         }
         val data = fansService.postUserFollow(fromId, toId, InfoRepository.token)
         var msg = ""
@@ -70,9 +74,11 @@ class FansControllerService {
      * success：成功
      */
     fun deleteUserFollow(fromId: String, toId: String): DeleteUserFollow? {
-        if (!WebRepository.isNetworkConnected()) {
-            Toast.makeText(ActivityCollector.curActivity!!, "网络错误", Toast.LENGTH_SHORT).show()
-            return null
+        if (ActivityCollector.curActivity != null) {
+            if (!WebRepository.isNetworkConnected()) {
+                Toast.makeText(ActivityCollector.curActivity, "网络错误", Toast.LENGTH_SHORT).show()
+                return null
+            }
         }
         val data = fansService.deleteUserFollow(fromId, toId, InfoRepository.token)
         var msg = ""
@@ -97,9 +103,11 @@ class FansControllerService {
      * pages：页面总数
      */
     fun getUserFansList(cnt: Int, id: String, page: Int, keyword: String = ""): GetUserFansList? {
-        if (!WebRepository.isNetworkConnected()) {
-            Toast.makeText(ActivityCollector.curActivity!!, "网络错误", Toast.LENGTH_SHORT).show()
-            return null
+        if (ActivityCollector.curActivity != null) {
+            if (!WebRepository.isNetworkConnected()) {
+                Toast.makeText(ActivityCollector.curActivity, "网络错误", Toast.LENGTH_SHORT).show()
+                return null
+            }
         }
         val data = fansService.getUserFansList(cnt, id, page, InfoRepository.token, keyword)
         var msg = ""
@@ -124,9 +132,11 @@ class FansControllerService {
      * pages：页面总数
      */
     fun getUserFollowList(cnt: Int, id: String, page: Int, keyword: String = ""): GetUserFollowList? {
-        if (!WebRepository.isNetworkConnected()) {
-            Toast.makeText(ActivityCollector.curActivity!!, "网络错误", Toast.LENGTH_SHORT).show()
-            return null
+        if (ActivityCollector.curActivity != null) {
+            if (!WebRepository.isNetworkConnected()) {
+                Toast.makeText(ActivityCollector.curActivity, "网络错误", Toast.LENGTH_SHORT).show()
+                return null
+            }
         }
         val data = fansService.getUserFollowList(cnt, id, page, InfoRepository.token, keyword)
         var msg = ""

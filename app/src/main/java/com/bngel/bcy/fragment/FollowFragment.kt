@@ -66,7 +66,6 @@ class FollowFragment: Fragment() {
                 }
             }
             ConstantRepository.followFragmentUpdate
-            Toast.makeText(parentContext!!, "刷新成功", Toast.LENGTH_SHORT).show()
         }
     }
 }

@@ -27,9 +27,11 @@ class UserControllerService {
         newPassword: String,
         phone: String
     ): PostOauthChangePassword? {
-        if (!WebRepository.isNetworkConnected()) {
-            Toast.makeText(ActivityCollector.curActivity!!, "网络错误", Toast.LENGTH_SHORT).show()
-            return null
+        if (ActivityCollector.curActivity != null) {
+            if (!WebRepository.isNetworkConnected()) {
+                Toast.makeText(ActivityCollector.curActivity, "网络错误", Toast.LENGTH_SHORT).show()
+                return null
+            }
         }
         val data = userService.postChangePassword(code, newPassword, phone)
         var msg = ""
@@ -54,9 +56,11 @@ class UserControllerService {
         phone: String,
         type: Int = 2
     ): PostOauthLoginBySms? {
-        if (!WebRepository.isNetworkConnected()) {
-            Toast.makeText(ActivityCollector.curActivity!!, "网络错误", Toast.LENGTH_SHORT).show()
-            return null
+        if (ActivityCollector.curActivity != null) {
+            if (!WebRepository.isNetworkConnected()) {
+                Toast.makeText(ActivityCollector.curActivity, "网络错误", Toast.LENGTH_SHORT).show()
+                return null
+            }
         }
         val data = userService.postOauthLoginBySms(code, phone, type)
         var msg = ""
@@ -76,9 +80,11 @@ class UserControllerService {
      * success：成功
      */
     fun postOauthLogout(id: String, type: Int = 2): PostOauthLogout? {
-        if (!WebRepository.isNetworkConnected()) {
-            Toast.makeText(ActivityCollector.curActivity!!, "网络错误", Toast.LENGTH_SHORT).show()
-            return null
+        if (ActivityCollector.curActivity != null) {
+            if (!WebRepository.isNetworkConnected()) {
+                Toast.makeText(ActivityCollector.curActivity, "网络错误", Toast.LENGTH_SHORT).show()
+                return null
+            }
         }
         val data = userService.postOauthLogout(id, type)
         var msg = ""
@@ -108,9 +114,11 @@ class UserControllerService {
             .registerTypeAdapter(PostOauthToken::class.java, PostOauthToken.DataStateDeserializer())
             .create()
         val oauthService = UserControllerDao.create(gson)
-        if (!WebRepository.isNetworkConnected()) {
-            Toast.makeText(ActivityCollector.curActivity!!, "网络错误", Toast.LENGTH_SHORT).show()
-            return null
+        if (ActivityCollector.curActivity != null) {
+            if (!WebRepository.isNetworkConnected()) {
+                Toast.makeText(ActivityCollector.curActivity, "网络错误", Toast.LENGTH_SHORT).show()
+                return null
+            }
         }
         val data = oauthService.postOauthToken(grant_type, username, password, client_id, client_secret)
         var res: PostOauthToken? = null

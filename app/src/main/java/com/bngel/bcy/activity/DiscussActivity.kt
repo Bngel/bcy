@@ -8,5 +8,10 @@ class DiscussActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_discuss)
+        initWidget()
+    }
+
+    private fun initWidget() {
+
     }
 }

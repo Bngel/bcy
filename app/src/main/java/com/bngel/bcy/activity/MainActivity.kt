@@ -14,6 +14,7 @@ import com.bngel.bcy.utils.ConstantRepository.PAGE_COMMUNITY
 import com.bngel.bcy.utils.ConstantRepository.PAGE_HOME
 import com.bngel.bcy.utils.ConstantRepository.PAGE_ME
 import com.bngel.bcy.utils.ConstantRepository.PAGE_QANDA
+import com.bngel.bcy.utils.InfoRepository
 import com.bngel.bcy.widget.MainActivity.ItemTabMainActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.bottom_tab_main_activity.*
@@ -31,8 +32,13 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initWidget() {
+        loginEvent()
         vpEvent()
         tabEvent()
+    }
+
+    private fun loginEvent() {
+        InfoRepository.initStatus(this)
     }
 
     private fun vpEvent() {

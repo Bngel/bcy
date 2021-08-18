@@ -23,9 +23,11 @@ class CosControllerService {
      * （number：cos编号 id：用户id username：昵称 photo：用户头像 cosPhoto：cos图片（list） label：标签（list） createTime：发布时间）
      */
     fun getAcgFollowCos(id: String, cnt: Int, page: Int): GetAcgFollowCos?{
-        if (!WebRepository.isNetworkConnected()) {
-            Toast.makeText(ActivityCollector.curActivity!!, "网络错误", Toast.LENGTH_SHORT).show()
-            return null
+        if (ActivityCollector.curActivity != null) {
+            if (!WebRepository.isNetworkConnected()) {
+                Toast.makeText(ActivityCollector.curActivity, "网络错误", Toast.LENGTH_SHORT).show()
+                return null
+            }
         }
         val data = cosService.getAcgFollowCos(id, cnt, page, InfoRepository.token)
         var msg = ""
@@ -48,9 +50,11 @@ class CosControllerService {
      * （number：cos编号 commentCounts：评论数 likeCounts：点赞数 favorCounts：收藏数 shareCounts：分享数)
      */
     fun getAcgCosCountsList(id: String?, number: String): GetAcgCosCountsList?{
-        if (!WebRepository.isNetworkConnected()) {
-            Toast.makeText(ActivityCollector.curActivity!!, "网络错误", Toast.LENGTH_SHORT).show()
-            return null
+        if (ActivityCollector.curActivity != null) {
+            if (!WebRepository.isNetworkConnected()) {
+                Toast.makeText(ActivityCollector.curActivity, "网络错误", Toast.LENGTH_SHORT).show()
+                return null
+            }
         }
         val data = cosService.getAcgCosCountsList(id, number, if(id != null) InfoRepository.token else null)
         var msg = ""

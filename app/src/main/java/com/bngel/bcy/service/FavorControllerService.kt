@@ -23,9 +23,11 @@ class FavorControllerService {
      * （id：用户id status：0未收藏 1已收藏）
      */
     fun postAcgJudgeFavor(id: String, number: List<String>): PostAcgJudgeFavor? {
-        if (!WebRepository.isNetworkConnected()) {
-            Toast.makeText(ActivityCollector.curActivity!!, "网络错误", Toast.LENGTH_SHORT).show()
-            return null
+        if (ActivityCollector.curActivity != null) {
+            if (!WebRepository.isNetworkConnected()) {
+                Toast.makeText(ActivityCollector.curActivity, "网络错误", Toast.LENGTH_SHORT).show()
+                return null
+            }
         }
         val data = favorService.postAcgJudgeFavor(id, number, InfoRepository.token)
         var msg = ""
@@ -46,9 +48,11 @@ class FavorControllerService {
      * success：成功
      */
     fun postAcgFavorCos(id: String, number: String): PostAcgFavorCos? {
-        if (!WebRepository.isNetworkConnected()) {
-            Toast.makeText(ActivityCollector.curActivity!!, "网络错误", Toast.LENGTH_SHORT).show()
-            return null
+        if (ActivityCollector.curActivity != null) {
+            if (!WebRepository.isNetworkConnected()) {
+                Toast.makeText(ActivityCollector.curActivity, "网络错误", Toast.LENGTH_SHORT).show()
+                return null
+            }
         }
         val data = favorService.postAcgFavorCos(id, number, InfoRepository.token)
         var msg = ""
@@ -69,9 +73,11 @@ class FavorControllerService {
      * success：成功
      */
     fun deleteAcgFavorCos(id: String, number: String): DeleteAcgFavorCos? {
-        if (!WebRepository.isNetworkConnected()) {
-            Toast.makeText(ActivityCollector.curActivity!!, "网络错误", Toast.LENGTH_SHORT).show()
-            return null
+        if (ActivityCollector.curActivity != null) {
+            if (!WebRepository.isNetworkConnected()) {
+                Toast.makeText(ActivityCollector.curActivity, "网络错误", Toast.LENGTH_SHORT).show()
+                return null
+            }
         }
         val data = favorService.deleteAcgFavorCos(id, number, InfoRepository.token)
         var msg = ""
@@ -95,9 +101,11 @@ class FavorControllerService {
      * cosPhoto：cos图片（list） create_time：cos发布时间）
      */
     fun getAcgFavorList(id: String, cnt: Int, page: Int): GetAcgFavorList? {
-        if (!WebRepository.isNetworkConnected()) {
-            Toast.makeText(ActivityCollector.curActivity!!, "网络错误", Toast.LENGTH_SHORT).show()
-            return null
+        if (ActivityCollector.curActivity != null) {
+            if (!WebRepository.isNetworkConnected()) {
+                Toast.makeText(ActivityCollector.curActivity, "网络错误", Toast.LENGTH_SHORT).show()
+                return null
+            }
         }
         val data = favorService.getAcgFavorList(id, cnt, page, InfoRepository.token)
         var msg = ""

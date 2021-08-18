@@ -1,5 +1,6 @@
 package com.bngel.bcy.service
 
+import android.util.Log
 import android.widget.Toast
 import com.bngel.bcy.bean.PersonalController.getUserPersonalInfo.getUserPersonalInfoByPhone.GetUserPersonalInfoByPhone
 import com.bngel.bcy.bean.PersonalController.getUserPersonalInfo.getUserPersonalInfoById.GetUserPersonalInfoById
@@ -23,9 +24,11 @@ class PersonalControllerService {
      * success：成功 返回data personalInfo
      */
     fun getUserPersonalInfoByPhone(phone: String): GetUserPersonalInfoByPhone? {
-        if (!WebRepository.isNetworkConnected()) {
-            Toast.makeText(ActivityCollector.curActivity!!, "网络错误", Toast.LENGTH_SHORT).show()
-            return null
+        if (ActivityCollector.curActivity != null) {
+            if (!WebRepository.isNetworkConnected()) {
+                Toast.makeText(ActivityCollector.curActivity, "网络错误", Toast.LENGTH_SHORT).show()
+                return null
+            }
         }
         val data = personalService.getUserPersonalInfoByPhone(phone, InfoRepository.token)
         var msg = ""
@@ -46,9 +49,11 @@ class PersonalControllerService {
      * success：成功 返回data personalInfo
      */
     fun getUserPersonalInfoById(id: String): GetUserPersonalInfoById? {
-        if (!WebRepository.isNetworkConnected()) {
-            Toast.makeText(ActivityCollector.curActivity!!, "网络错误", Toast.LENGTH_SHORT).show()
-            return null
+        if (ActivityCollector.curActivity != null) {
+            if (!WebRepository.isNetworkConnected()) {
+                Toast.makeText(ActivityCollector.curActivity, "网络错误", Toast.LENGTH_SHORT).show()
+                return null
+            }
         }
         val data = personalService.getUserPersonalInfoById(id, InfoRepository.token)
         var msg = ""
@@ -70,9 +75,11 @@ class PersonalControllerService {
      * success：成功（就不返回url了，会自动替换头像）
      */
     fun postUserPhotoUpload(id: String, photo: MultipartBody.Part): PostUserPhotoUpload?{
-        if (!WebRepository.isNetworkConnected()) {
-            Toast.makeText(ActivityCollector.curActivity!!, "网络错误", Toast.LENGTH_SHORT).show()
-            return null
+        if (ActivityCollector.curActivity != null) {
+            if (!WebRepository.isNetworkConnected()) {
+                Toast.makeText(ActivityCollector.curActivity, "网络错误", Toast.LENGTH_SHORT).show()
+                return null
+            }
         }
         val data = personalService.postUserPhotoUpload(id, photo, InfoRepository.token)
         var msg = ""
@@ -93,9 +100,11 @@ class PersonalControllerService {
      * success：成功 返回data personalInfo
      */
     fun getUserUserCounts(id: String): GetUserUserCounts? {
-        if (!WebRepository.isNetworkConnected()) {
-            Toast.makeText(ActivityCollector.curActivity!!, "网络错误", Toast.LENGTH_SHORT).show()
-            return null
+        if (ActivityCollector.curActivity != null) {
+            if (!WebRepository.isNetworkConnected()) {
+                Toast.makeText(ActivityCollector.curActivity, "网络错误", Toast.LENGTH_SHORT).show()
+                return null
+            }
         }
         val data = personalService.getUserUserCounts(listOf(id), InfoRepository.token)
         var msg = ""
@@ -116,9 +125,11 @@ class PersonalControllerService {
      * success：成功
      */
     fun putUserPersonalInfo(id: String,  username: String?, sex: String?, province: String?, city: String?, birthday: String?, description: String?): PutUserPersonalInfo? {
-        if (!WebRepository.isNetworkConnected()) {
-            Toast.makeText(ActivityCollector.curActivity!!, "网络错误", Toast.LENGTH_SHORT).show()
-            return null
+        if (ActivityCollector.curActivity != null) {
+            if (!WebRepository.isNetworkConnected()) {
+                Toast.makeText(ActivityCollector.curActivity, "网络错误", Toast.LENGTH_SHORT).show()
+                return null
+            }
         }
         val data = personalService.putUserPersonalInfo(birthday, city, description, id, province, sex, username, InfoRepository.token)
         var msg = ""

@@ -22,9 +22,11 @@ class SmsControllerService {
         phone: String,
         type: Int
     ): PostOauthCode? {
-        if (!WebRepository.isNetworkConnected()) {
-            Toast.makeText(ActivityCollector.curActivity!!,"网络错误", Toast.LENGTH_SHORT)
-            return null
+        if (ActivityCollector.curActivity != null) {
+            if (!WebRepository.isNetworkConnected()) {
+                Toast.makeText(ActivityCollector.curActivity, "网络错误", Toast.LENGTH_SHORT).show()
+                return null
+            }
         }
         val data = smsService.postOauthCode(phone, type)
         var msg = ""
