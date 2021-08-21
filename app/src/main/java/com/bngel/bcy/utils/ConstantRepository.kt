@@ -18,5 +18,7 @@ object ConstantRepository {
     var DOWNLOAD_PATH :String? = null
 
     var followFragmentUpdate = false
+    var discoveryFragmentUpdate = false
+    var topFragmentUpdate = false
     var meFragmentUpdate = false
 }

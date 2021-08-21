@@ -28,16 +28,21 @@ class SmsControllerService {
                 return null
             }
         }
-        val data = smsService.postOauthCode(phone, type)
-        var msg = ""
-        var res: PostOauthCode? = null
-        try {
+        try{
+            val data = smsService.postOauthCode(phone, type)
+            var msg = ""
+            var res: PostOauthCode? = null
             thread {
-                val body = data.execute().body()!!
-                msg = body.msg
-                res = body
+                val exec = data.execute()
+                if (exec != null) {
+                    val body = exec.body()
+                    msg = body?.msg!!
+                    res = body
+                }
             }.join(4000)
-        } catch (e: Exception) {}
-        return res
+            return res
+        } catch (e: Exception) {
+            return null
+        }
     }
 }

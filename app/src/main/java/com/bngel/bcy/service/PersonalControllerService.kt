@@ -30,17 +30,22 @@ class PersonalControllerService {
                 return null
             }
         }
-        val data = personalService.getUserPersonalInfoByPhone(phone, InfoRepository.token)
-        var msg = ""
-        var res: GetUserPersonalInfoByPhone? = null
         try {
+            val data = personalService.getUserPersonalInfoByPhone(phone, InfoRepository.token)
+            var msg = ""
+            var res: GetUserPersonalInfoByPhone? = null
             thread {
-                val body = data.execute().body()!!
-                msg = body.msg
-                res = body
+                val exec = data.execute()
+                if (exec != null) {
+                    val body = exec.body()
+                    msg = body?.msg!!
+                    res = body
+                }
             }.join(4000)
-        } catch (e: Exception) {}
-        return res
+            return res
+        } catch (e: Exception) {
+            return null
+        }
     }
 
     /**
@@ -55,17 +60,22 @@ class PersonalControllerService {
                 return null
             }
         }
-        val data = personalService.getUserPersonalInfoById(id, InfoRepository.token)
-        var msg = ""
-        var res: GetUserPersonalInfoById? = null
         try {
-            thread {
-                val body = data.execute().body()!!
-                msg = body.msg
-                res = body
-            }.join(4000)
-        } catch (e: Exception) {}
-        return res
+            val data = personalService.getUserPersonalInfoById(id, InfoRepository.token)
+            var msg = ""
+            var res: GetUserPersonalInfoById? = null
+                thread {
+                    val exec = data.execute()
+                    if (exec != null) {
+                        val body = exec.body()
+                        msg = body?.msg!!
+                        res = body
+                    }
+                }.join(4000)
+            return res
+        } catch (e: Exception) {
+            return null
+        }
     }
 
     /**
@@ -81,17 +91,22 @@ class PersonalControllerService {
                 return null
             }
         }
-        val data = personalService.postUserPhotoUpload(id, photo, InfoRepository.token)
-        var msg = ""
-        var res:PostUserPhotoUpload? = null
         try {
+            val data = personalService.postUserPhotoUpload(id, photo, InfoRepository.token)
+            var msg = ""
+            var res:PostUserPhotoUpload? = null
             thread {
-                val body = data.execute().body()!!
-                msg = body.msg
-                res = body
+                val exec = data.execute()
+                if (exec != null) {
+                    val body = exec.body()
+                    msg = body?.msg!!
+                    res = body
+                }
             }.join(4000)
-        } catch (e: Exception) {}
-        return res
+            return res
+        } catch (e: Exception) {
+            return null
+        }
     }
 
     /**
@@ -106,17 +121,22 @@ class PersonalControllerService {
                 return null
             }
         }
-        val data = personalService.getUserUserCounts(listOf(id), InfoRepository.token)
-        var msg = ""
-        var res: GetUserUserCounts? = null
         try {
+            val data = personalService.getUserUserCounts(listOf(id), InfoRepository.token)
+            var msg = ""
+            var res: GetUserUserCounts? = null
             thread {
-                val body = data.execute().body()!!
-                msg = body.msg
-                res = body
+                val exec = data.execute()
+                if (exec != null) {
+                    val body = exec.body()
+                    msg = body?.msg!!
+                    res = body
+                }
             }.join(4000)
-        } catch (e: Exception) {}
-        return res
+            return res
+        } catch (e: Exception) {
+            return null
+        }
     }
 
     /**
@@ -131,16 +151,21 @@ class PersonalControllerService {
                 return null
             }
         }
-        val data = personalService.putUserPersonalInfo(birthday, city, description, id, province, sex, username, InfoRepository.token)
-        var msg = ""
-        var res: PutUserPersonalInfo? = null
         try {
+            val data = personalService.putUserPersonalInfo(birthday, city, description, id, province, sex, username, InfoRepository.token)
+            var msg = ""
+            var res: PutUserPersonalInfo? = null
             thread {
-                val body = data.execute().body()!!
-                msg = body.msg
-                res = body
+                val exec = data.execute()
+                if (exec != null) {
+                    val body = exec.body()
+                    msg = body?.msg!!
+                    res = body
+                }
             }.join(4000)
-        } catch (e: Exception) {}
-        return res
+            return res
+        } catch (e: Exception) {
+            return null
+        }
     }
 }

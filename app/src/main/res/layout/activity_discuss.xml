@@ -10,22 +10,13 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/close_btn_DiscussActivity"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/exit_set_password_activity_101010"
             android:layout_margin="20dp"
             android:layout_gravity="center_vertical"/>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="跳过"
-            android:textSize="14sp"
-            android:textColor="#101010"
-            android:layout_gravity="center_vertical"
-            android:gravity="right"
-            android:layout_marginRight="15dp"/>
     </LinearLayout>
 
     <ScrollView android:layout_width="match_parent"
@@ -44,6 +35,7 @@
                 android:padding="22dp">
 
                 <com.bngel.bcy.widget.others.AvtView
+                    android:id="@+id/avt_DiscussActivity"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:src="@drawable/rem"/>
@@ -60,6 +52,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/username_DiscussActivity"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="用户名测试ID"
@@ -68,6 +61,7 @@
                             android:gravity="left"/>
 
                         <TextView
+                            android:id="@+id/date_DiscussActivity"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="12dp"
@@ -78,6 +72,7 @@
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/fans_count_DiscussActivity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -95,6 +90,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/follow_btn_DiscussActivity"
                         android:layout_width="60dp"
                         android:layout_height="24dp"
                         android:text="关注"
@@ -109,36 +105,42 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/tags_DiscussActivity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="10dp">
 
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/description_DiscussActivity"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="标签测试"
-                    android:textSize="12sp"
-                    android:layout_margin="10dp"
-                    android:textColor="#101010"
-                    android:padding="5dp"
-                    android:background="@drawable/bk_tag_discuss_activity"/>
+                    android:textColor="#333333"
+                    android:textSize="16sp"/>
+
+                <LinearLayout
+                    android:id="@+id/cosPhoto_DiscussActivity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"/>
 
             </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:text="xxxxxxxxxxx"
-                android:textColor="#333333"
-                android:textSize="16sp"/>
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginRight="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -149,6 +151,7 @@
                     android:layout_marginLeft="15dp"/>
 
                 <TextView
+                    android:id="@+id/comment_count_DiscussActivity"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -158,6 +161,7 @@
                     android:textColor="#979797"/>
 
                 <TextView
+                    android:id="@+id/hottest_btn_DiscussActivity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
@@ -171,6 +175,7 @@
                     android:layout_margin="8dp"/>
 
                 <TextView
+                    android:id="@+id/newest_btn_DiscussActivity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
@@ -179,21 +184,10 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/comments_DiscussActivity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
-                <com.bngel.bcy.widget.others.DiscussCommentView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-                <com.bngel.bcy.widget.others.DiscussCommentView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-                <com.bngel.bcy.widget.others.DiscussCommentView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -204,7 +198,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <EditText
+        <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -212,7 +206,7 @@
             android:layout_marginBottom="9dp"
             android:layout_marginTop="13dp"
             android:layout_marginRight="16dp"
-            android:hint="添加评论"
+            android:text="添加评论"
             android:textSize="12dp"
             android:gravity="left"
             android:paddingTop="2dp"
@@ -236,13 +230,14 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/like_discuss_card_home_fragment"
+                    android:id="@+id/like_btn_DiscussActivity"
                     android:layout_width="22dp"
                     android:layout_height="22dp"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/like_discuss_card_home_fragment_cecece"/>
 
                 <TextView
+                    android:id="@+id/like_text_DiscussActivity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
@@ -259,13 +254,14 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/star_discuss_card_home_fragment"
+                    android:id="@+id/favor_btn_DiscussActivity"
                     android:layout_width="22dp"
                     android:layout_gravity="center_vertical"
                     android:layout_height="22dp"
                     android:src="@drawable/star_discuss_card_home_fragment_cecece"/>
 
                 <TextView
+                    android:id="@+id/favor_text_DiscussActivity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
@@ -282,13 +278,14 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/comment_discuss_card_home_fragment"
+                    android:id="@+id/comment_btn_DiscussActivity"
                     android:layout_width="22dp"
                     android:layout_height="22dp"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/comment_discuss_card_home_fragment_cecece"/>
 
                 <TextView
+                    android:id="@+id/comment_text_DiscussActivity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="12sp"

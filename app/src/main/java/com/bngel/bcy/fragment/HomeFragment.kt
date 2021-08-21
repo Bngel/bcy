@@ -44,14 +44,14 @@ class HomeFragment: Fragment() {
     }
 
     private fun vpEvent() {
-        val adapter = HomeViewPagerFragmentStateAdapter(activity as AppCompatActivity, 2)
+        val adapter = HomeViewPagerFragmentStateAdapter(activity as AppCompatActivity, 3)
         viewpager_home_fragment.adapter = adapter
         viewpager_home_fragment.isUserInputEnabled = false
         viewpager_home_fragment.currentItem = 1
     }
 
     private fun tabEvent() {
-        totalPages.addAll(listOf("关注","发现"))
+        totalPages.addAll(listOf("关注","发现","榜单"))
         for (p in totalPages.indices) {
             val view = ItemTabMainActivity(parentContext!!, totalPages[p])
             if (totalPages[p] == "发现") {

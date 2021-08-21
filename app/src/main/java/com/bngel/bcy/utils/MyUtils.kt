@@ -20,4 +20,8 @@ object MyUtils {
         val scale = context.resources.displayMetrics.density
         return (px/scale + 0.5f).toInt()
     }
+
+    fun fromStringToList(string: String): List<String> {
+        return string.substring(1, string.length-1).split(",")
+    }
 }

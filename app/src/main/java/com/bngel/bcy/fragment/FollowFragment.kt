@@ -1,11 +1,14 @@
 package com.bngel.bcy.fragment;
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.bngel.bcy.R
 import com.bngel.bcy.service.CosControllerService
@@ -21,7 +24,12 @@ class FollowFragment: Fragment() {
     val FOLLOW_COUNT = 20
     var pageNow = 1
     var parentContext: Context? = null
+    private var discussLauncher: ActivityResultLauncher<Intent>? = null
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        registerLaunch()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,6 +56,12 @@ class FollowFragment: Fragment() {
         }
     }
 
+    private fun registerLaunch() {
+        discussLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            val data = result.data
+        }
+    }
+
     private fun cardListEvent() {
         if (ConstantRepository.loginStatus) {
             val acgFollowCos =
@@ -60,12 +74,12 @@ class FollowFragment: Fragment() {
                     val card = DiscussCardHomeFragment(
                         parentContext!!,
                         follow.number, follow.id, follow.username ?: "", follow.photo,
-                        follow.cosPhoto, follow.label, follow.description, follow.createTime
+                        follow.cosPhoto, follow.label, follow.description, follow.createTime, discussLauncher
                     )
                     discuss_cards_FollowFragment.addView(card)
                 }
             }
-            ConstantRepository.followFragmentUpdate
         }
+        ConstantRepository.followFragmentUpdate = true
     }
 }

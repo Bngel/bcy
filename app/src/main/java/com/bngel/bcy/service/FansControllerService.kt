@@ -30,17 +30,22 @@ class FansControllerService {
                 return null
             }
         }
-        val data = fansService.postUserJudgeFollow(fromId, toId, InfoRepository.token)
-        var msg = ""
-        var res: PostUserJudgeFollow? = null
-        try {
+        try{
+            val data = fansService.postUserJudgeFollow(fromId, toId, InfoRepository.token)
+            var msg = ""
+            var res: PostUserJudgeFollow? = null
             thread {
-                val body = data.execute().body()!!
-                msg = body.msg
-                res = body
+                val exec = data.execute()
+                if (exec != null) {
+                    val body = exec.body()
+                    msg = body?.msg!!
+                    res = body
+                }
             }.join(4000)
-        } catch (e: Exception) {}
-        return res
+            return res
+        } catch (e: Exception) {
+            return null
+        }
     }
 
     /**
@@ -55,17 +60,22 @@ class FansControllerService {
                 return null
             }
         }
-        val data = fansService.postUserFollow(fromId, toId, InfoRepository.token)
-        var msg = ""
-        var res: PostUserFollow? = null
-        try {
+        try{
+            val data = fansService.postUserFollow(fromId, toId, InfoRepository.token)
+            var msg = ""
+            var res: PostUserFollow? = null
             thread {
-                val body = data.execute().body()!!
-                msg = body.msg
-                res = body
+                val exec = data.execute()
+                if (exec != null) {
+                    val body = exec.body()
+                    msg = body?.msg!!
+                    res = body
+                }
             }.join(4000)
-        } catch (e: Exception) {}
-        return res
+            return res
+        } catch (e: Exception) {
+            return null
+        }
     }
 
     /**
@@ -80,17 +90,22 @@ class FansControllerService {
                 return null
             }
         }
-        val data = fansService.deleteUserFollow(fromId, toId, InfoRepository.token)
-        var msg = ""
-        var res: DeleteUserFollow? = null
-        try {
+        try{
+            val data = fansService.deleteUserFollow(fromId, toId, InfoRepository.token)
+            var msg = ""
+            var res: DeleteUserFollow? = null
             thread {
-                val body = data.execute().body()!!
-                msg = body.msg
-                res = body
+                val exec = data.execute()
+                if (exec != null) {
+                    val body = exec.body()
+                    msg = body?.msg!!
+                    res = body
+                }
             }.join(4000)
-        } catch (e: Exception) {}
-        return res
+            return res
+        } catch (e: Exception) {
+            return null
+        }
     }
 
     /**
@@ -109,17 +124,22 @@ class FansControllerService {
                 return null
             }
         }
-        val data = fansService.getUserFansList(cnt, id, page, InfoRepository.token, keyword)
-        var msg = ""
-        var res: GetUserFansList? = null
-        try {
+        try{
+            val data = fansService.getUserFansList(cnt, id, page, InfoRepository.token, keyword)
+            var msg = ""
+            var res: GetUserFansList? = null
             thread {
-                val body = data.execute().body()!!
-                msg = body.msg
-                res = body
+                val exec = data.execute()
+                if (exec != null) {
+                    val body = exec.body()
+                    msg = body?.msg!!
+                    res = body
+                }
             }.join(4000)
-        } catch (e: Exception) {}
-        return res
+            return res
+        } catch (e: Exception) {
+            return null
+        }
     }
 
     /**
@@ -138,16 +158,21 @@ class FansControllerService {
                 return null
             }
         }
-        val data = fansService.getUserFollowList(cnt, id, page, InfoRepository.token, keyword)
-        var msg = ""
-        var res: GetUserFollowList? = null
-        try {
+        try{
+            val data = fansService.getUserFollowList(cnt, id, page, InfoRepository.token, keyword)
+            var msg = ""
+            var res: GetUserFollowList? = null
             thread {
-                val body = data.execute().body()!!
-                msg = body.msg
-                res = body
+                val exec = data.execute()
+                if (exec != null) {
+                    val body = exec.body()
+                    msg = body?.msg!!
+                    res = body
+                }
             }.join(4000)
-        } catch (e: Exception) {}
-        return res
+            return res
+        } catch (e: Exception) {
+            return null
+        }
     }
 }

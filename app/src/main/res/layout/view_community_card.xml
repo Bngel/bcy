@@ -5,6 +5,7 @@
     android:orientation="horizontal">
     
     <ImageView
+        android:id="@+id/image_CommunityCardView"
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:src="@drawable/rem"
@@ -17,6 +18,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/circle_name_CommunityCardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
@@ -26,6 +28,7 @@
             android:layout_marginTop="7dp"/>
 
         <TextView
+            android:id="@+id/circle_description_CommunityCardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left"
@@ -35,6 +38,7 @@
             android:text="欢迎分享xxxxxxxxxxxxxx"/>
 
         <TextView
+            android:id="@+id/circle_fans_CommunityCardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left"
@@ -46,6 +50,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/follow_btn_CommunityCardView"
         android:layout_width="76dp"
         android:layout_height="34dp"
         android:text="+ 关注"

@@ -9,6 +9,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import com.bngel.bcy.R
 import com.bngel.bcy.service.FansControllerService
 import com.bngel.bcy.service.PersonalControllerService
+import com.bngel.bcy.utils.ConstantRepository
 import com.bngel.bcy.utils.InfoRepository
 import com.bngel.bcy.utils.MyUtils
 import kotlinx.android.synthetic.main.activity_edit_user_info.*
@@ -30,9 +31,10 @@ class UserDetailActivity : BaseActivity() {
     }
 
     private fun registerLaunch() {
-        editLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            headCardEvent()
-        }
+        editLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                headCardEvent()
+            }
     }
 
     private fun initWidget() {
@@ -49,7 +51,7 @@ class UserDetailActivity : BaseActivity() {
     }
 
     private fun editInfoEvent() {
-        val toId = intent.getStringExtra("id")?:""
+        val toId = intent.getStringExtra("id") ?: ""
         val fromId = InfoRepository.user.id
         if (toId == fromId) {
             editInfo_UserDetailActivity.visibility = View.VISIBLE
@@ -61,51 +63,70 @@ class UserDetailActivity : BaseActivity() {
     }
 
     private fun followBtnEvent() {
-        val id = intent.getStringExtra("id")?:""
-        val postUserJudgeFollow = fansService.postUserJudgeFollow(InfoRepository.user.id, id)
+
+        val id = intent.getStringExtra("id") ?: ""
         var followStatus = "0"
-        if (postUserJudgeFollow != null) {
-            followStatus = postUserJudgeFollow.data.status?:"0"
-        }
-        follow_btn_UserDetailActivity.text = when (followStatus) {
-            "0" -> "关注"
-            "1" -> "已关注"
-            "2" -> "已互粉"
-            else -> "关注"
+        if (id != "") {
+            val postUserJudgeFollow =
+                fansService.postUserJudgeFollow(InfoRepository.user.id, id)
+            if (postUserJudgeFollow != null) {
+                followStatus = postUserJudgeFollow.data.status ?: "0"
+            }
+            follow_btn_UserDetailActivity.text = when (followStatus) {
+                "0" -> "关注"
+                "1" -> "已关注"
+                "2" -> "已互粉"
+                else -> "关注"
+            }
         }
         follow_btn_UserDetailActivity.setOnClickListener {
-            if (id == InfoRepository.user.id)
-                Toast.makeText(this, "无法关注自己", Toast.LENGTH_SHORT).show()
-            else {
-                val fromId = InfoRepository.user.id
-                if (followStatus == "0" || followStatus == "3") {
-                    val postUserFollow = fansService.postUserFollow(fromId, id)
-                    if (postUserFollow != null) {
-                        if (postUserFollow.msg == "success") {
-                            follow_btn_UserDetailActivity.text = when (followStatus) {
-                                "0" -> "已关注"
-                                "3" -> "已互粉"
-                                else -> "已关注"
+            if (ConstantRepository.loginStatus) {
+                if (id == InfoRepository.user.id)
+                    Toast.makeText(this, "无法关注自己", Toast.LENGTH_SHORT).show()
+                else {
+                    val fromId = InfoRepository.user.id
+                    if (followStatus == "0" || followStatus == "3") {
+                        val postUserFollow = fansService.postUserFollow(fromId, id)
+                        if (postUserFollow != null) {
+                            if (postUserFollow.msg == "success") {
+                                follow_btn_UserDetailActivity.text = when (followStatus) {
+                                    "0" -> "已关注"
+                                    "3" -> "已互粉"
+                                    else -> "已关注"
+                                }
+                                followStatus = when (followStatus) {
+                                    "0" -> "1"
+                                    "3" -> "2"
+                                    else -> followStatus
+                                }
+                                Toast.makeText(this, "关注成功", Toast.LENGTH_SHORT).show()
                             }
-                            Toast.makeText(this, "关注成功", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(this, "关注失败", Toast.LENGTH_SHORT).show()
                         }
-                    } else {
-                        Toast.makeText(this, "关注失败", Toast.LENGTH_SHORT).show()
-                    }
-                } else if (followStatus == "1" || followStatus == "2") {
-                    val deleteUserFollow = fansService.deleteUserFollow(fromId, id)
-                    if (deleteUserFollow != null) {
-                        if (deleteUserFollow.msg == "success") {
-                            follow_btn_UserDetailActivity.text = "关注"
-                            Toast.makeText(this, "取消关注成功", Toast.LENGTH_SHORT).show()
+                    } else if (followStatus == "1" || followStatus == "2") {
+                        val deleteUserFollow = fansService.deleteUserFollow(fromId, id)
+                        if (deleteUserFollow != null) {
+                            if (deleteUserFollow.msg == "success") {
+                                follow_btn_UserDetailActivity.text = "关注"
+                                followStatus = when (followStatus) {
+                                    "1" -> "0"
+                                    "2" -> "3"
+                                    else -> followStatus
+                                }
+                                Toast.makeText(this, "取消关注成功", Toast.LENGTH_SHORT).show()
+                            }
+                        } else {
+                            Toast.makeText(this, "取消关注失败", Toast.LENGTH_SHORT).show()
                         }
-                    } else {
-                        Toast.makeText(this, "取消关注失败", Toast.LENGTH_SHORT).show()
                     }
                 }
+            } else {
+                Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show()
             }
         }
     }
+
 
     private fun headCardEvent() {
         val id = intent.getStringExtra("id")?:""

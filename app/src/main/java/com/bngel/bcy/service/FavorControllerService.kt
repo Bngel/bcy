@@ -29,17 +29,22 @@ class FavorControllerService {
                 return null
             }
         }
-        val data = favorService.postAcgJudgeFavor(id, number, InfoRepository.token)
-        var msg = ""
-        var res: PostAcgJudgeFavor? = null
-        try {
+        try{
+            val data = favorService.postAcgJudgeFavor(id, number, InfoRepository.token)
+            var msg = ""
+            var res: PostAcgJudgeFavor? = null
             thread {
-                val body = data.execute().body()!!
-                msg = body.msg
-                res = body
+                val exec = data.execute()
+                if (exec != null) {
+                    val body = exec.body()
+                    msg = body?.msg!!
+                    res = body
+                }
             }.join(4000)
-        } catch (e: Exception) {}
-        return res
+            return res
+        } catch (e: Exception) {
+            return null
+        }
     }
 
     /**
@@ -54,17 +59,22 @@ class FavorControllerService {
                 return null
             }
         }
-        val data = favorService.postAcgFavorCos(id, number, InfoRepository.token)
-        var msg = ""
-        var res: PostAcgFavorCos? = null
         try {
+            val data = favorService.postAcgFavorCos(id, number, InfoRepository.token)
+            var msg = ""
+            var res: PostAcgFavorCos? = null
             thread {
-                val body = data.execute().body()!!
-                msg = body.msg
-                res = body
+                val exec = data.execute()
+                if (exec != null) {
+                    val body = exec.body()
+                    msg = body?.msg!!
+                    res = body
+                }
             }.join(4000)
-        } catch (e: Exception) {}
-        return res
+            return res
+        } catch (e: Exception) {
+            return null
+        }
     }
 
     /**
@@ -79,17 +89,22 @@ class FavorControllerService {
                 return null
             }
         }
-        val data = favorService.deleteAcgFavorCos(id, number, InfoRepository.token)
-        var msg = ""
-        var res: DeleteAcgFavorCos? = null
-        try {
+        try{
+            val data = favorService.deleteAcgFavorCos(id, number, InfoRepository.token)
+            var msg = ""
+            var res: DeleteAcgFavorCos? = null
             thread {
-                val body = data.execute().body()!!
-                msg = body.msg
-                res = body
+                val exec = data.execute()
+                if (exec != null) {
+                    val body = exec.body()
+                    msg = body?.msg!!
+                    res = body
+                }
             }.join(4000)
-        } catch (e: Exception) {}
         return res
+        } catch (e: Exception) {
+            return null
+        }
     }
 
     /**
@@ -107,17 +122,22 @@ class FavorControllerService {
                 return null
             }
         }
-        val data = favorService.getAcgFavorList(id, cnt, page, InfoRepository.token)
-        var msg = ""
-        var res: GetAcgFavorList? = null
-        try {
+        try{
+            val data = favorService.getAcgFavorList(id, cnt, page, InfoRepository.token)
+            var msg = ""
+            var res: GetAcgFavorList? = null
             thread {
-                val body = data.execute().body()!!
-                msg = body.msg
-                res = body
+                val exec = data.execute()
+                if (exec != null) {
+                    val body = exec.body()
+                    msg = body?.msg!!
+                    res = body
+                }
             }.join(4000)
-        } catch (e: Exception) {}
-        return res
+            return res
+        } catch (e: Exception) {
+            return null
+        }
     }
 
 }

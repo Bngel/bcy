@@ -30,17 +30,22 @@ class LikeControllerService {
                 return null
             }
         }
-        val data = likeService.getAcgJudgeLikes(id, numbers, InfoRepository.token)
-        var msg = ""
-        var res: GetAcgJudgeLikes? = null
-        try {
+        try{
+            val data = likeService.getAcgJudgeLikes(id, numbers, InfoRepository.token)
+            var msg = ""
+            var res: GetAcgJudgeLikes? = null
             thread {
-                val body = data.execute().body()!!
-                msg = body.msg
-                res = body
+                val exec = data.execute()
+                if (exec != null) {
+                    val body = exec.body()
+                    msg = body?.msg!!
+                    res = body
+                }
             }.join(4000)
-        } catch (e: Exception) {}
-        return res
+            return res
+        } catch (e: Exception) {
+            return null
+        }
     }
 
     /**
@@ -55,17 +60,22 @@ class LikeControllerService {
                 return null
             }
         }
-        val data = likeService.postAcgLikeCos(id, number, InfoRepository.token)
-        var msg = ""
-        var res: PostAcgLikeCos? = null
-        try {
+        try{
+            val data = likeService.postAcgLikeCos(id, number, InfoRepository.token)
+            var msg = ""
+            var res: PostAcgLikeCos? = null
             thread {
-                val body = data.execute().body()!!
-                msg = body.msg
-                res = body
+                val exec = data.execute()
+                if (exec != null) {
+                    val body = exec.body()
+                    msg = body?.msg!!
+                    res = body
+                }
             }.join(4000)
-        } catch (e: Exception) {}
-        return res
+            return res
+        } catch (e: Exception) {
+            return null
+        }
     }
 
     /**
@@ -80,17 +90,22 @@ class LikeControllerService {
                 return null
             }
         }
-        val data = likeService.deleteAcgLikeCos(id, number, InfoRepository.token)
-        var msg = ""
-        var res: DeleteAcgLikeCos? = null
-        try {
+        try{
+            val data = likeService.deleteAcgLikeCos(id, number, InfoRepository.token)
+            var msg = ""
+            var res: DeleteAcgLikeCos? = null
             thread {
-                val body = data.execute().body()!!
-                msg = body.msg
-                res = body
+                val exec = data.execute()
+                if (exec != null) {
+                    val body = exec.body()
+                    msg = body?.msg!!
+                    res = body
+                }
             }.join(4000)
-        } catch (e: Exception) {}
-        return res
+            return res
+        } catch (e: Exception) {
+            return null
+        }
     }
 
     /**
@@ -108,17 +123,22 @@ class LikeControllerService {
                 return null
             }
         }
-        val data = likeService.getAcgLikeList(id, cnt, page, InfoRepository.token)
-        var msg = ""
-        var res: GetAcgLikeList? = null
         try {
+            val data = likeService.getAcgLikeList(id, cnt, page, InfoRepository.token)
+            var msg = ""
+            var res: GetAcgLikeList? = null
             thread {
-                val body = data.execute().body()!!
-                msg = body.msg
-                res = body
+                val exec = data.execute()
+                if (exec != null) {
+                    val body = exec.body()
+                    msg = body?.msg!!
+                    res = body
+                }
             }.join(4000)
-        } catch (e: Exception) {}
-        return res
+            return res
+        } catch (e: Exception) {
+            return null
+        }
     }
 
 }

@@ -33,17 +33,22 @@ class UserControllerService {
                 return null
             }
         }
-        val data = userService.postChangePassword(code, newPassword, phone)
-        var msg = ""
-        var res: PostOauthChangePassword? = null
         try {
+            val data = userService.postChangePassword(code, newPassword, phone)
+            var msg = ""
+            var res: PostOauthChangePassword? = null
             thread {
-                val body = data.execute().body()!!
-                msg = body.msg
-                res = body
+                val exec = data.execute()
+                if (exec != null) {
+                    val body = exec.body()
+                    msg = body?.msg!!
+                    res = body
+                }
             }.join(4000)
-        } catch (e: Exception) {}
-        return res
+            return res
+        } catch (e: Exception) {
+            return null
+        }
     }
 
     /**
@@ -62,17 +67,22 @@ class UserControllerService {
                 return null
             }
         }
-        val data = userService.postOauthLoginBySms(code, phone, type)
-        var msg = ""
-        var res: PostOauthLoginBySms? = null
-        try {
+        try{
+            val data = userService.postOauthLoginBySms(code, phone, type)
+            var msg = ""
+            var res: PostOauthLoginBySms? = null
             thread {
-                val body = data.execute().body()!!
-                msg = body.msg
-                res = body
+                val exec = data.execute()
+                if (exec != null) {
+                    val body = exec.body()
+                    msg = body?.msg!!
+                    res = body
+                }
             }.join(4000)
-        } catch (e: Exception) {}
-        return res
+            return res
+        } catch (e: Exception) {
+            return null
+        }
     }
 
     /**
@@ -86,17 +96,22 @@ class UserControllerService {
                 return null
             }
         }
-        val data = userService.postOauthLogout(id, type)
-        var msg = ""
-        var res: PostOauthLogout? = null
-        try {
+        try{
+            val data = userService.postOauthLogout(id, type)
+            var msg = ""
+            var res: PostOauthLogout? = null
             thread {
-                val body = data.execute().body()!!
-                msg = body.msg
-                res = body
+                val exec = data.execute()
+                if (exec != null) {
+                    val body = exec.body()
+                    msg = body?.msg!!
+                    res = body
+                }
             }.join(4000)
-        } catch (e: Exception) {}
-        return res
+            return res
+        } catch (e: Exception) {
+            return null
+        }
     }
 
     /***
@@ -120,17 +135,21 @@ class UserControllerService {
                 return null
             }
         }
-        val data = oauthService.postOauthToken(grant_type, username, password, client_id, client_secret)
-        var res: PostOauthToken? = null
-        try {
-            thread {
-                val exec = data.execute()
-                if (exec.code() == 200) {
-                    res = exec.body()
-                }
-            }.join(4000)
-        } catch (e: Exception) {}
-        return res
+        try{
+            val data = oauthService.postOauthToken(grant_type, username, password, client_id, client_secret)
+            var res: PostOauthToken? = null
+            try {
+                thread {
+                    val exec = data.execute()
+                    if (exec.code() == 200) {
+                        res = exec.body()
+                    }
+                }.join(4000)
+            } catch (e: Exception) {}
+            return res
+        } catch (e: Exception) {
+            return null
+        }
     }
 
 

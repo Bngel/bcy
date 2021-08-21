@@ -2,16 +2,23 @@ package com.bngel.bcy.dao.CosControllerDao
 
 import com.bngel.bcy.bean.CosController.deleteAcgCos.DeleteAcgCos
 import com.bngel.bcy.bean.CosController.deleteAcgLikeCosComment.DeleteAcgLikeCosComment
+import com.bngel.bcy.bean.CosController.deleteEsAllSearchHistory.DeleteEsAllSearchHistory
+import com.bngel.bcy.bean.CosController.deleteEsSearchHistory.DeleteEsSearchHistory
 import com.bngel.bcy.bean.CosController.getAcgCos.Cos
 import com.bngel.bcy.bean.CosController.getAcgCos.GetAcgCos
 import com.bngel.bcy.bean.CosController.getAcgCosComment.GetAcgCosComment
+import com.bngel.bcy.bean.CosController.getAcgCosCommentComment.GetAcgCosCommentComment
 import com.bngel.bcy.bean.CosController.getAcgCosCommentCountsList.GetAcgCosCommentCountsList
 import com.bngel.bcy.bean.CosController.getAcgCosCountsList.GetAcgCosCountsList
 import com.bngel.bcy.bean.CosController.getAcgFollowCos.GetAcgFollowCos
 import com.bngel.bcy.bean.CosController.getAcgFollowNoRead.GetAcgFollowNoRead
+import com.bngel.bcy.bean.CosController.getEsLabelCos.GetEsLabelCos
+import com.bngel.bcy.bean.CosController.getEsRecommendCos.GetEsRecommendCos
+import com.bngel.bcy.bean.CosController.getEsSearchHistory.GetEsSearchHistory
 import com.bngel.bcy.bean.CosController.postAcgCos.PostAcgCos
 import com.bngel.bcy.bean.CosController.postAcgCosComment.PostAcgCosComment
 import com.bngel.bcy.bean.CosController.postAcgLikeCosComment.PostAcgLikeCosComment
+import com.bngel.bcy.bean.CosController.postEsSearchCos.PostEsSearchCos
 import com.bngel.bcy.dao.CosControllerDao.CosControllerDao
 import com.bngel.bcy.web.SSLSocketClient
 import com.google.gson.Gson
@@ -76,8 +83,8 @@ interface CosControllerDao {
     @GET("/acg/cosComment")
     fun getAcgCosComment(
         @Query("id") id: String?,
-        @Query("cnt") cnt: Int,
         @Query("number") number: String,
+        @Query("cnt") cnt: Int,
         @Query("page") page: Int,
         @Query("type") type: Int,
         @Query("token") token: String?
@@ -109,7 +116,7 @@ interface CosControllerDao {
         @Query("page") page: Int,
         @Query("type") type: Int,
         @Query("token") token: String?
-    )//: Call<GetAcgCosCommentComment>
+    ): Call<GetAcgCosCommentComment>
 
     /**
      * 获取cos下面评论的点赞数和评论数
@@ -203,6 +210,69 @@ interface CosControllerDao {
     @GET("/acg/recommendList")
     fun getAcgRecommendList(
     )//: Call<GetAcgRecommendList>
+
+    /**
+     * 清空所有(搜索)历史记录
+     */
+    @DELETE("/es/allSearchHistory")
+    fun deleteEsAllSearchHistory(
+        @Query("id") id: String,
+        @Query("token") token: String
+    ): Call<DeleteEsAllSearchHistory>
+
+    /**
+     * 获取标题（绘画 cos 写作）下的cos内容（也是推荐制的，随机）
+     */
+    @GET("/es/labelCos")
+    fun getEsLabelCos(
+        @Query("cnt") cnt: Int,
+        @Query("id") id: String,
+        @Query("keyword") keyword: String,
+        @Query("page") page: Int,
+        @Query("token") token: String
+    ): Call<GetEsLabelCos>
+
+    /**
+     * 发现（推荐cos，在不同的获取是会有重复推荐的）
+     */
+    @GET("/es/recommendCos")
+    fun getEsRecommendCos(
+        @Query("cnt") cnt: Int,
+        @Query("id") id: String,
+        @Query("token") token: String?
+    ): Call<GetEsRecommendCos>
+
+    /**
+     * cos搜索（会匹配标签内容和描述 拼音分词（搜拼音也能搜到） + ik细粒度分词）
+     */
+    @POST("/es/searchCos")
+    fun postEsSearchCos(
+        @Query("cnt") cnt: Int,
+        @Query("id") id: String,
+        @Query("keyword") keyword: String,
+        @Query("page") page: Int,
+        @Query("token") token: String?
+    ): Call<PostEsSearchCos>
+
+    /**
+     * 获取搜索历史
+     */
+    @GET("/es/searchHistory")
+    fun getEsSearchHistory(
+        @Query("id") id: String,
+        @Query("token") token: String
+    ): Call<GetEsSearchHistory>
+
+    /**
+     * 删除历史搜索
+     */
+    @DELETE("/es/searchHistory")
+    fun deleteEsSearchHistory(
+        @Query("id") id: String,
+        @Query("token") token: String
+    ): Call<DeleteEsSearchHistory>
+
+
 
     companion object {
         fun create(): CosControllerDao {

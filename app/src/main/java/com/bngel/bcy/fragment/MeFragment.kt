@@ -157,6 +157,8 @@ class MeFragment: Fragment() {
                 initUser()
                 ConstantRepository.meFragmentUpdate = true
             }
+            else
+                initUser()
         }
     }
 

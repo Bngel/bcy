@@ -9,6 +9,7 @@
         android:layout_height="wrap_content">
         
         <ImageView
+            android:id="@+id/close_btn_CreateCommunityActivity"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/exit_set_password_activity_101010"
@@ -25,6 +26,7 @@
     </RelativeLayout>
 
     <ImageView
+        android:id="@+id/image_CreateCommunityActivity"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:background="@drawable/bk_camera_create_community_activity"
@@ -34,6 +36,7 @@
         android:src="@drawable/camera_create_community_activity_101010"/>
     
     <EditText
+        android:id="@+id/title_CreateCommunityActivity"
         android:layout_width="300dp"
         android:layout_height="44dp"
         android:background="@drawable/bk_edit_create_community_activity"
@@ -44,6 +47,7 @@
         android:padding="10dp"/>
 
     <EditText
+        android:id="@+id/description_CreateCommunityActivity"
         android:layout_width="300dp"
         android:layout_height="125dp"
         android:background="@drawable/bk_edit_create_community_activity"
@@ -55,8 +59,9 @@
         android:padding="10dp"/>
 
     <EditText
+        android:id="@+id/name_CreateCommunityActivity"
         android:layout_width="300dp"
-        android:layout_height="33dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/bk_edit_create_community_activity"
         android:hint="请输入成员昵称 (最多5个字)"
         android:layout_marginTop="32dp"
@@ -65,6 +70,7 @@
         android:padding="10dp"/>
     
     <TextView
+        android:id="@+id/confirm_btn_CreateCommunityActivity"
         android:layout_width="300dp"
         android:layout_height="42dp"
         android:text="确认创建"

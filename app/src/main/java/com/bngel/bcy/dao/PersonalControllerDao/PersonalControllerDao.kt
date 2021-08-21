@@ -114,7 +114,7 @@ interface PersonalControllerDao {
     fun postUserPhotoUpload(
         @Part("id") id: String,
         @Part photo: MultipartBody.Part,
-        @Query("token") token:String
+        @Part("token") token:String
     ): Call<PostUserPhotoUpload>
 
     companion object {
