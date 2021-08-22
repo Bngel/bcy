@@ -5,7 +5,7 @@ import com.bngel.bcy.bean.FavorController.deleteAcgFavorCos.DeleteAcgFavorCos
 import com.bngel.bcy.bean.FavorController.getAcgFavorList.GetAcgFavorList
 import com.bngel.bcy.bean.FavorController.postAcgFavorCos.PostAcgFavorCos
 import com.bngel.bcy.bean.FavorController.postAcgJudgeFavor.PostAcgJudgeFavor
-import com.bngel.bcy.dao.FavorController.FavorControllerDao
+import com.bngel.bcy.dao.FavorControllerDao.FavorControllerDao
 import com.bngel.bcy.utils.ActivityCollector
 import com.bngel.bcy.utils.InfoRepository
 import com.bngel.bcy.web.WebRepository

@@ -1,4 +1,4 @@
-package com.bngel.bcy.dao.FavorController
+package com.bngel.bcy.dao.FavorControllerDao
 
 import com.bngel.bcy.bean.FavorController.deleteAcgFavorCos.DeleteAcgFavorCos
 import com.bngel.bcy.bean.FavorController.getAcgFavorList.GetAcgFavorList

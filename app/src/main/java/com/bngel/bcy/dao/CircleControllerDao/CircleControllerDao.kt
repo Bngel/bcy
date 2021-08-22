@@ -1,12 +1,15 @@
-package com.bngel.bcy.dao.CircleController
+package com.bngel.bcy.dao.CircleControllerDao
 
 import com.bngel.bcy.bean.CircleController.getAcgCircle.GetAcgCircle
 import com.bngel.bcy.bean.CircleController.getEsRecommendCircle.GetEsRecommendCircle
 import com.bngel.bcy.bean.CircleController.postAcgCircle.PostAcgCircle
 import com.bngel.bcy.bean.CircleController.postAcgCirclePhoto.PostAcgCirclePhoto
 import com.bngel.bcy.bean.CircleController.deleteAcgFollowCircle.DeleteAcgFollowCircle
+import com.bngel.bcy.bean.CircleController.getAcgCircleCosList.GetAcgCircleCosList
+import com.bngel.bcy.bean.CircleController.getAcgJudgeCircle.GetAcgJudgeCircle
 import com.bngel.bcy.bean.CircleController.getAcgPersonalCircle.GetAcgPersonalCircle
 import com.bngel.bcy.bean.CircleController.getAcgSearchCircle.GetAcgSearchCircle
+import com.bngel.bcy.bean.CircleController.postAcgFollowCircle.PostAcgFollowCircle
 import com.bngel.bcy.web.SSLSocketClient
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -31,11 +34,17 @@ interface CircleControllerDao {
         @Query("token") token: String?
     ): Call<GetEsRecommendCircle>
 
+    /**
+     * 获取圈子基本信息
+     */
     @GET("/acg/circle")
     fun getAcgCircle(
         @Query("circleName") circleName: String
     ): Call<GetAcgCircle>
 
+    /**
+     * 创建圈子
+     */
     @POST("/acg/circle")
     fun postAcgCircle(
         @Query("circleName") circleName: String,
@@ -46,6 +55,9 @@ interface CircleControllerDao {
         @Query("token") token: String
     ): Call<PostAcgCircle>
 
+    /**
+     * 上传圈子图片
+     */
     @POST("/acg/circlePhoto")
     @Multipart
     fun postAcgCirclePhoto(
@@ -54,13 +66,19 @@ interface CircleControllerDao {
         @Part("token") token: String
     ): Call<PostAcgCirclePhoto>
 
+    /**
+     * 关注圈子
+     */
     @POST("/acg/followCircle")
     fun postAcgFollowCircle(
         @Query("circleName") circleName: String,
         @Query("id") id: String,
         @Query("token") token: String
-    ): Call<DeleteAcgFollowCircle>
+    ): Call<PostAcgFollowCircle>
 
+    /**
+     * 取消关注圈子
+     */
     @DELETE("/acg/followCircle")
     fun deleteAcgFollowCircle(
         @Query("circleName") circleName: String,
@@ -68,6 +86,9 @@ interface CircleControllerDao {
         @Query("token") token: String
     ): Call<DeleteAcgFollowCircle>
 
+    /**
+     * 获取个人圈子列表
+     */
     @GET("/acg/personalCircle")
     fun getAcgPersonalCircle(
         @Query("cnt") cnt: Int,
@@ -76,6 +97,9 @@ interface CircleControllerDao {
         @Query("token") token: String
     ): Call<GetAcgPersonalCircle>
 
+    /**
+     * 搜索圈子（屏蔽圈子搜不到，所以要带id)
+     */
     @GET("/acg/searchCircle")
     fun getAcgSearchCircle(
         @Query("cnt") cnt: Int,
@@ -85,6 +109,26 @@ interface CircleControllerDao {
         @Query("token") token: String
     ): Call<GetAcgSearchCircle>
 
+    /**
+     * 批量判断圈子是否关注（一个也用这个接口）
+     */
+    @GET("/acg/judgeCircle")
+    fun getAcgJudgeCircle(
+        @Query("circleNames") circleNames: List<String>,
+        @Query("id") id: String,
+        @Query("token") token: String
+    ): Call<GetAcgJudgeCircle>
+
+    /**
+     * 获取圈子下cos列表
+     */
+    @GET("/acg/circleCosList")
+    fun getAcgCircleCosList(
+        @Query("circleName") circleName: String,
+        @Query("cnt") cnt: Int,
+        @Query("page") page: Int,
+        @Query("type") type: Int
+    ): Call<GetAcgCircleCosList>
 
 
     companion object {

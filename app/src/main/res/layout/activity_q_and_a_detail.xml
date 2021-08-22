@@ -9,6 +9,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            android:id="@+id/close_btn_QAndADetailActivity"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/exit_set_password_activity_101010"
@@ -16,6 +17,7 @@
             android:layout_gravity="center_vertical"/>
 
         <ImageView
+            android:id="@+id/more_btn_QAndADetailActivity"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/more_qanda_detail_activity_101010"
@@ -46,43 +48,14 @@
                 android:background="@drawable/bk_q_and_a_question_q_and_a_activity">
 
                 <LinearLayout
+                    android:id="@+id/tags_QAndADetailActivity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="标签测试"
-                        android:textSize="12sp"
-                        android:layout_margin="10dp"
-                        android:textColor="#101010"
-                        android:padding="5dp"
-                        android:background="@drawable/bk_tag_discuss_activity"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="标签测试"
-                        android:textSize="12sp"
-                        android:layout_margin="10dp"
-                        android:textColor="#101010"
-                        android:padding="5dp"
-                        android:background="@drawable/bk_tag_discuss_activity"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="标签测试"
-                        android:textSize="12sp"
-                        android:layout_margin="10dp"
-                        android:textColor="#101010"
-                        android:padding="5dp"
-                        android:background="@drawable/bk_tag_discuss_activity"/>
-
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/title_QAndADetailActivity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
@@ -93,6 +66,7 @@
                     android:text="问题XXXXXXXXXXXXX"/>
 
                 <TextView
+                    android:id="@+id/description_QAndADetailActivity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
@@ -103,6 +77,7 @@
                     android:text="详细说明"/>
 
                 <TextView
+                    android:id="@+id/followCount_QAndADetailActivity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="37关注"
@@ -131,6 +106,7 @@
                         android:src="@drawable/answer_qanda_detail_activity_101010"/>
 
                     <TextView
+                        android:id="@+id/answerCount_QAndADetailActivity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
@@ -148,6 +124,7 @@
                     android:layout_centerVertical="true">
 
                     <TextView
+                        android:id="@+id/hottest_btn_QAndADetailActivity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
@@ -163,6 +140,7 @@
                         android:layout_gravity="center_vertical"/>
 
                     <TextView
+                        android:id="@+id/newest_btn_QAndADetailActivity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
@@ -173,19 +151,11 @@
             </RelativeLayout>
 
             <LinearLayout
+                android:id="@+id/answer_cards_QAndADetailActivity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <com.bngel.bcy.widget.HomeFragment.DiscussCardHomeFragment
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <com.bngel.bcy.widget.HomeFragment.DiscussCardHomeFragment
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <com.bngel.bcy.widget.HomeFragment.DiscussCardHomeFragment
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -197,6 +167,7 @@
         android:orientation="horizontal">
         
         <LinearLayout
+            android:id="@+id/follow_btn_QAndADetailActivity"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -223,6 +194,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/answer_btn_QAndADetailActivity"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

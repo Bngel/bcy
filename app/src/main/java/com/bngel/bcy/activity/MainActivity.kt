@@ -2,9 +2,10 @@ package com.bngel.bcy.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
+import android.provider.ContactsContract
 import android.widget.ImageView
-import androidx.lifecycle.MutableLiveData
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.viewpager2.widget.ViewPager2
 import com.bngel.bcy.R
 import com.bngel.bcy.adapter.MainViewPagerFragmentStateAdapter
@@ -15,26 +16,40 @@ import com.bngel.bcy.utils.ConstantRepository.PAGE_HOME
 import com.bngel.bcy.utils.ConstantRepository.PAGE_ME
 import com.bngel.bcy.utils.ConstantRepository.PAGE_QANDA
 import com.bngel.bcy.utils.InfoRepository
-import com.bngel.bcy.widget.MainActivity.ItemTabMainActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.bottom_tab_main_activity.*
-import kotlinx.android.synthetic.main.fragment_home.*
-import java.util.ArrayList
 
 class MainActivity : BaseActivity() {
+
+    private var createLauncher: ActivityResultLauncher<Intent>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         ConstantRepository.DOWNLOAD_PATH = applicationContext.filesDir.absolutePath + "/bcy_Download"
         ConstantRepository.PORTRAIT_PATH = applicationContext.filesDir.absolutePath + "/bcy_Avt"
+        registerLaunch()
         initWidget()
+    }
+
+    private fun registerLaunch() {
+        createLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result->
+            val data = result.data
+        }
     }
 
     private fun initWidget() {
         loginEvent()
         vpEvent()
         tabEvent()
+        createEvent()
+    }
+
+    private fun createEvent() {
+        create_btn_MainActivity.setOnClickListener {
+            val intent = Intent(this, PostDiscussActivity::class.java)
+            createLauncher?.launch(intent)
+        }
     }
 
     private fun loginEvent() {

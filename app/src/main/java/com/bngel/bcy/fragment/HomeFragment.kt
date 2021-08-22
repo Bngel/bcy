@@ -51,7 +51,9 @@ class HomeFragment: Fragment() {
     }
 
     private fun tabEvent() {
+        totalPages.clear()
         totalPages.addAll(listOf("关注","发现","榜单"))
+        top_tab_home_fragment.removeAllViews()
         for (p in totalPages.indices) {
             val view = ItemTabMainActivity(parentContext!!, totalPages[p])
             if (totalPages[p] == "发现") {

@@ -20,6 +20,9 @@ import kotlinx.android.synthetic.main.fragment_community.*
 class CommunityFragment : Fragment() {
 
     private var createLauncher: ActivityResultLauncher<Intent>? = null
+    private var detailLauncher: ActivityResultLauncher<Intent> = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        val data = result.data
+    }
     var parentContext: Context? = null
     val CIRCLE_COUNT = 10
     var pageNow = 1
@@ -73,7 +76,7 @@ class CommunityFragment : Fragment() {
             val recommendCircleList = esRecommendCircle.data.recommendCircleList
             circles_CommunityFragment.removeAllViews()
             for (circle in recommendCircleList) {
-                val card = CommunityCardView(parentContext!!, circle.photo, circle.circleName, circle.description, circle.followCounts)
+                val card = CommunityCardView(parentContext!!, circle.photo, circle.circleName, circle.description, circle.followCounts, detailLauncher)
                 circles_CommunityFragment.addView(card)
             }
         }
