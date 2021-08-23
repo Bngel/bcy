@@ -14,12 +14,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.bngel.bcy.R
-import com.bngel.bcy.activity.FollowAndFanActivity
-import com.bngel.bcy.activity.LikeActivity
-import com.bngel.bcy.activity.LoginActivity
-import com.bngel.bcy.activity.UserDetailActivity
+import com.bngel.bcy.activity.*
 import com.bngel.bcy.service.PersonalControllerService
 import com.bngel.bcy.utils.ConstantRepository
 import com.bngel.bcy.utils.InfoRepository
@@ -40,6 +38,7 @@ class MeFragment: Fragment() {
     private var fansLauncher: ActivityResultLauncher<Intent>? = null
     private var followLauncher: ActivityResultLauncher<Intent>? = null
     private var likeLauncher: ActivityResultLauncher<Intent>? = null
+    private var circleLauncher: ActivityResultLauncher<Intent>? = null
 
     private val personalService = PersonalControllerService()
     private var imageFile: File? = null // 声明File对象
@@ -100,30 +99,32 @@ class MeFragment: Fragment() {
             }
         }
         pickLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            val uri: Uri = result.data!!.data!! // 获取图片的uri
-            val intent_gallery_crop = Intent("com.android.camera.action.CROP")
-            intent_gallery_crop.setDataAndType(uri, "image/*")
-            // 设置裁剪
-            intent_gallery_crop.putExtra("crop", "true")
-            intent_gallery_crop.putExtra("scale", true)
-            // aspectX aspectY 是宽高的比例
-            intent_gallery_crop.putExtra("aspectX", 1)
-            intent_gallery_crop.putExtra("aspectY", 1)
-            // outputX outputY 是裁剪图片宽高
-            intent_gallery_crop.putExtra("outputX", 400)
-            intent_gallery_crop.putExtra("outputY", 400)
-            intent_gallery_crop.putExtra("return-data", false)
-            // 创建文件保存裁剪的图片
-            createImageFile()
-            imageUri = Uri.fromFile(imageFile)
-            if (imageUri != null) {
-                intent_gallery_crop.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
-                intent_gallery_crop.putExtra(
-                    "outputFormat",
-                    Bitmap.CompressFormat.JPEG.toString()
-                )
+            if (result.resultCode == AppCompatActivity.RESULT_OK) {
+                val uri: Uri = result.data!!.data!! // 获取图片的uri
+                val intent_gallery_crop = Intent("com.android.camera.action.CROP")
+                intent_gallery_crop.setDataAndType(uri, "image/*")
+                // 设置裁剪
+                intent_gallery_crop.putExtra("crop", "true")
+                intent_gallery_crop.putExtra("scale", true)
+                // aspectX aspectY 是宽高的比例
+                intent_gallery_crop.putExtra("aspectX", 1)
+                intent_gallery_crop.putExtra("aspectY", 1)
+                // outputX outputY 是裁剪图片宽高
+                intent_gallery_crop.putExtra("outputX", 400)
+                intent_gallery_crop.putExtra("outputY", 400)
+                intent_gallery_crop.putExtra("return-data", false)
+                // 创建文件保存裁剪的图片
+                createImageFile()
+                imageUri = Uri.fromFile(imageFile)
+                if (imageUri != null) {
+                    intent_gallery_crop.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
+                    intent_gallery_crop.putExtra(
+                        "outputFormat",
+                        Bitmap.CompressFormat.JPEG.toString()
+                    )
+                }
+                cropPhotoLauncher?.launch(intent_gallery_crop)
             }
-            cropPhotoLauncher?.launch(intent_gallery_crop)
         }
         cropPhotoLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             try {
@@ -142,6 +143,9 @@ class MeFragment: Fragment() {
             val data = result.data
         }
         likeLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            val data = result.data
+        }
+        circleLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             val data = result.data
         }
     }
@@ -168,6 +172,16 @@ class MeFragment: Fragment() {
         fansEvent()
         followEvent()
         likeEvent()
+        circleEvent()
+    }
+
+    private fun circleEvent() {
+        circle_image_MeFragment.setOnClickListener {
+            if (ConstantRepository.loginStatus) {
+                val intent = Intent(parentContext!!, CommunityActivity::class.java)
+                circleLauncher?.launch(intent)
+            }
+        }
     }
 
     private fun likeEvent() {

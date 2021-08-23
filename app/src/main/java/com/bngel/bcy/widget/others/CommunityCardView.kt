@@ -30,7 +30,10 @@ class CommunityCardView: LinearLayout {
             .into(image_CommunityCardView)
         circle_name_CommunityCardView.text = name
         circle_description_CommunityCardView.text = description
-        circle_fans_CommunityCardView.text = fans.toString() + "个成员"
+        if (fans > 0)
+            circle_fans_CommunityCardView.text = fans.toString() + "个成员"
+        else
+            circle_fans_CommunityCardView.text = ""
         if (ConstantRepository.loginStatus) {
             val service = CircleControllerService()
             val acgJudgeCircle = service.getAcgJudgeCircle(name, InfoRepository.user.id)
@@ -54,6 +57,7 @@ class CommunityCardView: LinearLayout {
                                             setTextColor(Color.parseColor("#CCBE97"))
                                             setBackgroundResource(R.drawable.bk_followed_btn_community_card_view)
                                             Toast.makeText(context, "关注成功", Toast.LENGTH_SHORT).show()
+                                            ConstantRepository.circleFragmentUpdate = false
                                         }
                                         "repeatWrong" -> {
                                             Toast.makeText(context, "不能重复关注噢", Toast.LENGTH_SHORT).show()
@@ -78,6 +82,7 @@ class CommunityCardView: LinearLayout {
                                             setTextColor(Color.parseColor("#F06A0F"))
                                             setBackgroundResource(R.drawable.bk_follow_btn_community_card_view)
                                             Toast.makeText(context, "取消关注成功", Toast.LENGTH_SHORT).show()
+                                            ConstantRepository.circleFragmentUpdate = false
                                         }
                                         "repeatWrong" -> {
                                             Toast.makeText(context, "不能重复取消关注噢", Toast.LENGTH_SHORT).show()

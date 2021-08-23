@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/close_btn_CommunityActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/exit_set_password_activity_101010"
+            android:layout_margin="17dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="#101010"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="我的圈子"/>
+
+        <ImageView
+            android:id="@+id/add_CommunityActivity"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/add_qanda_detail_activity_101010"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="9dp"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="1dp">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/myFollow_CommunityActivity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="我关注的"
+                android:textSize="18sp"
+                android:textColor="#CCBE97"
+                android:gravity="center"/>
+
+
+        </RelativeLayout>
+
+        <!--<RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/myCreate_CommunityActivity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="我创建的"
+                android:textSize="18sp"
+                android:textColor="#101010"
+                android:gravity="center"/>
+
+        </RelativeLayout>-->
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/recommend_CommunityActivity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="推荐圈子"
+                android:textSize="18sp"
+                android:textColor="#101010"
+                android:gravity="center"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewpager_CommunityActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

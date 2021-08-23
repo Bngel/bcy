@@ -21,4 +21,5 @@ object ConstantRepository {
     var discoveryFragmentUpdate = false
     var topFragmentUpdate = false
     var meFragmentUpdate = false
+    var circleFragmentUpdate = false
 }

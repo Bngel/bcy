@@ -3,7 +3,13 @@ package com.bngel.bcy.activity
 import android.content.Intent
 import android.os.Bundle
 import android.provider.ContactsContract
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.PopupWindow
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.viewpager2.widget.ViewPager2
@@ -47,8 +53,30 @@ class MainActivity : BaseActivity() {
 
     private fun createEvent() {
         create_btn_MainActivity.setOnClickListener {
-            val intent = Intent(this, PostDiscussActivity::class.java)
-            createLauncher?.launch(intent)
+            if (ConstantRepository.loginStatus) {
+                val contentView = LayoutInflater.from(this).inflate(R.layout.popup_create, null)
+                val popWindow = PopupWindow(
+                    contentView,
+                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, true
+                )
+                popWindow.contentView = contentView
+                val createDiscuss = contentView.findViewById<LinearLayout>(R.id.discuss_btn_PopupCreate)
+                val createQa = contentView.findViewById<LinearLayout>(R.id.qa_btn_PopupCreate)
+                createDiscuss.setOnClickListener {
+                    val intent = Intent(this, PostDiscussActivity::class.java)
+                    createLauncher?.launch(intent)
+                    popWindow.dismiss()
+                }
+                createQa.setOnClickListener {
+
+                }
+                val rootView = LayoutInflater.from(this).inflate(R.layout.activity_main, null)
+                popWindow.animationStyle = R.style.contextCommentAnim
+                popWindow.showAtLocation(rootView, Gravity.BOTTOM, 0, 0)
+            }
+            else {
+                Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

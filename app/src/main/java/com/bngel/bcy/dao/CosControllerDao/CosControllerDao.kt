@@ -4,7 +4,6 @@ import com.bngel.bcy.bean.CosController.deleteAcgCos.DeleteAcgCos
 import com.bngel.bcy.bean.CosController.deleteAcgLikeCosComment.DeleteAcgLikeCosComment
 import com.bngel.bcy.bean.CosController.deleteEsAllSearchHistory.DeleteEsAllSearchHistory
 import com.bngel.bcy.bean.CosController.deleteEsSearchHistory.DeleteEsSearchHistory
-import com.bngel.bcy.bean.CosController.getAcgCos.Cos
 import com.bngel.bcy.bean.CosController.getAcgCos.GetAcgCos
 import com.bngel.bcy.bean.CosController.getAcgCosComment.GetAcgCosComment
 import com.bngel.bcy.bean.CosController.getAcgCosCommentComment.GetAcgCosCommentComment
@@ -12,14 +11,15 @@ import com.bngel.bcy.bean.CosController.getAcgCosCommentCountsList.GetAcgCosComm
 import com.bngel.bcy.bean.CosController.getAcgCosCountsList.GetAcgCosCountsList
 import com.bngel.bcy.bean.CosController.getAcgFollowCos.GetAcgFollowCos
 import com.bngel.bcy.bean.CosController.getAcgFollowNoRead.GetAcgFollowNoRead
+import com.bngel.bcy.bean.CosController.getAcgRecommendList.GetAcgRecommendList
 import com.bngel.bcy.bean.CosController.getEsLabelCos.GetEsLabelCos
 import com.bngel.bcy.bean.CosController.getEsRecommendCos.GetEsRecommendCos
 import com.bngel.bcy.bean.CosController.getEsSearchHistory.GetEsSearchHistory
 import com.bngel.bcy.bean.CosController.postAcgCos.PostAcgCos
 import com.bngel.bcy.bean.CosController.postAcgCosComment.PostAcgCosComment
+import com.bngel.bcy.bean.CosController.postAcgCosPhotoUpload.PostAcgCosPhotoUpload
 import com.bngel.bcy.bean.CosController.postAcgLikeCosComment.PostAcgLikeCosComment
 import com.bngel.bcy.bean.CosController.postEsSearchCos.PostEsSearchCos
-import com.bngel.bcy.dao.CosControllerDao.CosControllerDao
 import com.bngel.bcy.web.SSLSocketClient
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -51,7 +51,7 @@ interface CosControllerDao {
         @Query("id") id: String,
         @Query("description") description: String,
         @Query("label") label: List<String>,
-        @Query("permission") permission: String,
+        @Query("permission") permission: Int,
         @Query("photo") photo: List<String>,
         @Query("token") token: String
     ): Call<PostAcgCos>
@@ -144,9 +144,9 @@ interface CosControllerDao {
     @Multipart
     @POST("/acg/cosPhotoUpload")
     fun postAcgCosPhotoUpload(
-        @Part("photo") photo: MultipartBody.Part,
+        @Part photo: MultipartBody.Part,
         @Part("token") token: String
-    )//: Call<PostAcgCosPhotoUpload>
+    ): Call<PostAcgCosPhotoUpload>
 
     /**
      * 获取关注用户的cos列表
@@ -173,7 +173,8 @@ interface CosControllerDao {
      */
     @GET("/acg/hotDayCos")
     fun getAcgHotDayCos(
-        @Query("time") time: String
+        @Query("time") time: String,
+        @Query("type") type: Int
     )//: Call<GetAcgHotDayCos>
 
     /**
@@ -209,7 +210,7 @@ interface CosControllerDao {
      */
     @GET("/acg/recommendList")
     fun getAcgRecommendList(
-    )//: Call<GetAcgRecommendList>
+    ): Call<GetAcgRecommendList>
 
     /**
      * 清空所有(搜索)历史记录

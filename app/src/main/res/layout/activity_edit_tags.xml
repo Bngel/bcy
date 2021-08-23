@@ -9,6 +9,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            android:id="@+id/close_btn_EditTagsActivity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/exit_set_password_activity_101010"
@@ -40,6 +41,7 @@
                 android:orientation="vertical">
 
                 <EditText
+                    android:id="@+id/tags_edit_EditTagsActivity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="请选择或输入标签"
@@ -54,62 +56,16 @@
                     android:background="#BBBBBB"/>
 
                 <LinearLayout
+                    android:id="@+id/recommend_tags_EditTagsActivity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text="标签测试"
-                        android:textSize="12sp"
-                        android:layout_margin="10dp"
-                        android:textColor="#101010"
-                        android:gravity="center"
-                        android:padding="5dp"
-                        android:background="@drawable/bk_tag_discuss_activity"/>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text="标签测试"
-                        android:gravity="center"
-                        android:textSize="12sp"
-                        android:layout_margin="10dp"
-                        android:textColor="#101010"
-                        android:padding="5dp"
-                        android:background="@drawable/bk_tag_discuss_activity"/>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text="标签测试"
-                        android:textSize="12sp"
-                        android:layout_margin="10dp"
-                        android:gravity="center"
-                        android:textColor="#101010"
-                        android:padding="5dp"
-                        android:background="@drawable/bk_tag_discuss_activity"/>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text="标签测试"
-                        android:textSize="12sp"
-                        android:gravity="center"
-                        android:layout_margin="10dp"
-                        android:textColor="#101010"
-                        android:padding="5dp"
-                        android:background="@drawable/bk_tag_discuss_activity"/>
-
                 </LinearLayout>
+
             </LinearLayout>
 
             <TextView
+                android:id="@+id/confirm_btn_EditTagsActivity"
                 android:layout_width="300dp"
                 android:layout_height="42dp"
                 android:text="确定"

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/close_btn_PermissionActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_margin="19dp"
+            android:text="取消"
+            android:textColor="#101010"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="#101010"
+            android:text="选择可见权限"
+            android:layout_centerInParent="true"/>
+
+        <TextView
+            android:id="@+id/confirm_btn_PermissionActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_margin="19dp"
+            android:layout_alignParentRight="true"
+            android:text="确定"
+            android:textColor="#101010"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/all_PermissionActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="19dp"
+            android:textColor="#101010"
+            android:textSize="16sp"
+            android:text="所有人可见"/>
+        
+        <ImageView
+            android:id="@+id/all_image_PermissionActivity"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@drawable/agree_permission_activity_37ca67"
+            android:layout_margin="19dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fans_PermissionActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="19dp"
+            android:textColor="#101010"
+            android:textSize="16sp"
+            android:text="仅粉丝可见"/>
+
+        <ImageView
+            android:id="@+id/fans_image_PermissionActivity"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@drawable/agree_permission_activity_37ca67"
+            android:layout_margin="19dp"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/self_PermissionActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="19dp"
+            android:textColor="#101010"
+            android:textSize="16sp"
+            android:text="仅自己可见"/>
+
+        <ImageView
+            android:id="@+id/self_image_PermissionActivity"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@drawable/agree_permission_activity_37ca67"
+            android:layout_margin="19dp"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+
+</LinearLayout>

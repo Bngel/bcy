@@ -27,7 +27,6 @@ class CommunityFragment : Fragment() {
     val CIRCLE_COUNT = 10
     var pageNow = 1
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         registerLaunch()
@@ -50,6 +49,14 @@ class CommunityFragment : Fragment() {
     private fun registerLaunch() {
         createLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             val data = result.data
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (!ConstantRepository.circleFragmentUpdate) {
+            circleEvent()
+            ConstantRepository.circleFragmentUpdate = true
         }
     }
 

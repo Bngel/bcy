@@ -6,6 +6,7 @@ import com.bngel.bcy.bean.CircleController.deleteAcgFollowCircle.DeleteAcgFollow
 import com.bngel.bcy.bean.CircleController.getAcgCircle.GetAcgCircle
 import com.bngel.bcy.bean.CircleController.getAcgCircleCosList.GetAcgCircleCosList
 import com.bngel.bcy.bean.CircleController.getAcgJudgeCircle.GetAcgJudgeCircle
+import com.bngel.bcy.bean.CircleController.getAcgPersonalCircle.GetAcgPersonalCircle
 import com.bngel.bcy.bean.CircleController.getEsRecommendCircle.GetEsRecommendCircle
 import com.bngel.bcy.bean.CircleController.postAcgCircle.PostAcgCircle
 import com.bngel.bcy.bean.CircleController.postAcgCirclePhoto.PostAcgCirclePhoto
@@ -305,6 +306,39 @@ class CircleControllerService {
             val data = circleService.getAcgCircleCosList(circleName, cnt, page, type)
             var msg = ""
             var res: GetAcgCircleCosList? = null
+            thread {
+                val exec = data.execute()
+                if (exec != null) {
+                    val body = exec.body()
+                    msg = body?.msg!!
+                    res = body
+                }
+            }.join(4000)
+            return res
+        }
+        catch (e: Exception) {
+            return null
+        }
+    }
+
+    /**
+     * msg:
+     * success：成功
+     * 返回data
+     * personalCircleList
+     * （circleName：圈子名 photo：圈子图片 description：圈子描述）
+     */
+    fun getAcgPersonalCircle(cnt: Int, id: String, page: Int): GetAcgPersonalCircle? {
+        if (ActivityCollector.curActivity != null) {
+            if (!WebRepository.isNetworkConnected()) {
+                Toast.makeText(ActivityCollector.curActivity, "网络错误", Toast.LENGTH_SHORT).show()
+                return null
+            }
+        }
+        try {
+            val data = circleService.getAcgPersonalCircle(cnt, id, page, InfoRepository.token)
+            var msg = ""
+            var res: GetAcgPersonalCircle? = null
             thread {
                 val exec = data.execute()
                 if (exec != null) {

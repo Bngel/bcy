@@ -7,15 +7,17 @@ import com.bngel.bcy.bean.CosController.getAcgCosComment.GetAcgCosComment
 import com.bngel.bcy.bean.CosController.getAcgCosCommentComment.GetAcgCosCommentComment
 import com.bngel.bcy.bean.CosController.getAcgCosCountsList.GetAcgCosCountsList
 import com.bngel.bcy.bean.CosController.getAcgFollowCos.GetAcgFollowCos
+import com.bngel.bcy.bean.CosController.getAcgRecommendList.GetAcgRecommendList
 import com.bngel.bcy.bean.CosController.getEsRecommendCos.GetEsRecommendCos
-import com.bngel.bcy.bean.FansController.getUserFansList.GetUserFansList
+import com.bngel.bcy.bean.CosController.postAcgCos.PostAcgCos
+import com.bngel.bcy.bean.CosController.postAcgCosPhotoUpload.PostAcgCosPhotoUpload
+import com.bngel.bcy.bean.UserController.postOauthToken.PostOauthToken
 import com.bngel.bcy.dao.CosControllerDao.CosControllerDao
 import com.bngel.bcy.utils.ActivityCollector
 import com.bngel.bcy.utils.InfoRepository
 import com.bngel.bcy.web.WebRepository
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.google.gson.GsonBuilder
+import okhttp3.MultipartBody
 import kotlin.concurrent.thread
 
 class CosControllerService {
@@ -215,4 +217,107 @@ class CosControllerService {
             return null
         }
     }
+
+    /**
+     * msg:
+     * fileWrong：文件为空
+     * typeWrong：上传格式错误
+     * success：成功
+     * 成功后返回json：url（图片url）
+     */
+    fun postAcgCosPhotoUpload(photo: MultipartBody.Part): PostAcgCosPhotoUpload? {
+        val gson = GsonBuilder()
+            .registerTypeAdapter(PostOauthToken::class.java, PostAcgCosPhotoUpload.DataStateDeserializer())
+            .create()
+        val photoService = CosControllerDao.create(gson)
+        if (ActivityCollector.curActivity != null) {
+            if (!WebRepository.isNetworkConnected()) {
+                Toast.makeText(ActivityCollector.curActivity, "网络错误", Toast.LENGTH_SHORT).show()
+                return null
+            }
+        }
+        try {
+            val data = photoService.postAcgCosPhotoUpload(photo, InfoRepository.token)
+            var msg = ""
+            var res: PostAcgCosPhotoUpload? = null
+            thread {
+                val exec = data.execute()
+                Log.d("TestLog", exec.toString())
+                if (exec != null) {
+                    val body = exec.body()
+                    msg = body?.msg!!
+                    res = body
+                }
+            }.join(4000)
+            return res
+        }
+        catch (e: Exception) {
+            e.printStackTrace()
+            return null
+        }
+    }
+
+    /**
+     * msg:
+     * dirtyWrong：描述里有敏感词汇（会推送）
+     * repeatWrong：24小时内发布cos超过15次 不让发了
+     * success：成功
+     */
+    fun postAcgCos(description: String, id: String, label: List<String>, permission: Int, photo: List<String>): PostAcgCos?{
+        if (ActivityCollector.curActivity != null) {
+            if (!WebRepository.isNetworkConnected()) {
+                Toast.makeText(ActivityCollector.curActivity, "网络错误", Toast.LENGTH_SHORT).show()
+                return null
+            }
+        }
+        try{
+            val data = cosService.postAcgCos(id, description, label, permission, photo, InfoRepository.token)
+            var msg = ""
+            var res: PostAcgCos? = null
+            thread {
+                val exec = data.execute()
+                if (exec != null) {
+                    val body = exec.body()
+                    msg = body?.msg!!
+                    res = body
+                }
+            }.join(4000)
+            return res
+        } catch (e: Exception) {
+            return null
+        }
+    }
+
+    /**
+     * msg:
+     * success：成功
+     * 返回data
+     * cosRecommendLabelList：label（list）
+     * 推荐标签列表 一般会有20个
+     */
+    fun getAcgRecommendList(): GetAcgRecommendList?{
+        if (ActivityCollector.curActivity != null) {
+            if (!WebRepository.isNetworkConnected()) {
+                Toast.makeText(ActivityCollector.curActivity, "网络错误", Toast.LENGTH_SHORT).show()
+                return null
+            }
+        }
+        try{
+            val data = cosService.getAcgRecommendList()
+            var msg = ""
+            var res: GetAcgRecommendList? = null
+            thread {
+                val exec = data.execute()
+                if (exec != null) {
+                    val body = exec.body()
+                    msg = body?.msg!!
+                    res = body
+                }
+            }.join(4000)
+            return res
+        } catch (e: Exception) {
+            return null
+        }
+    }
+
 }
