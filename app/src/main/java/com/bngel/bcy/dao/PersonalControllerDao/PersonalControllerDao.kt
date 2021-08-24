@@ -76,7 +76,7 @@ interface PersonalControllerDao {
     /**
      * 修改个人设置
      */
-    @PATCH("/user/personalSetting")
+    @PUT("/user/personalSetting")
     fun putUserPersonalSetting(
         @Query("id") id: String,
         @Query("pushComment") pushComment: Int?,

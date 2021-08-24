@@ -201,6 +201,7 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/star_image_MeFragment"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_gravity="center"
@@ -223,6 +224,7 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/history_image_MeFragment"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_gravity="center"
@@ -318,6 +320,7 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/setting_image_MeFragment"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_gravity="center"

@@ -1,5 +1,7 @@
 package com.bngel.bcy.utils
 
+import androidx.lifecycle.MutableLiveData
+
 object ConstantRepository {
 
     var loginStatus = false
@@ -22,4 +24,6 @@ object ConstantRepository {
     var topFragmentUpdate = false
     var meFragmentUpdate = false
     var circleFragmentUpdate = false
+
+    val searchConfirm = MutableLiveData<Boolean>(false)
 }

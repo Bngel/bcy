@@ -9,6 +9,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            android:id="@+id/close_btn_SettingActivity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/exit_set_password_activity_101010"
@@ -27,47 +28,94 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="0dp"
+        <LinearLayout
+            android:id="@+id/account_and_security_SettingActivity"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="18sp"
-            android:gravity="left|center_vertical"
-            android:text="账号与安全"
-            android:textColor="#101010"
-            android:layout_margin="19dp"/>
-        
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/right_fragment_me_7b7878"
-            android:layout_gravity="center_vertical"
-            android:layout_margin="15dp"/>
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="18sp"
+                android:gravity="left|center_vertical"
+                android:text="账号与安全"
+                android:textColor="#101010"
+                android:layout_margin="19dp"/>
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/right_fragment_me_7b7878"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="15dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/msg_and_remind_SettingActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="18sp"
+                android:gravity="left|center_vertical"
+                android:text="消息与提醒"
+                android:textColor="#101010"
+                android:layout_margin="19dp"/>
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/right_fragment_me_7b7878"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="15dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/forbid_SettingActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="18sp"
+                android:gravity="left|center_vertical"
+                android:text="屏蔽设置"
+                android:textColor="#101010"
+                android:layout_margin="19dp"/>
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/right_fragment_me_7b7878"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="15dp"/>
+        </LinearLayout>
+
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="18sp"
-            android:gravity="left|center_vertical"
-            android:text="消息与提醒"
-            android:textColor="#101010"
-            android:layout_margin="19dp"/>
-
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/right_fragment_me_7b7878"
-            android:layout_gravity="center_vertical"
-            android:layout_margin="15dp"/>
-    </LinearLayout>
+    <TextView
+        android:id="@+id/logout_SettingActivity"
+        android:layout_width="300dp"
+        android:layout_height="42dp"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF"
+        android:text="退出登录"
+        android:layout_marginBottom="32dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:background="@drawable/bk_save_btn_edit_user_info_activity"/>
 </LinearLayout>

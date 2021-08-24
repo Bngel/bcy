@@ -4,10 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bngel.bcy.R
 
-class ChangeTelActivity : BaseActivity() {
-
+class ShieldActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_change_tel)
+        setContentView(R.layout.activity_shield)
     }
 }

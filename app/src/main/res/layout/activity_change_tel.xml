@@ -37,7 +37,10 @@
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:gravity="center_vertical"
+        android:maxLength="11"
+        android:inputType="number"
         android:layout_margin="25dp"
+        android:paddingLeft="20dp"
         android:background="@drawable/bk_tel_edit_change_tel_activity"/>
 
     <TextView

@@ -74,7 +74,7 @@ class DiscussCardHomeFragment : LinearLayout {
     private fun getPhotos(cosPhoto: List<String>?) {
         images_discuss_card_HomeFragment.removeAllViews()
         if (cosPhoto != null) {
-            for (photo in cosPhoto) {
+            for (photo in if (cosPhoto.count() > 2) cosPhoto.subList(0,2) else cosPhoto) {
                 val image = ImageView(context)
                 val params = LayoutParams(300, 300)
                 params.setMargins(10, 10, 10, 10)

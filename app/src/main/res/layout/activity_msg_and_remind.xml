@@ -9,6 +9,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            android:id="@+id/close_btn_MsgAndRemindActivity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/exit_set_password_activity_101010"
@@ -54,6 +55,7 @@
                 android:text="评论与\@"/>
 
             <com.suke.widget.SwitchButton
+                android:id="@+id/comment_switch_MsgAndRemindActivity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
@@ -73,6 +75,7 @@
                 android:text="点赞"/>
 
             <com.suke.widget.SwitchButton
+                android:id="@+id/like_switch_MsgAndRemindActivity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
@@ -92,6 +95,7 @@
                 android:text="粉丝"/>
 
             <com.suke.widget.SwitchButton
+                android:id="@+id/fan_switch_MsgAndRemindActivity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
@@ -111,6 +115,7 @@
                 android:text="系统通知"/>
 
             <com.suke.widget.SwitchButton
+                android:id="@+id/system_switch_MsgAndRemindActivity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
@@ -130,6 +135,7 @@
                 android:text="消息"/>
 
             <com.suke.widget.SwitchButton
+                android:id="@+id/msg_switch_MsgAndRemindActivity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>

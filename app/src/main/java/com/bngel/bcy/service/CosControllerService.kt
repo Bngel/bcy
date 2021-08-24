@@ -11,9 +11,11 @@ import com.bngel.bcy.bean.CosController.getAcgRecommendList.GetAcgRecommendList
 import com.bngel.bcy.bean.CosController.getEsRecommendCos.GetEsRecommendCos
 import com.bngel.bcy.bean.CosController.postAcgCos.PostAcgCos
 import com.bngel.bcy.bean.CosController.postAcgCosPhotoUpload.PostAcgCosPhotoUpload
+import com.bngel.bcy.bean.CosController.postEsSearchCos.PostEsSearchCos
 import com.bngel.bcy.bean.UserController.postOauthToken.PostOauthToken
 import com.bngel.bcy.dao.CosControllerDao.CosControllerDao
 import com.bngel.bcy.utils.ActivityCollector
+import com.bngel.bcy.utils.ConstantRepository
 import com.bngel.bcy.utils.InfoRepository
 import com.bngel.bcy.web.WebRepository
 import com.google.gson.GsonBuilder
@@ -206,6 +208,7 @@ class CosControllerService {
             var res: GetEsRecommendCos? = null
             thread {
                 val exec = data.execute()
+                Log.d("TestLog", exec.toString())
                 if (exec != null) {
                     val body = exec.body()
                     msg = body?.msg!!
@@ -306,6 +309,39 @@ class CosControllerService {
             val data = cosService.getAcgRecommendList()
             var msg = ""
             var res: GetAcgRecommendList? = null
+            thread {
+                val exec = data.execute()
+                if (exec != null) {
+                    val body = exec.body()
+                    msg = body?.msg!!
+                    res = body
+                }
+            }.join(4000)
+            return res
+        } catch (e: Exception) {
+            return null
+        }
+    }
+
+    /**
+     * msg:
+     * success：成功
+     * 返回cosList
+     * （number：cos编号 id：发布用户id username：发布用户昵称 photo：头像 description：内容
+     * label：标签（这里是一个字符串list（es存储的问题，就是在list的[]旁边多了引号其他不变）
+     * cosPhoto：cos图片（字符串list） createTime:发布时间））
+     */
+    fun postEsSearchCos(cnt: Int, keyword: String, page: Int, id: String = "0"): PostEsSearchCos?{
+        if (ActivityCollector.curActivity != null) {
+            if (!WebRepository.isNetworkConnected()) {
+                Toast.makeText(ActivityCollector.curActivity, "网络错误", Toast.LENGTH_SHORT).show()
+                return null
+            }
+        }
+        try{
+            val data = cosService.postEsSearchCos(cnt, id, keyword, page, if(id == "0") InfoRepository.token else null)
+            var msg = ""
+            var res: PostEsSearchCos? = null
             thread {
                 val exec = data.execute()
                 if (exec != null) {

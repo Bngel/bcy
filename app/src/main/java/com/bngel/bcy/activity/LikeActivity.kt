@@ -18,7 +18,7 @@ class LikeActivity : BaseActivity() {
     private var discussLauncher: ActivityResultLauncher<Intent>? = null
     val likeService = LikeControllerService()
     val LIKE_COUNT = 20
-    val pageNew = 1
+    val pageNow = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +46,7 @@ class LikeActivity : BaseActivity() {
 
     private fun cardEvent() {
         if (ConstantRepository.loginStatus){
-            val acgLikeList = likeService.getAcgLikeList(InfoRepository.user.id, LIKE_COUNT, pageNew)
+            val acgLikeList = likeService.getAcgLikeList(InfoRepository.user.id, LIKE_COUNT, pageNow)
             if (acgLikeList != null && acgLikeList.msg == "success") {
                 val likeList = acgLikeList.data.likeCosList
                 like_card_LikeActivity.removeAllViews()

@@ -39,6 +39,9 @@ class MeFragment: Fragment() {
     private var followLauncher: ActivityResultLauncher<Intent>? = null
     private var likeLauncher: ActivityResultLauncher<Intent>? = null
     private var circleLauncher: ActivityResultLauncher<Intent>? = null
+    private var starLauncher: ActivityResultLauncher<Intent>? = null
+    private var historyLauncher: ActivityResultLauncher<Intent>? = null
+    private var settingLauncher: ActivityResultLauncher<Intent>? = null
 
     private val personalService = PersonalControllerService()
     private var imageFile: File? = null // 声明File对象
@@ -148,6 +151,15 @@ class MeFragment: Fragment() {
         circleLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             val data = result.data
         }
+        starLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result->
+            val data = result.data
+        }
+        historyLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result->
+            val data = result.data
+        }
+        settingLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result->
+            val data = result.data
+        }
     }
 
     override fun onResume() {
@@ -173,50 +185,108 @@ class MeFragment: Fragment() {
         followEvent()
         likeEvent()
         circleEvent()
+        starEvent()
+        historyEvent()
+        settingEvent()
+    }
+
+    private fun settingEvent() {
+        setting_image_MeFragment.setOnClickListener {
+            if (ConstantRepository.loginStatus) {
+                val intent = Intent(parentContext!!, SettingActivity::class.java)
+                settingLauncher?.launch(intent)
+            }
+            else {
+                Toast.makeText(parentContext!!, "请先登录", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun historyEvent() {
+        history_image_MeFragment.setOnClickListener {
+            if (ConstantRepository.loginStatus) {
+                val intent = Intent(parentContext!!, HistoryActivity::class.java)
+                historyLauncher?.launch(intent)
+            }
+            else {
+                Toast.makeText(parentContext!!, "请先登录", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun starEvent() {
+        star_image_MeFragment.setOnClickListener {
+            if (ConstantRepository.loginStatus) {
+                val intent = Intent(parentContext!!, StarActivity::class.java)
+                starLauncher?.launch(intent)
+            }
+            else {
+                Toast.makeText(parentContext!!, "请先登录", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun circleEvent() {
-        circle_image_MeFragment.setOnClickListener {
-            if (ConstantRepository.loginStatus) {
-                val intent = Intent(parentContext!!, CommunityActivity::class.java)
-                circleLauncher?.launch(intent)
+            circle_image_MeFragment.setOnClickListener {
+                if (ConstantRepository.loginStatus) {
+                    val intent = Intent(parentContext!!, CommunityActivity::class.java)
+                    circleLauncher?.launch(intent)
+                }
+                else {
+                    Toast.makeText(parentContext!!, "请先登录", Toast.LENGTH_SHORT).show()
+                }
             }
-        }
     }
 
     private fun likeEvent() {
-        like_image_MeFragment.setOnClickListener {
-            if (ConstantRepository.loginStatus) {
-                val intent = Intent(parentContext!!, LikeActivity::class.java)
-                likeLauncher?.launch(intent)
+            like_image_MeFragment.setOnClickListener {
+                if (ConstantRepository.loginStatus) {
+                    val intent = Intent(parentContext!!, LikeActivity::class.java)
+                    likeLauncher?.launch(intent)
+                }
+                else {
+                Toast.makeText(parentContext!!, "请先登录", Toast.LENGTH_SHORT).show()
+                }
             }
-        }
     }
 
     private fun followEvent() {
-        follow_count_text_MeFragment.setOnClickListener {
-            val intent = Intent(parentContext!!, FollowAndFanActivity::class.java)
-            intent.putExtra("type", "follow")
-            followLauncher?.launch(intent)
-        }
+            follow_count_text_MeFragment.setOnClickListener {
+                if (ConstantRepository.loginStatus) {
+                val intent = Intent(parentContext!!, FollowAndFanActivity::class.java)
+                intent.putExtra("type", "follow")
+                followLauncher?.launch(intent)
+            }
+            else {
+                Toast.makeText(parentContext!!, "请先登录", Toast.LENGTH_SHORT).show()
+            }
+            }
     }
 
     private fun fansEvent() {
-        fan_count_text_MeFragment.setOnClickListener {
-            val intent = Intent(parentContext!!, FollowAndFanActivity::class.java)
-            intent.putExtra("type", "fans")
-            fansLauncher?.launch(intent)
+
+            fan_count_text_MeFragment.setOnClickListener {
+                if (ConstantRepository.loginStatus) {
+                    val intent = Intent(parentContext!!, FollowAndFanActivity::class.java)
+                    intent.putExtra("type", "fans")
+                    fansLauncher?.launch(intent)
+                }
+                else {
+                Toast.makeText(parentContext!!, "请先登录", Toast.LENGTH_SHORT).show()
+            }
+
         }
+
     }
 
     private fun avtEvent() {
-        avt_MeFragment.setOnClickListener {
-            if (ConstantRepository.loginStatus) {
-                val intent =
-                    Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                pickLauncher?.launch(intent)
+            avt_MeFragment.setOnClickListener {
+                if (ConstantRepository.loginStatus) {
+                    val intent =
+                        Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                    pickLauncher?.launch(intent)
+                }
             }
-        }
     }
 
     private fun headCardEvent() {

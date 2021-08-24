@@ -9,6 +9,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            android:id="@+id/close_btn_StarActivity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/exit_set_password_activity_101010"
@@ -24,6 +25,7 @@
             android:text="收藏夹"/>
 
         <ImageView
+            android:id="@+id/delete_btn_StarActivity"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/delete_star_activity_101010"
@@ -33,46 +35,6 @@
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="1dp">
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="文章"
-                android:textSize="18sp"
-                android:textColor="#CCBE97"
-                android:gravity="center"/>
-
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="问答"
-                android:textSize="18sp"
-                android:textColor="#101010"
-                android:gravity="center"/>
-
-        </RelativeLayout>
-
-    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -80,21 +42,10 @@
         android:layout_weight="1">
 
         <LinearLayout
+            android:id="@+id/star_cards_StarActivity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <com.bngel.bcy.widget.HomeFragment.DiscussCardHomeFragment
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <com.bngel.bcy.widget.HomeFragment.DiscussCardHomeFragment
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <com.bngel.bcy.widget.HomeFragment.DiscussCardHomeFragment
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
         </LinearLayout>
     </ScrollView>
 

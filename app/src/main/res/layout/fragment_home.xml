@@ -28,6 +28,7 @@
             android:layout_height="23dp"
             android:layout_margin="15dp"
             android:src="@drawable/menu_main_activity"
+            android:visibility="gone"
             android:layout_gravity="center_vertical"/>
 
     </LinearLayout>

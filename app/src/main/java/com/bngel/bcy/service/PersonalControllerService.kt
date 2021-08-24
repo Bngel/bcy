@@ -4,9 +4,11 @@ import android.util.Log
 import android.widget.Toast
 import com.bngel.bcy.bean.PersonalController.getUserPersonalInfo.getUserPersonalInfoByPhone.GetUserPersonalInfoByPhone
 import com.bngel.bcy.bean.PersonalController.getUserPersonalInfo.getUserPersonalInfoById.GetUserPersonalInfoById
+import com.bngel.bcy.bean.PersonalController.getUserPersonalSetting.GetUserPersonalSetting
 import com.bngel.bcy.bean.PersonalController.getUserUserCounts.GetUserUserCounts
 import com.bngel.bcy.bean.PersonalController.postUserPhotoUpload.PostUserPhotoUpload
 import com.bngel.bcy.bean.PersonalController.putUserPersonalInfo.PutUserPersonalInfo
+import com.bngel.bcy.bean.PersonalController.putUserPersonalSetting.PutUserPersonalSetting
 import com.bngel.bcy.dao.PersonalControllerDao.PersonalControllerDao
 import com.bngel.bcy.utils.ActivityCollector
 import com.bngel.bcy.utils.InfoRepository
@@ -155,6 +157,70 @@ class PersonalControllerService {
             val data = personalService.putUserPersonalInfo(birthday, city, description, id, province, sex, username, InfoRepository.token)
             var msg = ""
             var res: PutUserPersonalInfo? = null
+            thread {
+                val exec = data.execute()
+                if (exec != null) {
+                    val body = exec.body()
+                    msg = body?.msg!!
+                    res = body
+                }
+            }.join(4000)
+            return res
+        } catch (e: Exception) {
+            return null
+        }
+    }
+
+    /**
+     * msg:
+     * existWrong：用户不存在或已被冻结
+     * success：成功
+     * 返回data：personalSetting
+     * （id：用户id pushComment：推送评论 pushLike：推送点赞
+     * pushFans：推送粉丝 pushSystem：推送系统通知 pushInfo：推送聊天）
+     */
+    fun getUserPersonalSetting(id: String): GetUserPersonalSetting? {
+        if (ActivityCollector.curActivity != null) {
+            if (!WebRepository.isNetworkConnected()) {
+                Toast.makeText(ActivityCollector.curActivity, "网络错误", Toast.LENGTH_SHORT).show()
+                return null
+            }
+        }
+        try {
+            val data = personalService.getUserPersonalSetting(id, InfoRepository.token)
+            var msg = ""
+            var res: GetUserPersonalSetting? = null
+            thread {
+                val exec = data.execute()
+                if (exec != null) {
+                    val body = exec.body()
+                    msg = body?.msg!!
+                    res = body
+                }
+            }.join(4000)
+            return res
+        } catch (e: Exception) {
+            return null
+        }
+    }
+
+    /**
+     * msg:
+     * existWrong：账号不存在或已被冻结
+     * success：成功
+     */
+    fun putUserPersonalSetting(id: String, pushComment: Int? = null, pushFans: Int? = null, pushInfo: Int? = null,
+                               pushLike: Int? = null, pushSystem: Int? = null): PutUserPersonalSetting? {
+        if (ActivityCollector.curActivity != null) {
+            if (!WebRepository.isNetworkConnected()) {
+                Toast.makeText(ActivityCollector.curActivity, "网络错误", Toast.LENGTH_SHORT).show()
+                return null
+            }
+        }
+        try {
+            val data = personalService.putUserPersonalSetting(id, pushComment, pushFans, pushInfo, pushLike, pushSystem, InfoRepository.token)
+            var msg = ""
+            var res: PutUserPersonalSetting? = null
             thread {
                 val exec = data.execute()
                 if (exec != null) {

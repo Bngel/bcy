@@ -17,7 +17,9 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
-        <activity android:name=".activity.CommunityActivity"></activity>
+        <activity android:name=".activity.SearchActivity"></activity>
+        <activity android:name=".activity.ShieldActivity" />
+        <activity android:name=".activity.CommunityActivity" />
         <activity android:name=".activity.PermissionActivity" />
         <activity android:name=".activity.EditUserInfoActivity" />
         <activity android:name=".activity.ChangeTelActivity" />

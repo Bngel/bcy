@@ -11,15 +11,18 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.bngel.bcy.R
 import com.bngel.bcy.activity.CreateCommunityActivity
+import com.bngel.bcy.activity.SearchActivity
 import com.bngel.bcy.service.CircleControllerService
 import com.bngel.bcy.utils.ConstantRepository
 import com.bngel.bcy.utils.InfoRepository
 import com.bngel.bcy.widget.others.CommunityCardView
 import kotlinx.android.synthetic.main.fragment_community.*
+import kotlinx.android.synthetic.main.fragment_qanda.*
 
 class CommunityFragment : Fragment() {
 
     private var createLauncher: ActivityResultLauncher<Intent>? = null
+    private var searchLauncher: ActivityResultLauncher<Intent>? = null
     private var detailLauncher: ActivityResultLauncher<Intent> = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         val data = result.data
     }
@@ -50,6 +53,9 @@ class CommunityFragment : Fragment() {
         createLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             val data = result.data
         }
+        searchLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            val data = result.data
+        }
     }
 
     override fun onResume() {
@@ -63,6 +69,14 @@ class CommunityFragment : Fragment() {
     private fun initWidget() {
         circleEvent()
         createEvent()
+        searchEvent()
+    }
+
+    private fun searchEvent() {
+        search_CommunityFragment.setOnClickListener {
+            val intent = Intent(parentContext!!, SearchActivity::class.java)
+            searchLauncher?.launch(intent)
+        }
     }
 
     private fun createEvent() {
