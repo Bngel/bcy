@@ -1,5 +1,6 @@
 package com.bngel.bcy.dao.PersonalControllerDao
 
+import com.bngel.bcy.bean.PersonalController.getUserCommunityInfo.GetUserCommunityInfo
 import com.bngel.bcy.bean.PersonalController.getUserPersonalInfo.getUserPersonalInfoByPhone.GetUserPersonalInfoByPhone
 import com.bngel.bcy.bean.PersonalController.getUserPersonalSetting.GetUserPersonalSetting
 import com.bngel.bcy.bean.PersonalController.getUserUserCounts.GetUserUserCounts
@@ -22,6 +23,14 @@ import java.util.concurrent.TimeUnit
 
 interface PersonalControllerDao {
 
+    /**
+     * 获取用户社交信息（手机 和 微博号）
+     */
+    @GET("/user/communityInfo")
+    fun getUserCommunityInfo(
+        @Query("id") id: String,
+        @Query("token") token: String
+    ): Call<GetUserCommunityInfo>
     /**
      * 判断是否为新用户
      */

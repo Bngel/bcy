@@ -208,7 +208,6 @@ class CosControllerService {
             var res: GetEsRecommendCos? = null
             thread {
                 val exec = data.execute()
-                Log.d("TestLog", exec.toString())
                 if (exec != null) {
                     val body = exec.body()
                     msg = body?.msg!!
@@ -245,7 +244,6 @@ class CosControllerService {
             var res: PostAcgCosPhotoUpload? = null
             thread {
                 val exec = data.execute()
-                Log.d("TestLog", exec.toString())
                 if (exec != null) {
                     val body = exec.body()
                     msg = body?.msg!!

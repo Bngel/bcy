@@ -6,6 +6,8 @@ import androidx.core.content.edit
 import com.bngel.bcy.bean.PersonalController.getUserPersonalInfo.PersonalInfo
 import com.bngel.bcy.bean.PersonalController.getUserUserCounts.UserCounts
 import com.bngel.bcy.service.PersonalControllerService
+import com.bngel.bcy.web.WebRepository
+import org.java_websocket.enums.ReadyState
 
 object InfoRepository {
 
@@ -47,6 +49,9 @@ object InfoRepository {
             val localToken = localStatus.getString(KEY_TOKEN, "")?:""
             token = localToken
             initUser(context, id)
+            WebRepository.createWebClient(user.id)
+            while (WebRepository.webClient.readyState != ReadyState.OPEN)
+                Log.d("TestLog", "连接中")
         }
     }
 

@@ -1,5 +1,6 @@
 package com.bngel.bcy.dao.UserControllerDao
 
+import com.bngel.bcy.bean.UserController.getCommunitySearchUser.GetCommunitySearchUser
 import com.bngel.bcy.bean.UserController.postOauthChangePassword.PostOauthChangePassword
 import com.bngel.bcy.bean.UserController.postOauthLoginBySms.PostOauthLoginBySms
 import com.bngel.bcy.bean.UserController.postOauthLogout.PostOauthLogout
@@ -11,6 +12,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
 import java.util.concurrent.TimeUnit
@@ -58,6 +60,17 @@ interface UserControllerDao {
         @Query("client_secret") client_secret: String
     ): Call<PostOauthToken>
 
+    /**
+     * 搜索用户（默认搜索不到自己，用户未登录不能用）
+     */
+    @GET("/community/searchUser")
+    fun getCommunitySearchUser(
+        @Query("cnt") cnt: Int,
+        @Query("id") id: String,
+        @Query("keyword") keyword: String,
+        @Query("page") page: Int,
+        @Query("token") token: String?
+    ): Call<GetCommunitySearchUser>
 
     companion object {
         fun create(): UserControllerDao {

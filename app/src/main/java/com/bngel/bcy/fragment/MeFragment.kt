@@ -21,10 +21,12 @@ import com.bngel.bcy.activity.*
 import com.bngel.bcy.service.PersonalControllerService
 import com.bngel.bcy.utils.ConstantRepository
 import com.bngel.bcy.utils.InfoRepository
+import com.bngel.bcy.web.WebRepository
 import kotlinx.android.synthetic.main.fragment_me.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import org.java_websocket.enums.ReadyState
 import java.io.File
 
 class MeFragment: Fragment() {
@@ -82,6 +84,9 @@ class MeFragment: Fragment() {
                                 InfoRepository.user = userPersonalInfoByPhone.data?.personalInfo!!
                                 InfoRepository.userCounts = personalService.getUserUserCounts(InfoRepository.user.id)?.data!!.userCountsList[0]
                                 InfoRepository.initLogin(parentContext!!, InfoRepository.user.id)
+                                WebRepository.createWebClient(InfoRepository.user.id)
+                                while (WebRepository.webClient.readyState != ReadyState.OPEN)
+                                    Log.d("TestLog", "连接中")
                                 initUser()
                             }
                             else {

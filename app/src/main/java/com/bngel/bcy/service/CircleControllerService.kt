@@ -7,6 +7,7 @@ import com.bngel.bcy.bean.CircleController.getAcgCircle.GetAcgCircle
 import com.bngel.bcy.bean.CircleController.getAcgCircleCosList.GetAcgCircleCosList
 import com.bngel.bcy.bean.CircleController.getAcgJudgeCircle.GetAcgJudgeCircle
 import com.bngel.bcy.bean.CircleController.getAcgPersonalCircle.GetAcgPersonalCircle
+import com.bngel.bcy.bean.CircleController.getAcgSearchCircle.GetAcgSearchCircle
 import com.bngel.bcy.bean.CircleController.getEsRecommendCircle.GetEsRecommendCircle
 import com.bngel.bcy.bean.CircleController.postAcgCircle.PostAcgCircle
 import com.bngel.bcy.bean.CircleController.postAcgCirclePhoto.PostAcgCirclePhoto
@@ -44,6 +45,7 @@ class CircleControllerService {
             var res: GetEsRecommendCircle? = null
             thread {
                 val exec = data.execute()
+                Log.d("TestLog", exec.toString())
                 if (exec != null) {
                     val body = exec.body()
                     msg = body?.msg!!
@@ -81,7 +83,6 @@ class CircleControllerService {
             var res: PostAcgCirclePhoto? = null
             thread {
                 val exec = data.execute()
-                Log.d("TestLog", exec.toString())
                 if (exec != null) {
                     val body = exec.body()
                     msg = body?.msg!!
@@ -339,6 +340,38 @@ class CircleControllerService {
             val data = circleService.getAcgPersonalCircle(cnt, id, page, InfoRepository.token)
             var msg = ""
             var res: GetAcgPersonalCircle? = null
+            thread {
+                val exec = data.execute()
+                if (exec != null) {
+                    val body = exec.body()
+                    msg = body?.msg!!
+                    res = body
+                }
+            }.join(4000)
+            return res
+        }
+        catch (e: Exception) {
+            return null
+        }
+    }
+
+    /**
+     * msg:
+     * success：成功
+     * 返回searchCircleList
+     * （circleName：圈子名 photo：圈子图片 description：圈子描述）
+     */
+    fun getAcgSearchCircle(cnt: Int, id: String, keyword:String, page: Int): GetAcgSearchCircle? {
+        if (ActivityCollector.curActivity != null) {
+            if (!WebRepository.isNetworkConnected()) {
+                Toast.makeText(ActivityCollector.curActivity, "网络错误", Toast.LENGTH_SHORT).show()
+                return null
+            }
+        }
+        try {
+            val data = circleService.getAcgSearchCircle(cnt, id, keyword, page, if (id == "0") null else InfoRepository.token)
+            var msg = ""
+            var res: GetAcgSearchCircle? = null
             thread {
                 val exec = data.execute()
                 if (exec != null) {

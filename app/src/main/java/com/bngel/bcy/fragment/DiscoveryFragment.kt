@@ -72,6 +72,8 @@ class DiscoveryFragment: Fragment() {
             discuss_cards_DiscoveryFragment.removeAllViews()
             for (follow in cardInfoList) {
                 val cosPhoto = MyUtils.fromStringToList(follow.cosPhoto)
+                Log.d("TestLog", follow.cosPhoto)
+                Log.d("TestLog", cosPhoto.toString())
                 val label = MyUtils.fromStringToList(follow.label)
                 val card = DiscussCardHomeFragment(
                     parentContext!!,

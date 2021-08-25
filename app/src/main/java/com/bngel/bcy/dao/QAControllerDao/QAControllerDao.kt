@@ -3,6 +3,7 @@ package com.bngel.bcy.dao.QAControllerDao
 import com.bngel.bcy.bean.QAController.getAcgAnswerList.GetAcgAnswerList
 import com.bngel.bcy.bean.QAController.getAcgQaTopic.GetAcgQaTopic
 import com.bngel.bcy.bean.QAController.getEsRecommendQa.GetEsRecommendQa
+import com.bngel.bcy.bean.QAController.postEsSearchQa.PostEsSearchQa
 import com.bngel.bcy.dao.QAControllerDao.QAControllerDao
 import com.bngel.bcy.web.SSLSocketClient
 import com.google.gson.Gson
@@ -28,6 +29,18 @@ interface QAControllerDao {
         @Query("id") id: String,
         @Query("token") token: String?
     ): Call<GetEsRecommendQa>
+
+    /**
+     * 问答搜索（会匹配标签内容和描述 拼音分词（搜拼音也能搜到） + ik细粒度分词）
+     */
+    @POST("/es/searchQa")
+    fun postEsSearchQa(
+        @Query("cnt") cnt: Int,
+        @Query("id") id: String?,
+        @Query("keyword") keyword: String,
+        @Query("page") page: Int,
+        @Query("token") token: String?
+    ): Call<PostEsSearchQa>
 
     /**
      * 回答问题

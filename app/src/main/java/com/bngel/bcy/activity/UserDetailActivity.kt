@@ -1,18 +1,22 @@
 package com.bngel.bcy.activity
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.bngel.bcy.R
+import com.bngel.bcy.adapter.SearchViewPagerFragmentStateAdapter
+import com.bngel.bcy.adapter.UserDetailViewPagerFragmentStateAdapter
 import com.bngel.bcy.service.FansControllerService
 import com.bngel.bcy.service.PersonalControllerService
 import com.bngel.bcy.utils.ConstantRepository
 import com.bngel.bcy.utils.InfoRepository
 import com.bngel.bcy.utils.MyUtils
 import kotlinx.android.synthetic.main.activity_edit_user_info.*
+import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.activity_user_detail.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -22,6 +26,7 @@ class UserDetailActivity : BaseActivity() {
     private val personalService = PersonalControllerService()
     private val fansService = FansControllerService()
     private var editLauncher: ActivityResultLauncher<Intent>? = null
+    private var curPage = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,10 +36,10 @@ class UserDetailActivity : BaseActivity() {
     }
 
     private fun registerLaunch() {
-        editLauncher =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-                headCardEvent()
-            }
+        editLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            headCardEvent()
+        }
+
     }
 
     private fun initWidget() {
@@ -42,6 +47,8 @@ class UserDetailActivity : BaseActivity() {
         followBtnEvent()
         editInfoEvent()
         closeEvent()
+        tabEvent()
+        vpEvent()
     }
 
     private fun closeEvent() {
@@ -151,6 +158,27 @@ class UserDetailActivity : BaseActivity() {
             address_UserDetailActivity.text = "${(user.province?:"")}${(user.city?:"")}"
             follow_count_text_UserDetailActivity.text = userCounts.followCounts.toString() + " 关注"
             fan_count_text_UserDetailActivity.text = userCounts.fansCounts.toString() + " 粉丝"
+        }
+    }
+
+    private fun vpEvent(){
+        val adapter = UserDetailViewPagerFragmentStateAdapter(this, 2)
+        viewpager_UserDetailActivity.adapter = adapter
+        viewpager_UserDetailActivity.isUserInputEnabled = false
+    }
+
+    private fun tabEvent(){
+        create_switch_UserDetailActivity.setOnClickListener {
+            curPage = 0
+            create_switch_UserDetailActivity.setTextColor(Color.parseColor("#DFC048"))
+            like_switch_UserDetailActivity.setTextColor(Color.parseColor("#101010"))
+            viewpager_UserDetailActivity.currentItem = curPage
+        }
+        like_switch_UserDetailActivity.setOnClickListener {
+            curPage = 1
+            create_switch_UserDetailActivity.setTextColor(Color.parseColor("#101010"))
+            like_switch_UserDetailActivity.setTextColor(Color.parseColor("#DFC048"))
+            viewpager_UserDetailActivity.currentItem = curPage
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.bngel.bcy.dao.SmsControllerDao
 
 import com.bngel.bcy.bean.SmsController.postOauthCode.PostOauthCode
+import com.bngel.bcy.bean.SmsController.postUserChangePhone.PostUserChangePhone
 import com.bngel.bcy.web.SSLSocketClient
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -23,6 +24,17 @@ interface SmsControllerDao {
         @Query("phone") phone: String,
         @Query("type") type: Int
     ): Call<PostOauthCode>
+
+    /**
+     * 用户改绑手机
+     */
+    @POST("/user/changePhone")
+    fun postUserChangePhone(
+        @Query("code") code: String,
+        @Query("id") id: String,
+        @Query("phone") phone: String,
+        @Query("token") token: String
+    ): Call<PostUserChangePhone>
 
     companion object {
         fun create(): SmsControllerDao {

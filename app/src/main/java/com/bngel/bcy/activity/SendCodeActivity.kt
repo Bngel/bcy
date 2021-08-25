@@ -3,6 +3,7 @@ package com.bngel.bcy.activity
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.widget.EditText
 import android.widget.Toast
 import com.bngel.bcy.R
 import com.bngel.bcy.bean.UserController.postOauthLoginBySms.Data
@@ -38,7 +39,7 @@ class SendCodeActivity : BaseActivity() {
     private fun clockEvent() {
         clock_resend_SendCodeActivity.setOnClickListener {
             if (resendClock == 0) {
-                val postOauthCode = smsService.postOauthCode(intent.getStringExtra("phone") ?: "", 1)
+                val postOauthCode = smsService.postOauthCode(intent.getStringExtra("phone") ?: "", intent.getIntExtra("type", 1)?:1)
                 if (postOauthCode != null) {
                     Toast.makeText(
                         this,
@@ -80,24 +81,59 @@ class SendCodeActivity : BaseActivity() {
 
     private fun codeInputEvent() {
         code_inputCode_SendCodeActivity.setOnCompleteListener { code ->
-            val postOauthLoginBySms = userService.postOauthLoginBySms(
-                code, intent.getStringExtra("phone") ?: ""
-            )
-            Toast.makeText(
-                this,
-                when (postOauthLoginBySms?.msg) {
-                    "codeWrong" -> "验证码错误"
-                    "success" -> "登录成功"
-                    else -> "发生了未知错误"
-                },
-                Toast.LENGTH_SHORT
-            ).show()
-            if (postOauthLoginBySms?.msg == "success") {
-                InfoRepository.token = postOauthLoginBySms.data.token?:""
-                val intent = Intent(this, MainActivity::class.java)
-                intent.putExtra("loginStatus", true)
-                setResult(RESULT_OK, intent)
-                finish()
+            when (intent.getIntExtra("type", 1)) {
+                1 -> {
+                    val postOauthLoginBySms = userService.postOauthLoginBySms(
+                        code, intent.getStringExtra("phone") ?: ""
+                    )
+                    Toast.makeText(
+                        this,
+                        when (postOauthLoginBySms?.msg) {
+                            "codeWrong" -> "验证码错误"
+                            "success" -> "登录成功"
+                            else -> "发生了未知错误"
+                        },
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    if (postOauthLoginBySms?.msg == "success") {
+                        InfoRepository.token = postOauthLoginBySms.data.token ?: ""
+                        val intent = Intent(this, MainActivity::class.java)
+                        intent.putExtra("loginStatus", true)
+                        setResult(RESULT_OK, intent)
+                        finish()
+                    }
+                }
+                5 -> {
+                    val postUserChangePhone = smsService.postUserChangePhone(
+                        code,
+                        InfoRepository.user.id,
+                        intent.getStringExtra("phone") ?: ""
+                    )
+                    Toast.makeText(
+                        this,
+                        when (postUserChangePhone?.msg) {
+                            "codeWrong" -> "验证码错误"
+                            "success" -> "修改成功"
+                            else -> "发生了未知错误"
+                        },
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    if (postUserChangePhone?.msg == "success") {
+                        val intent = Intent(this, ChangeTelActivity::class.java)
+                        setResult(RESULT_OK, intent)
+                        finish()
+                    }
+                    else {
+                        code_inputCode_SendCodeActivity.apply {
+                            for (i in 0 until childCount) {
+                                if (getChildAt(i) is EditText) {
+                                    val et = getChildAt(i) as EditText
+                                    et.setText("")
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }

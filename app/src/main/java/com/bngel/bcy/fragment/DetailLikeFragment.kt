@@ -10,18 +10,19 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.bngel.bcy.R
 import com.bngel.bcy.service.CosControllerService
+import com.bngel.bcy.service.LikeControllerService
 import com.bngel.bcy.service.QAControllerService
 import com.bngel.bcy.utils.ConstantRepository
 import com.bngel.bcy.utils.InfoRepository
 import com.bngel.bcy.utils.MyUtils
 import com.bngel.bcy.widget.HomeFragment.DiscussCardHomeFragment
 import com.bngel.bcy.widget.others.QAndACardView
-import kotlinx.android.synthetic.main.fragment_search_cos.*
+import kotlinx.android.synthetic.main.fragment_detail_create.*
 import kotlinx.android.synthetic.main.fragment_search_qa.*
 
-class SearchQaFragment : Fragment() {
+class DetailLikeFragment : Fragment() {
 
-    private val qaService = QAControllerService()
+    private val cosService = LikeControllerService()
     private var keyword = ""
     private var detailLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         val data = result.data
@@ -40,7 +41,7 @@ class SearchQaFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_search_qa, container, false)
+        return inflater.inflate(R.layout.fragment_detail_create, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -60,25 +61,15 @@ class SearchQaFragment : Fragment() {
     }
 
     private fun cosEvent() {
-        ConstantRepository.searchConfirm.observe(viewLifecycleOwner, Observer {
-            if (it) {
-                val keyword = activity?.intent?.getStringExtra("keyword")?:""
-                val postEsSearchCos = qaService.postEsSearchQa(
-                    COS_COUNT,
-                    keyword,
-                    pageNow,
-                    if (ConstantRepository.loginStatus) InfoRepository.user.id else "0"
-                )
-                if (postEsSearchCos != null && postEsSearchCos.msg == "success") {
-                    cards_SearchQaFragment.removeAllViews()
-                    val qas = postEsSearchCos.data.qaList
-                    for (qa in qas) {
-                        val view = QAndACardView(parentContext!!, qa.number, 0, qa.title, qa.description, qa.createTime, MyUtils.fromStringToList(qa.label), detailLauncher)
-                        cards_SearchQaFragment.addView(view)
-                    }
-                }
+        val acgFollowCos = cosService.getAcgLikeList(InfoRepository.user.id, COS_COUNT, pageNow)
+        if (acgFollowCos != null && acgFollowCos.msg == "success") {
+            val coses = acgFollowCos.data.likeCosList
+            cards_DetailCreateFragment.removeAllViews()
+            for (cos in coses) {
+                val view = DiscussCardHomeFragment(parentContext!!, cos.number, cos.id, cos.username, cos.photo,
+                    cos.cosPhoto, null, cos.description, cos.createTime, detailLauncher)
+                cards_DetailCreateFragment.addView(view)
             }
-        })
-
+        }
     }
 }

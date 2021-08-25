@@ -22,6 +22,6 @@ object MyUtils {
     }
 
     fun fromStringToList(string: String): List<String> {
-        return string.substring(1, string.length-1).split(",")
+        return string.substring(1, string.length-1).split(", ")
     }
 }

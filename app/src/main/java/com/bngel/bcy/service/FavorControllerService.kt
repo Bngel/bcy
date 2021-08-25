@@ -15,7 +15,6 @@ class FavorControllerService {
 
     private val favorService = FavorControllerDao.create()
 
-
     /**
      * success：成功
      * 返回data：

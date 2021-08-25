@@ -2,11 +2,13 @@ package com.bngel.bcy.service
 
 import android.util.Log
 import android.widget.Toast
+import com.bngel.bcy.bean.PersonalController.getUserCommunityInfo.GetUserCommunityInfo
 import com.bngel.bcy.bean.PersonalController.getUserPersonalInfo.getUserPersonalInfoByPhone.GetUserPersonalInfoByPhone
 import com.bngel.bcy.bean.PersonalController.getUserPersonalInfo.getUserPersonalInfoById.GetUserPersonalInfoById
 import com.bngel.bcy.bean.PersonalController.getUserPersonalSetting.GetUserPersonalSetting
 import com.bngel.bcy.bean.PersonalController.getUserUserCounts.GetUserUserCounts
 import com.bngel.bcy.bean.PersonalController.postUserPhotoUpload.PostUserPhotoUpload
+import com.bngel.bcy.bean.PersonalController.postUserSetPassword.PostUserSetPassword
 import com.bngel.bcy.bean.PersonalController.putUserPersonalInfo.PutUserPersonalInfo
 import com.bngel.bcy.bean.PersonalController.putUserPersonalSetting.PutUserPersonalSetting
 import com.bngel.bcy.dao.PersonalControllerDao.PersonalControllerDao
@@ -231,6 +233,68 @@ class PersonalControllerService {
             }.join(4000)
             return res
         } catch (e: Exception) {
+            return null
+        }
+    }
+
+    /**
+     * msg:
+     * existWrong：用户不存在
+     * success：成功
+     */
+    fun postUserSetPassword(id: String, password: String): PostUserSetPassword? {
+        if (ActivityCollector.curActivity != null) {
+            if (!WebRepository.isNetworkConnected()) {
+                Toast.makeText(ActivityCollector.curActivity, "网络错误", Toast.LENGTH_SHORT).show()
+                return null
+            }
+        }
+        try {
+            val data = personalService.postUserSetPassword(id, password, InfoRepository.token)
+            var msg = ""
+            var res: PostUserSetPassword? = null
+            thread {
+                val exec = data.execute()
+                if (exec != null) {
+                    val body = exec.body()
+                    msg = body?.msg!!
+                    res = body
+                }
+            }.join(4000)
+            return res
+        } catch (e: Exception) {
+            return null
+        }
+    }
+
+    /**
+     * msg:
+     * success：成功
+     * 返回data
+     * userCommunityInfo（id：用户id phone：电话 weiboId：微博id）
+     */
+    fun getUserCommunityInfo(id: String): GetUserCommunityInfo? {
+        if (ActivityCollector.curActivity != null) {
+            if (!WebRepository.isNetworkConnected()) {
+                Toast.makeText(ActivityCollector.curActivity, "网络错误", Toast.LENGTH_SHORT).show()
+                return null
+            }
+        }
+        try {
+            val data = personalService.getUserCommunityInfo(id, InfoRepository.token)
+            var msg = ""
+            var res: GetUserCommunityInfo? = null
+            thread {
+                val exec = data.execute()
+                if (exec != null) {
+                    val body = exec.body()
+                    msg = body?.msg!!
+                    res = body
+                }
+            }.join(4000)
+            return res
+        } catch (e: Exception) {
+            e.printStackTrace()
             return null
         }
     }

@@ -133,7 +133,6 @@ class LoginActivity : BaseActivity() {
             val postOauthToken = userService.postOauthToken(tel, password)
             if (postOauthToken != null) {
                 InfoRepository.token = postOauthToken.access_token!!
-                Log.d("TestLog", postOauthToken.access_token!!)
                 val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("loginStatus", true)
                 intent.putExtra("phone", tel)
@@ -166,6 +165,7 @@ class LoginActivity : BaseActivity() {
                     Toast.LENGTH_SHORT).show()
                 if (postOauthCode.msg == "success") {
                     intent.putExtra("phone", tel)
+                    intent.putExtra("type", 1)
                     codeLauncher?.launch(intent)
                 }
             }

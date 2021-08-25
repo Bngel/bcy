@@ -106,7 +106,7 @@ interface CircleControllerDao {
         @Query("id") id: String,
         @Query("keyword") keyword: String,
         @Query("page") page: Int,
-        @Query("token") token: String
+        @Query("token") token: String?
     ): Call<GetAcgSearchCircle>
 
     /**
@@ -129,6 +129,7 @@ interface CircleControllerDao {
         @Query("page") page: Int,
         @Query("type") type: Int
     ): Call<GetAcgCircleCosList>
+
 
 
     companion object {

@@ -5,6 +5,7 @@ import com.bngel.bcy.bean.CircleController.getAcgCircle.GetAcgCircle
 import com.bngel.bcy.bean.QAController.getAcgAnswerList.GetAcgAnswerList
 import com.bngel.bcy.bean.QAController.getAcgQaTopic.GetAcgQaTopic
 import com.bngel.bcy.bean.QAController.getEsRecommendQa.GetEsRecommendQa
+import com.bngel.bcy.bean.QAController.postEsSearchQa.PostEsSearchQa
 import com.bngel.bcy.dao.QAControllerDao.QAControllerDao
 import com.bngel.bcy.utils.ActivityCollector
 import com.bngel.bcy.utils.InfoRepository
@@ -102,6 +103,39 @@ class QAControllerService {
             val data = qaService.getAcgAnswerList(cnt, id, number, page, type, if (id != null) InfoRepository.token else null)
             var msg = ""
             var res: GetAcgAnswerList? = null
+            thread {
+                val exec = data.execute()
+                if (exec != null) {
+                    val body = exec.body()
+                    msg = body?.msg!!
+                    res = body
+                }
+            }.join(4000)
+            return res
+        }
+        catch (e: Exception) {
+            return null
+        }
+    }
+
+    /**
+     * msg:
+     * success：成功
+     * 返回qaList
+     * （number：问答编号 id：发布用户id username：发布用户昵称 photo：头像
+     * description：内容 title：标题 label：标签（字符串list） createTime：创建时间）
+     */
+    fun postEsSearchQa(cnt: Int, keyword: String, page: Int, id: String?): PostEsSearchQa? {
+        if (ActivityCollector.curActivity != null) {
+            if (!WebRepository.isNetworkConnected()) {
+                Toast.makeText(ActivityCollector.curActivity, "网络错误", Toast.LENGTH_SHORT).show()
+                return null
+            }
+        }
+        try {
+            val data = qaService.postEsSearchQa(cnt, id, keyword, page, if (id == null||id=="0") null else InfoRepository.token)
+            var msg = ""
+            var res: PostEsSearchQa? = null
             thread {
                 val exec = data.execute()
                 if (exec != null) {
