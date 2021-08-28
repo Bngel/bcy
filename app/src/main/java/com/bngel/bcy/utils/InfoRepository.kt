@@ -33,7 +33,9 @@ object InfoRepository {
         }
         val userUserCounts = personalService.getUserUserCounts(user.id)
         if (userUserCounts!= null && userUserCounts.msg == "success") {
-            userCounts = userUserCounts.data.userCountsList[0]
+            if (userUserCounts.data.userCountsList.count() > 0) {
+                userCounts = userUserCounts.data.userCountsList[0]
+            }
         }
         else {
             quitStatus(context)

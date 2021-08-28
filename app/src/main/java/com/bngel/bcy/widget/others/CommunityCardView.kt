@@ -20,6 +20,8 @@ import kotlinx.android.synthetic.main.view_community_card.view.*
 
 class CommunityCardView: LinearLayout {
 
+    private var isFollowed = 0
+
     constructor(context: Context): super(context)
     constructor(context: Context, attributeSet: AttributeSet):super(context, attributeSet)
     constructor(context: Context, image: String, name: String, description: String, fans: Int, circleLauncher: ActivityResultLauncher<Intent>):super(context) {
@@ -38,7 +40,7 @@ class CommunityCardView: LinearLayout {
             val service = CircleControllerService()
             val acgJudgeCircle = service.getAcgJudgeCircle(name, InfoRepository.user.id)
             if (acgJudgeCircle != null && acgJudgeCircle.msg == "success") {
-                val isFollowed = acgJudgeCircle.data.judgeCircleList[0].isFollow
+                isFollowed = acgJudgeCircle.data.judgeCircleList[0].isFollow
                 val intent = Intent(context, CommunityDetailActivity::class.java)
                 intent.putExtra("isFollowed", isFollowed != 0)
                 when (isFollowed) {
@@ -46,55 +48,64 @@ class CommunityCardView: LinearLayout {
                         follow_btn_CommunityCardView.apply {
                             text = "+ 关注"
                             setTextColor(Color.parseColor("#F06A0F"))
-                            setBackgroundResource(R.drawable.bk_follow_btn_community_card_view)
-                            setOnClickListener {
-                                val postAcgFollowCircle =
-                                    service.postAcgFollowCircle(name, InfoRepository.user.id)
-                                if (postAcgFollowCircle != null) {
-                                    when (postAcgFollowCircle.msg) {
-                                        "success" -> {
-                                            text = "已关注"
-                                            setTextColor(Color.parseColor("#CCBE97"))
-                                            setBackgroundResource(R.drawable.bk_followed_btn_community_card_view)
-                                            Toast.makeText(context, "关注成功", Toast.LENGTH_SHORT).show()
-                                            ConstantRepository.circleFragmentUpdate = false
-                                        }
-                                        "repeatWrong" -> {
-                                            Toast.makeText(context, "不能重复关注噢", Toast.LENGTH_SHORT).show()
-                                        }
-                                    }
-                                }
-                            }
+                            follow_btn_CommunityCardView.setBackgroundResource(R.drawable.bk_follow_btn_community_card_view)
                         }
                     }
                     1 -> {
                         follow_btn_CommunityCardView.apply {
                             text = "已关注"
                             setTextColor(Color.parseColor("#CCBE97"))
-                            setBackgroundResource(R.drawable.bk_followed_btn_community_card_view)
-                            setOnClickListener {
+                            follow_btn_CommunityCardView.setBackgroundResource(R.drawable.bk_followed_btn_community_card_view)
+                        }
+                    }
+                }
+                follow_btn_CommunityCardView.setOnClickListener {
+                    when (isFollowed) {
+                        0 -> {
+                            val postAcgFollowCircle =
+                                service.postAcgFollowCircle(name, InfoRepository.user.id)
+                            if (postAcgFollowCircle != null) {
+                                when (postAcgFollowCircle.msg) {
+                                    "success" -> {
+                                        follow_btn_CommunityCardView.text = "已关注"
+                                        follow_btn_CommunityCardView.setTextColor(Color.parseColor("#CCBE97"))
+                                        follow_btn_CommunityCardView.setBackgroundResource(R.drawable.bk_followed_btn_community_card_view)
+                                        Toast.makeText(context, "关注成功", Toast.LENGTH_SHORT).show()
+                                        ConstantRepository.circleFragmentUpdate = false
+                                        isFollowed = 1
+                                    }
+                                    "repeatWrong" -> {
+                                        Toast.makeText(context, "不能重复关注噢", Toast.LENGTH_SHORT).show()
+                                    }
+                                }
+                            }
+                        }
+                        1 -> {
                                 val deleteAcgFollowCircle =
                                     service.deleteAcgFollowCircle(name, InfoRepository.user.id)
                                 if (deleteAcgFollowCircle != null) {
                                     when (deleteAcgFollowCircle.msg) {
                                         "success" -> {
-                                            text = "+ 关注"
-                                            setTextColor(Color.parseColor("#F06A0F"))
-                                            setBackgroundResource(R.drawable.bk_follow_btn_community_card_view)
+                                            follow_btn_CommunityCardView.text = "+ 关注"
+                                            follow_btn_CommunityCardView.setTextColor(Color.parseColor("#F06A0F"))
+                                            follow_btn_CommunityCardView.setBackgroundResource(R.drawable.bk_follow_btn_community_card_view)
                                             Toast.makeText(context, "取消关注成功", Toast.LENGTH_SHORT).show()
                                             ConstantRepository.circleFragmentUpdate = false
+                                            isFollowed = 0
                                         }
                                         "repeatWrong" -> {
                                             Toast.makeText(context, "不能重复取消关注噢", Toast.LENGTH_SHORT).show()
                                         }
                                     }
                                 }
-                            }
                         }
                     }
                 }
 
             }
+        }
+        else {
+            Toast.makeText(context, "请先登录", Toast.LENGTH_SHORT).show()
         }
 
         this.setOnClickListener {

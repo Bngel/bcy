@@ -166,33 +166,6 @@ class DiscussActivity : BaseActivity() {
                         for (comment in comments) {
                             val view = DiscussCommentView(this, comment.number, comment.username, comment.photo,
                                 comment.description, comment.createTime)
-                            val replyCountView = view.findViewById<TextView>(R.id.reply_count_DiscussCommentView)
-                            val reply = cosService.getAcgCosCommentComment(
-                                if (ConstantRepository.loginStatus) InfoRepository.user.id else null,
-                                comment.number,
-                                1,
-                                pageNow,
-                                curCommentType)
-                            if (reply != null) {
-                                when (reply.msg) {
-                                    "success" -> {
-                                        val commentCommentCount = reply.data.counts
-                                        if (commentCommentCount <= 0)
-                                            replyCountView.visibility = View.GONE
-                                        else {
-                                            val replyContent = reply.data.commentCommentList[0]
-                                            replyCountView.text =
-                                                "${replyContent.fromUsername} 共 $commentCommentCount 条回复"
-                                        }
-                                    }
-                                    else -> {
-                                        replyCountView.visibility = View.GONE
-                                    }
-                                }
-                            }
-                            else {
-                                replyCountView.visibility = View.GONE
-                            }
                             comments_DiscussActivity.addView(view)
                         }
                     }

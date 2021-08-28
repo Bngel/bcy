@@ -97,8 +97,9 @@ class SendCodeActivity : BaseActivity() {
                     ).show()
                     if (postOauthLoginBySms?.msg == "success") {
                         InfoRepository.token = postOauthLoginBySms.data.token ?: ""
-                        val intent = Intent(this, MainActivity::class.java)
+                        val intent = Intent(this, LoginActivity::class.java)
                         intent.putExtra("loginStatus", true)
+                        intent.putExtra("phone", intent.getStringExtra("phone"))
                         setResult(RESULT_OK, intent)
                         finish()
                     }

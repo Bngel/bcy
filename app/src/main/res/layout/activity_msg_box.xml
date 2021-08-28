@@ -9,6 +9,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            android:id="@+id/close_btn_MsgBoxActivity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/exit_set_password_activity_101010"
@@ -35,6 +36,7 @@
             android:hint="搜索"
             android:textSize="12sp"
             android:layout_centerInParent="true"
+            android:visibility="gone"
             android:background="@drawable/bk_discuss_edit_community_detail_activity"
             android:paddingLeft="20dp"/>
 
@@ -51,6 +53,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/at_btn_MsgBoxActivity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -85,6 +88,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/comment_btn_MsgBoxActivity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -119,6 +123,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/like_btn_MsgBoxActivity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -153,30 +158,12 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/cards_MsgBoxActivity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <com.bngel.bcy.widget.others.MsgCardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-                <com.bngel.bcy.widget.others.MsgCardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-                <com.bngel.bcy.widget.others.MsgCardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-                <com.bngel.bcy.widget.others.MsgCardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-                <com.bngel.bcy.widget.others.MsgCardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
+                android:orientation="vertical"
+                android:paddingTop="7dp"
+                android:paddingBottom="7dp"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -44,6 +44,9 @@ class MeFragment: Fragment() {
     private var starLauncher: ActivityResultLauncher<Intent>? = null
     private var historyLauncher: ActivityResultLauncher<Intent>? = null
     private var settingLauncher: ActivityResultLauncher<Intent>? = null
+    private var helpLauncher: ActivityResultLauncher<Intent>? = null
+    private var msgLauncher: ActivityResultLauncher<Intent>? = null
+
 
     private val personalService = PersonalControllerService()
     private var imageFile: File? = null // 声明File对象
@@ -165,6 +168,12 @@ class MeFragment: Fragment() {
         settingLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result->
             val data = result.data
         }
+        helpLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result->
+            val data = result.data
+        }
+        msgLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result->
+            val data = result.data
+        }
     }
 
     override fun onResume() {
@@ -193,6 +202,15 @@ class MeFragment: Fragment() {
         starEvent()
         historyEvent()
         settingEvent()
+        helpEvent()
+        msgEvent()
+    }
+
+    private fun helpEvent() {
+        help_image_MeFragment.setOnClickListener {
+            val intent = Intent(parentContext!!, HelpAndReplyActivity::class.java)
+            helpLauncher?.launch(intent)
+        }
     }
 
     private fun settingEvent() {
@@ -212,6 +230,18 @@ class MeFragment: Fragment() {
             if (ConstantRepository.loginStatus) {
                 val intent = Intent(parentContext!!, HistoryActivity::class.java)
                 historyLauncher?.launch(intent)
+            }
+            else {
+                Toast.makeText(parentContext!!, "请先登录", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun msgEvent() {
+        msg_image_MeFragment.setOnClickListener {
+            if (ConstantRepository.loginStatus) {
+                val intent = Intent(parentContext!!, MsgBoxActivity::class.java)
+                starLauncher?.launch(intent)
             }
             else {
                 Toast.makeText(parentContext!!, "请先登录", Toast.LENGTH_SHORT).show()

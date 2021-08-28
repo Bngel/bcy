@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="15dp">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <com.bngel.bcy.widget.others.AvtView
+            android:id="@+id/avt_AnswerCardView"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="5dp"
+            android:src="@drawable/rem"
+            android:layout_gravity="top|center_horizontal"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="6"
+        android:orientation="vertical"
+        android:layout_margin="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/username_AnswerCardView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:gravity="left"
+                android:textColor="#3F3F3F"
+                android:text="用户名测试字段"/>
+
+            <TextView
+                android:id="@+id/date_AnswerCardView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="#CECECE"
+                android:layout_marginLeft="30dp"
+                android:gravity="left"
+                android:text="2020-12-21"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/description_AnswerCardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:text=""/>
+        
+        <LinearLayout
+            android:id="@+id/tags_AnswerCardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="right"
+            android:layout_marginTop="15dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/like_image_AnswerCardView"
+                    android:layout_width="19dp"
+                    android:layout_height="19dp"
+                    android:src="@drawable/like_discuss_card_home_fragment_cecece"/>
+
+                <TextView
+                    android:id="@+id/like_count_AnswerCardView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="5dp"
+                    android:text="999+"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/comment_image_AnswerCardView"
+                    android:layout_width="19dp"
+                    android:layout_height="19dp"
+                    android:src="@drawable/comment_discuss_card_home_fragment_cecece"/>
+
+                <TextView
+                    android:id="@+id/comment_count_AnswerCardView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="5dp"
+                    android:text="999+"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

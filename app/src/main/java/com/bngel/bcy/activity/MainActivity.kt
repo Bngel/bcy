@@ -68,7 +68,9 @@ class MainActivity : BaseActivity() {
                     popWindow.dismiss()
                 }
                 createQa.setOnClickListener {
-
+                    val intent = Intent(this, NewQuestionActivity::class.java)
+                    createLauncher?.launch(intent)
+                    popWindow.dismiss()
                 }
                 val rootView = LayoutInflater.from(this).inflate(R.layout.activity_main, null)
                 popWindow.animationStyle = R.style.contextCommentAnim

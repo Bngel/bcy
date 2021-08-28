@@ -1,21 +1,28 @@
 package com.bngel.bcy.dao.QAControllerDao
 
+import com.bngel.bcy.bean.QAController.deleteAcgDislikeAnswer.DeleteAcgDislikeAnswer
+import com.bngel.bcy.bean.QAController.deleteAcgFollowQa.DeleteAcgFollowQa
+import com.bngel.bcy.bean.QAController.getAcgAnswerCommentCommentList.GetAcgAnswerCommentCommentList
+import com.bngel.bcy.bean.QAController.getAcgAnswerCommentList.GetAcgAnswerCommentList
 import com.bngel.bcy.bean.QAController.getAcgAnswerList.GetAcgAnswerList
+import com.bngel.bcy.bean.QAController.getAcgJudgeQa.GetAcgJudgeQa
+import com.bngel.bcy.bean.QAController.getAcgJudgeQaAnswer.GetAcgJudgeQaAnswer
+import com.bngel.bcy.bean.QAController.getAcgQaAnswerCountsList.GetAcgQaAnswerCountsList
 import com.bngel.bcy.bean.QAController.getAcgQaTopic.GetAcgQaTopic
 import com.bngel.bcy.bean.QAController.getEsRecommendQa.GetEsRecommendQa
+import com.bngel.bcy.bean.QAController.postAcgFollowQa.PostAcgFollowQa
+import com.bngel.bcy.bean.QAController.postAcgLikeAnswer.PostAcgLikeAnswer
+import com.bngel.bcy.bean.QAController.postAcgQa.PostAcgQa
 import com.bngel.bcy.bean.QAController.postEsSearchQa.PostEsSearchQa
-import com.bngel.bcy.dao.QAControllerDao.QAControllerDao
 import com.bngel.bcy.web.SSLSocketClient
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 import java.util.concurrent.TimeUnit
 
 interface QAControllerDao {
@@ -79,10 +86,17 @@ interface QAControllerDao {
         @Query("page") page: Int,
         @Query("type") type: Int,
         @Query("token") token: String?
-    )
+    ): Call<GetAcgAnswerCommentCommentList>
 
     @GET("/acg/answerCommentList")
-    fun getAcgAnswerCommentList()
+    fun getAcgAnswerCommentList(
+        @Query("answerNumber") answerNumber: String,
+        @Query("cnt") cnt: Int,
+        @Query("id") id: String?,
+        @Query("page") page: Int,
+        @Query("type") type: Int,
+        @Query("token") token: String?
+    ): Call<GetAcgAnswerCommentList>
 
     @GET("/acg/answerList")
     fun getAcgAnswerList(
@@ -95,34 +109,58 @@ interface QAControllerDao {
     ): Call<GetAcgAnswerList>
 
     @DELETE("/acg/dislikeAnswer")
-    fun deleteAcgDislikeAnswer()
+    fun deleteAcgDislikeAnswer(
+        @Query("id") id: String,
+        @Query("number") number: String,
+        @Query("token") token: String
+    ): Call<DeleteAcgDislikeAnswer>
 
     @DELETE("/acg/dislikeComment")
     fun deleteAcgDislikeComment()
 
     @POST("/acg/followQA")
-    fun postAcgFollowQA()
+    fun postAcgFollowQA(
+        @Query("id") id: String,
+        @Query("number") number: String,
+        @Query("token") token: String
+    ): Call<PostAcgFollowQa>
 
     @DELETE("/acg/followQA")
-    fun deleteAcgFollowQA()
+    fun deleteAcgFollowQA(
+        @Query("id") id: String,
+        @Query("number") number: String,
+        @Query("token") token: String
+    ): Call<DeleteAcgFollowQa>
 
     @GET("/acg/followQAList")
     fun getAcgFollowQAList()
 
     @POST("/acg/likeAnswer")
-    fun postAcgLikeAnswer()
+    fun postAcgLikeAnswer(
+        @Query("id") id: String,
+        @Query("number") number: String,
+        @Query("token") token: String
+    ): Call<PostAcgLikeAnswer>
 
     @POST("/acg/likeComment")
     fun postAcgLikeComment()
 
-    @POST("/acg/photoUpload")
-    fun postAcgPhotoUpload()
-
     @POST("/acg/QA")
-    fun postAcgQA()
+    fun postAcgQA(
+        @Query("description") description: String,
+        @Query("id") id: String,
+        @Query("label") label: List<String>,
+        @Query("photo") photo: List<String>,
+        @Query("title") title: String,
+        @Query("token") token: String
+    ): Call<PostAcgQa>
 
     @GET("/acg/qaAnswerCountsList")
-    fun postAcgQaAnswerCountsList()
+    fun getAcgQaAnswerCountsList(
+        @Query("id") id: String?,
+        @Query("numbers") numbers: List<String>,
+        @Query("token") token: String?
+    ): Call<GetAcgQaAnswerCountsList>
 
     @GET("/acg/qaCommentCountsList")
     fun getAcgQaCommentCountsList()
@@ -136,6 +174,19 @@ interface QAControllerDao {
         @Query("number") number: String,
         @Query("token") token: String?
     ): Call<GetAcgQaTopic>
+
+    @GET("/acg/judgeQa")
+    fun getAcgJudgeQa(
+        @Query("id") id: String,
+        @Query("numbers") numbers: List<String>,
+        @Query("token") token: String
+    ): Call<GetAcgJudgeQa>
+
+    fun getAcgJudgeQaAnswer(
+        @Query("id") id: String,
+        @Query("numbers") numbers: List<String>,
+        @Query("token") token: String
+    ): Call<GetAcgJudgeQaAnswer>
 
 
     companion object {

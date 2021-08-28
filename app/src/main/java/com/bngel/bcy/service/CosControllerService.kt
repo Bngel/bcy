@@ -46,6 +46,7 @@ class CosControllerService {
             var res: GetAcgFollowCos? = null
             thread {
                 val exec = data.execute()
+                Log.d("TestLog", exec.toString())
                 if (exec != null) {
                     val body = exec.body()
                     msg = body?.msg!!
