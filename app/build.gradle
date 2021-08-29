@@ -54,6 +54,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.3.0' // retrofit 网络库
     implementation 'com.squareup.retrofit2:converter-gson:2.1.0' // retrofit gson组件
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0' // retrofit 添加了对RxJava2的支持
+    implementation 'com.lcodecorex:tkrefreshlayout:1.0.7' // RecycleView 上拉刷新 下拉加载
     implementation "org.java-websocket:Java-WebSocket:1.4.0" // WebSocket
     implementation 'com.github.gzu-liyujiang.AndroidPicker:Common:3.1.0'
     implementation 'com.github.gzu-liyujiang.AndroidPicker:WheelPicker:3.1.0'
